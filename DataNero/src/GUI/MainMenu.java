@@ -4,10 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,11 +22,27 @@ public class MainMenu extends JPanel {
         setLayout(new GridBagLayout());
 
         /* Logo */
-        JLabel logo = new JLabel(new ImageIcon("path/to/logo.png"));
+        JLabel logo = new JLabel(new ImageIcon("src/Images/datanero_logo.png"));
         
         /* Teacher mascot */
-        JLabel mascot = new JLabel(new ImageIcon("path/to/mascot.png"));
+        ImageIcon originalMascotIcon = new ImageIcon("src/Images/mascot.png");
+        int originalWidth = originalMascotIcon.getIconWidth();
+        int originalHeight = originalMascotIcon.getIconHeight();
 
+        // Set the desired scale factor
+        double scaleFactor = 0.5;
+
+        // Calculate the new width and height
+        int newWidth = (int) (originalWidth * scaleFactor);
+        int newHeight = (int) (originalHeight * scaleFactor);
+
+        // Create a new ImageIcon with the scaled image
+        Image scaledImage = originalMascotIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledMascotIcon = new ImageIcon(scaledImage);
+
+        // Set the new ImageIcon to the JLabel mascot
+        JLabel mascot = new JLabel(scaledMascotIcon);
+        
         /* Buttons */
         JButton startButton = new JButton("Aloita peli");
         JButton settingsButton = new JButton("Asetukset");

@@ -1,10 +1,7 @@
 package GUI;
 
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JPanel;
 
 public class ButtonActions implements ActionListener {
     private MainFrame mainFrame;
