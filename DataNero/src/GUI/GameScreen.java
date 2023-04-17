@@ -13,10 +13,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 public class GameScreen extends JPanel {
-    private JPanel cards;
+    private MainFrame mainFrame;
 
-    public GameScreen() {
-        this.cards = cards;
+    public GameScreen(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
 
         setLayout(new GridBagLayout());
 
@@ -27,10 +27,15 @@ public class GameScreen extends JPanel {
         JLabel mascot = new JLabel(new ImageIcon("path/to/mascot.png"));
 
         /* Button for exiting the game */
-        JButton exitButton = new JButton("Lopeta");
-        exitButton.setFont(new Font("Arial", Font.BOLD, 38));
-        exitButton.setBackground(new Color(239, 71, 111));
-        exitButton.setPreferredSize(new Dimension(800, 130));
+        JButton lopetaButton = new JButton("Lopeta");
+        lopetaButton.setActionCommand("Lopeta");
+
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
+        lopetaButton.addActionListener(buttonActions);
+
+        lopetaButton.setFont(new Font("Arial", Font.BOLD, 38));
+        lopetaButton.setBackground(new Color(239, 71, 111));
+        lopetaButton.setPreferredSize(new Dimension(800, 130));
 
         /* Add components to the panel */
         GridBagConstraints gbc = new GridBagConstraints();
@@ -41,6 +46,6 @@ public class GameScreen extends JPanel {
         gbc.weighty = 1.0; // Assign maximum weight for vertical space distribution
         gbc.anchor = GridBagConstraints.SOUTHEAST; // Anchor the button to the bottom-right corner
         gbc.insets = new Insets(5, 5, 5, 5); // Add some padding around the button
-        add(exitButton, gbc);
+        add(lopetaButton, gbc);
     }
 }

@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 
 public class MainFrame extends JFrame {
+    private JPanel cards;
+
     public MainFrame() {
         setTitle("DataNero");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,10 +15,10 @@ public class MainFrame extends JFrame {
         setUndecorated(true);
 
         // Use CardLayout to switch between screens
-        JPanel cards = new JPanel(new CardLayout());
+        this.cards = new JPanel(new CardLayout());
 
-        MainMenu mainMenu = new MainMenu(cards);
-        GameScreen gameScreen = new GameScreen();
+        MainMenu mainMenu = new MainMenu(this);
+        GameScreen gameScreen = new GameScreen(this);
 
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
@@ -26,6 +28,11 @@ public class MainFrame extends JFrame {
 
         getContentPane().add(cards);
         setVisible(true);
+    }
+
+    public void switchTo(String cardName) {
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        cl.show(cards, cardName);
     }
     
     public static void main(String[] args) {

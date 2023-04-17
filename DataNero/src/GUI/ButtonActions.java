@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 public class ButtonActions implements ActionListener {
-    private JPanel cards;
+    private MainFrame mainFrame;
 
-    public ButtonActions(JPanel cards) {
-        this.cards = cards;
+    public ButtonActions(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
     @Override
@@ -20,8 +20,7 @@ public class ButtonActions implements ActionListener {
         switch (command) {
             case "Aloita peli":
                 // Switch to game screen
-                CardLayout cl = (CardLayout) cards.getLayout();
-                cl.show(cards, "gameScreen");
+                mainFrame.switchTo("gameScreen");
                 break;
             case "Asetukset":
                 // Settings logic
@@ -32,6 +31,8 @@ public class ButtonActions implements ActionListener {
             case "Poistu":
                 System.exit(0);
                 break;
+            case "Lopeta":
+                mainFrame.switchTo("mainMenu");
             default:
                 throw new IllegalArgumentException("Unknown action command: " + command);
         }
