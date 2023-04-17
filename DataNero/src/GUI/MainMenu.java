@@ -77,7 +77,7 @@ public class MainMenu extends JPanel {
      */
     private void styleButton(JButton button) {
         /* Set the font, text color and background color */
-        button.setFont(new Font("Arial", Font.BOLD, 20));
+        button.setFont(new Font("Arial", Font.BOLD, 38));
         button.setForeground(Color.WHITE);
         button.setBackground(new Color(51, 153, 255));
 
