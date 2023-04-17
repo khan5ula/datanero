@@ -23,7 +23,7 @@ public class GameScreen extends JPanel {
          * Teacher maskot.
          * This will later be swapped with a maskot that changes it's expression based on the player progress.
          */
-        JLabel mascot = new JLabel(new ImageIcon("path/to/mascot.png"));
+        //JLabel mascot = new JLabel(new ImageIcon("path/to/mascot.png"));
 
         /* Button for exiting the game */
         JButton lopetaButton = new JButton("Lopeta");

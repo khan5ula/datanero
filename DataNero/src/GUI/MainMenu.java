@@ -22,10 +22,10 @@ public class MainMenu extends JPanel {
         setLayout(new GridBagLayout());
 
         /* Logo */
-        JLabel logo = new JLabel(new ImageIcon("src/Images/datanero_logo.png"));
+        JLabel logo = new JLabel(new ImageIcon("DataNero/src/Images/datanero_logo.png"));
         
         /* Teacher mascot */
-        ImageIcon originalMascotIcon = new ImageIcon("src/Images/mascot.png");
+        ImageIcon originalMascotIcon = new ImageIcon("DataNero/src/Images/mascot.png");
         int originalWidth = originalMascotIcon.getIconWidth();
         int originalHeight = originalMascotIcon.getIconHeight();
 
