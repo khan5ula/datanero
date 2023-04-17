@@ -3,11 +3,15 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Backend.Game;
+
 public class ButtonActions implements ActionListener {
     private MainFrame mainFrame;
+    private Game game;
 
-    public ButtonActions(MainFrame mainFrame) {
+    public ButtonActions(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
+        this.game = game;
     }
 
     @Override

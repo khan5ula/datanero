@@ -1,50 +1,132 @@
 package GUI;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+
+import Backend.Game;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameScreen extends JPanel {
     private MainFrame mainFrame;
+    private Game game;
+    private JLabel questionLabel;
+    private JButton[] answerButtons;
+    private JLabel scoreLabel;
+    private JLabel livesLabel;
 
-    public GameScreen(MainFrame mainFrame) {
+    public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
+        this.game = game;
 
         setLayout(new GridBagLayout());
 
-        /**
-         * Teacher maskot.
-         * This will later be swapped with a maskot that changes it's expression based on the player progress.
-         */
-        //JLabel mascot = new JLabel(new ImageIcon("path/to/mascot.png"));
+        // Create and configure components
+        questionLabel = new JLabel(game.getCurrentQuestion().getQuestion());
+        questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-        /* Button for exiting the game */
+        answerButtons = new JButton[4];
+        for (int i = 0; i < answerButtons.length; i++) {
+            answerButtons[i] = new JButton(game.getCurrentQuestion().getAnswers()[i]);
+            answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 20));
+            answerButtons[i].addActionListener(new AnswerButtonListener(i));
+        }
+
+        scoreLabel = new JLabel("Pisteet: " + game.getScore());
+        scoreLabel.setFont(new Font("Arial", Font.BOLD, 18));
+
+        livesLabel = new JLabel("Elämät: " + game.getLives());
+        livesLabel.setFont(new Font("Arial", Font.BOLD, 18));
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        // Add question label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        add(questionLabel, gbc);
+
+        // Add answer buttons
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        for (int i = 0; i < answerButtons.length; i++) {
+            gbc.gridx = i % 2;
+            gbc.gridy = 1 + i / 2;
+            add(answerButtons[i], gbc);
+        }
+
+        // Add score label
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(scoreLabel, gbc);
+
+        // Add lives label
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(livesLabel, gbc);
+
+        // Add exit button
         JButton lopetaButton = new JButton("Lopeta");
         lopetaButton.setActionCommand("Lopeta");
 
-        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame, game);
         lopetaButton.addActionListener(buttonActions);
 
         lopetaButton.setFont(new Font("Arial", Font.BOLD, 38));
         lopetaButton.setBackground(new Color(239, 71, 111));
         lopetaButton.setPreferredSize(new Dimension(800, 130));
 
-        /* Add components to the panel */
-        GridBagConstraints gbc = new GridBagConstraints();
-        // Configure the GridBagConstraints
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0; // Assign maximum weight for horizontal space distribution
-        gbc.weighty = 1.0; // Assign maximum weight for vertical space distribution
-        gbc.anchor = GridBagConstraints.SOUTHEAST; // Anchor the button to the bottom-right corner
-        gbc.insets = new Insets(5, 5, 5, 5); // Add some padding around the button
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.SOUTHEAST;
+        gbc.insets = new Insets(5, 5, 5, 5);
         add(lopetaButton, gbc);
+    }
+
+    private void updateGameDisplay() {
+        questionLabel.setText(game.getCurrentQuestion().getQuestion());
+        for (int i = 0; i < answerButtons.length; i++) {
+            answerButtons[i].setText(game.getCurrentQuestion().getAnswers()[i]);
+        }
+        scoreLabel.setText("Pisteet: " + game.getScore());
+        livesLabel.setText("Elämät: " + game.getLives());
+    }
+    
+    private class AnswerButtonListener implements ActionListener {
+        private int answerIndex;
+    
+        public AnswerButtonListener(int answerIndex) {
+            this.answerIndex = answerIndex;
+        }
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean correct = game.submitAnswer(answerIndex);
+            if (correct) {
+                // Handle correct answer
+                // e.g., show a message or update some UI element
+            } else {
+                // Handle incorrect answer
+                // e.g., show a message or update some UI element
+            }
+    
+            if (game.getLives() <= 0) {
+                // End game
+                // e.g., show a game over message, switch to another screen, etc.
+            } else {
+                // Continue game
+                game.nextQuestion();
+                updateGameDisplay();
+            }
+        }
     }
 }
