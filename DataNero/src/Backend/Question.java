@@ -12,34 +12,34 @@ public class Question {
     }
 
     public String getQuestionText() {
-        return questionText;
+        return this.questionText;
     }
 
     public String[] getAnswers() {
-        return answers;
+        return this.answers;
     }
 
     public String getFirstAnswer() {
-        return answers[0];
+        return this.answers[0];
     }
 
     public String getSecondAnswer() {
-        return answers[1];
+        return this.answers[1];
     }
 
     public String getThirdAnswer() {
-        return answers[2];
+        return this.answers[2];
     }
 
     public String getFourthAnswer() {
-        return answers[3];
+        return this.answers[3];
     }
 
     public int getCorrectAnswerIndex() {
-        return correctAnswerIndex;
+        return this.correctAnswerIndex;
     }
 
     public boolean isAnswerCorrect(int answerIndex) {
-        return answerIndex == correctAnswerIndex;
+        return answerIndex == this.correctAnswerIndex;
     }
 }

@@ -10,26 +10,26 @@ public class Player {
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
     public int getLives() {
-        return lives;
+        return this.lives;
     }
 
     public void incrementScore() {
-        score++;
+        this.score++;
     }
 
     public void decrementScore() {
-        score--;
+        this.score--;
     }
 
     public void decrementLives() {
-        lives--;
+        this.lives--;
     }
 
     public boolean isAlive() {
-        return lives > 0;
+        return this.lives > 0;
     }
 }
