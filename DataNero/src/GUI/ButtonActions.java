@@ -1,16 +1,27 @@
 package GUI;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPanel;
+
 public class ButtonActions implements ActionListener {
+    private JPanel cards;
+
+    public ButtonActions(JPanel cards) {
+        this.cards = cards;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
         switch (command) {
             case "Aloita peli":
-                // Start game logic
+                // Switch to game screen
+                CardLayout cl = (CardLayout) cards.getLayout();
+                cl.show(cards, "gameScreen");
                 break;
             case "Asetukset":
                 // Settings logic

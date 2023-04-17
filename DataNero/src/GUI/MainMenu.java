@@ -14,7 +14,11 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 
 public class MainMenu extends JPanel {
-    public MainMenu() {
+    private JPanel cards;
+
+    public MainMenu(JPanel cards) {
+        this.cards = cards;
+
         setLayout(new GridBagLayout());
 
         /* Logo */
@@ -42,7 +46,7 @@ public class MainMenu extends JPanel {
         exitButton.setBackground(new Color(239, 71, 111));
 
         /* Button action handling */
-        ButtonActions buttonActions = new ButtonActions();
+        ButtonActions buttonActions = new ButtonActions(cards);
         startButton.addActionListener(buttonActions);
         settingsButton.addActionListener(buttonActions);
         highScoresButton.addActionListener(buttonActions);
