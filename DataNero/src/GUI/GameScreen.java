@@ -19,6 +19,7 @@ public class GameScreen extends JPanel {
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
+        this.game.getNewQuestion();
 
         setLayout(new GridBagLayout());
 
@@ -29,8 +30,7 @@ public class GameScreen extends JPanel {
         answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i] = new JButton(answers[i]);
-            answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 20));
+            answerButtons[i] = new ButtonFactory(answers[i], 'L', Color.BLUE).getButton();
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
         }
 
@@ -126,7 +126,7 @@ public class GameScreen extends JPanel {
                 // e.g., show a game over message, switch to another screen, etc.
             } else {
                 // Continue game
-                //game.nextQuestion();
+                game.getNewQuestion();
                 updateGameDisplay();
             }
         }

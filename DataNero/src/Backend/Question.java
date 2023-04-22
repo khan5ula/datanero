@@ -26,6 +26,10 @@ public class Question {
         this.answers[3] = answer;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getQuestion() {
         return this.question;
     }

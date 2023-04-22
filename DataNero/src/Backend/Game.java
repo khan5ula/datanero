@@ -27,6 +27,10 @@ public class Game {
         return true;
     }
 
+    public void getNewQuestion() {
+        this.currentQuestion = this.questionBank.getRandomQuestion();
+    }
+
     public String getCurrentQuestion() {
         return this.currentQuestion.getQuestion();
     }
