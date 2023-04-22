@@ -21,18 +21,20 @@ public class GameScreen extends JPanel {
     private JLabel scoreLabel;
     private JLabel livesLabel;
     private JTextArea questionTextArea;
+    private JLabel mascotLabel;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
+        this.mascotLabel = new JLabel();
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        Insets padding = new Insets(5, 5, 5, 5);
+        Insets padding = new Insets(10, 10, 10, 10);
 
         /* Set an empty border with with a padding around the panel */
-        Border borderPadding = BorderFactory.createEmptyBorder(100, 100, 100, 100);
+        Border borderPadding = BorderFactory.createEmptyBorder(160, 100, 100, 100);
         setBorder(borderPadding);
 
         /* Create text area for the question */
@@ -110,11 +112,11 @@ public class GameScreen extends JPanel {
         add(questionTextArea, gbc);
 
         /* Add answer buttons to grid */
-        gbc.gridwidth = 3; // Each button occupies 3 columns
-        gbc.gridheight = 2; // Each button occupies 2 rows
+        gbc.gridwidth = 3;
+        gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.fill = GridBagConstraints.BOTH; // Make the component fill the grid cell
-        gbc.insets = new Insets(2, 5, 2, 5); // Reduced vertical space
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
         for (int i = 0; i < buttons.size(); i++) {
             gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
             gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
@@ -125,37 +127,42 @@ public class GameScreen extends JPanel {
         JButton lopetaButton = new ButtonFactory("Lopeta", 'L', new Color(239, 71, 111)).getButton();
         lopetaButton.setActionCommand("Lopeta");
 
+        /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
         lopetaButton.addActionListener(buttonActions);
 
-        gbc.gridx = 10;
+        /* Add the exit button to the grid */
+        gbc.gridx = 9;
         gbc.gridy = 8;
-        gbc.gridwidth = 2; // Span 2 columns
-        gbc.gridheight = 1; // Span 2 rows
+        gbc.gridwidth = 3;
+        gbc.gridheight = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.SOUTHEAST;
-        gbc.fill = GridBagConstraints.NONE; // Don't make the component fill the grid cell
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = padding;
         add(lopetaButton, gbc);
 
         /* Load the mascot image */
-        ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot.png");
+        ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
 
         /* Create JLabel to hold the image, and set the icon */
-        JLabel mascotLabel = new JLabel();
-        mascotLabel.setIcon(mascotIcon);
+        this.mascotLabel.setIcon(mascotIcon);
 
         /* Add the Mascot JLabel to grid */
         gbc.gridx = 9; // Adjust the x-coordinate as needed
-        gbc.gridy = 2; // Adjust the y-coordinate as needed
+        gbc.gridy = 0; // Adjust the y-coordinate as needed
         gbc.gridwidth = 3; // You can adjust the width as needed
         gbc.gridheight = 10; // You can adjust the height as needed
-        gbc.anchor = GridBagConstraints.CENTER; // Center the mascot image
+        gbc.anchor = GridBagConstraints.EAST; // Center the mascot image
         gbc.insets = padding;
         add(mascotLabel, gbc);
     }
 
+    /**
+     * Method that updates the game screen elements.
+     * Should be called after every turn to initialize a new turn.
+     */
     private void updateGameDisplay() {
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
@@ -164,8 +171,39 @@ public class GameScreen extends JPanel {
         }
         scoreLabel.setText("Pisteet: " + game.getScore());
         livesLabel.setText("Elämät: " + game.getLives());
+        updateMascot();
     }
 
+    /**
+     * Method that updates the game mascot based on the success of the player.
+     */
+    private void updateMascot() {
+        String imagePath;
+        switch (game.getLives()) {
+            case 3:
+                imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+                break;
+            case 2:
+                imagePath = "src/main/java/com/team13/datanero/images/mascot_worried.png";
+                break;
+            case 1:
+                imagePath = "src/main/java/com/team13/datanero/images/mascot_terrified.png";
+                break;
+            case 0:
+                imagePath = "src/main/java/com/team13/datanero/images/mascot_terminated.png";
+                break;
+            default:
+                imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+        }
+
+        ImageIcon newMascotIcon = new ImageIcon(imagePath);
+        this.mascotLabel.setIcon(newMascotIcon);
+    }
+    
+
+    /** Private class used by Game Class.
+     * Contains the actions for pressing buttons.
+     */
     private class AnswerButtonListener implements ActionListener {
         private int answerIndex;
 
@@ -183,6 +221,9 @@ public class GameScreen extends JPanel {
             }
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
+                if (game.getLives() == 0) {
+                    updateMascot();
+                }
                 /* Show the GameOverDialog with the score */
                 GameOverScreen gameOverDialog = new GameOverScreen(mainFrame, game.getScore());
                 gameOverDialog.setVisible(true);

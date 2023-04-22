@@ -15,9 +15,15 @@ public class GameOverScreen extends JDialog {
         messageLabel.setFont(new Font("Arial", Font.BOLD, 48));
 
         /* Add padding to the pop-up screen */
-        Border padding = BorderFactory.createEmptyBorder(100, 100, 100, 100);
+        Border padding = BorderFactory.createEmptyBorder(300, 100, 300, 100);
         messageLabel.setBorder(padding);
 
+        /* Teacher mascot */
+        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
+        // Set the new ImageIcon to the JLabel mascot
+        JLabel mascot = new JLabel(mascotImage);
+        add(mascot);
+        
         setLayout(new FlowLayout());
         add(messageLabel);
 

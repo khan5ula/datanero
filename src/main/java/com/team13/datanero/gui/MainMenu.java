@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Color;
 
 public class MainMenu extends JPanel {
@@ -22,23 +21,9 @@ public class MainMenu extends JPanel {
         JLabel logo = new JLabel(new ImageIcon("src/main/java/com/team13/datanero/images/datanero_logo.png"));
         
         /* Teacher mascot */
-        ImageIcon originalMascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot.png");
-        int originalWidth = originalMascotIcon.getIconWidth();
-        int originalHeight = originalMascotIcon.getIconHeight();
-
-        // Set the desired scale factor
-        double scaleFactor = 0.5;
-
-        // Calculate the new width and height
-        int newWidth = (int) (originalWidth * scaleFactor);
-        int newHeight = (int) (originalHeight * scaleFactor);
-
-        // Create a new ImageIcon with the scaled image
-        Image scaledImage = originalMascotIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-        ImageIcon scaledMascotIcon = new ImageIcon(scaledImage);
-
+        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
         // Set the new ImageIcon to the JLabel mascot
-        JLabel mascot = new JLabel(scaledMascotIcon);
+        JLabel mascot = new JLabel(mascotImage);
         
         /* Buttons */
         JButton startButton = new ButtonFactory("Aloita peli", 'L', new Color(6,214,160)).getButton();

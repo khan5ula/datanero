@@ -81,6 +81,31 @@ public class MainFrame extends JFrame {
         question.setFirstWrongAnswer("SELECT ALL from employees");
         question.setSecondWrongAnswer("SELECT employees");
         question.setThirdWrongAnswer("SELECT FROM employees");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Millä seuraavista komennoista voidaan muokata olemassaolevaa SQL-taulua?");
+        question.setCorrectAnswer("ALTER TABLE");
+        question.setFirstWrongAnswer("UPDATE");
+        question.setSecondWrongAnswer("CHANGE TABLE");
+        question.setThirdWrongAnswer("MODIFY TABLE");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Mitä SQL-funktiota käytetään palauttamaan rivien lukumäärä taulusta?");
+        question.setCorrectAnswer("COUNT()");
+        question.setFirstWrongAnswer("MAX()");
+        question.setSecondWrongAnswer("MIN()");
+        question.setThirdWrongAnswer("AVG()");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Millä seuraavista SQL-komennoista lajitellaan arvot nousevaan tai laskevaan järjestykseen?");
+        question.setCorrectAnswer("ORDER BY");
+        question.setFirstWrongAnswer("GROUP BY");
+        question.setSecondWrongAnswer("WHERE");
+        question.setThirdWrongAnswer("HAVING");
+        questionBank.addQuestion(question);
 
         Game game = Game.getInstance();
         new MainFrame(game);
