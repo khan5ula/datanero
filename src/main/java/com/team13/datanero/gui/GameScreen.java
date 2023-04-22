@@ -27,8 +27,8 @@ public class GameScreen extends JPanel {
 
         Insets padding = new Insets(5, 5, 5, 5);
 
-        // Set an empty border with a 20-pixel padding around the panel
-        Border borderPadding = BorderFactory.createEmptyBorder(20, 20, 20, 20);
+        /* Set an empty border with with a padding around the panel */
+        Border borderPadding = BorderFactory.createEmptyBorder(100, 100, 100, 100);
         setBorder(borderPadding);
 
         // Create and configure components
