@@ -3,10 +3,13 @@ package Backend;
 public class Game {
     private Player player;
     private QuestionBank questionBank;
+    private int questionsAvailable;
+    private Question currentQuestion;
 
     public Game(int lives, QuestionBank questionBank) {
         this.player = new Player(lives);
         this.questionBank = questionBank;
+        this.questionsAvailable = this.questionBank.getCount();
     }
 
     public int getScore() {
@@ -22,6 +25,18 @@ public class Game {
             return false;
         }
         return true;
+    }
+
+    public String getCurrentQuestion() {
+        return this.currentQuestion.getQuestion();
+    }
+
+    public String[] getAnswersForCurrentQuestion() {
+        return this.currentQuestion.getAnswers();
+    }
+
+    public int getCountOfQuestionsAvailable() {
+        return this.questionsAvailable;
     }
 
     

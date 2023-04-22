@@ -23,12 +23,13 @@ public class GameScreen extends JPanel {
         setLayout(new GridBagLayout());
 
         // Create and configure components
-        questionLabel = new JLabel(game.getCurrentQuestion().getQuestion());
+        questionLabel = new JLabel(game.getCurrentQuestion());
         questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         answerButtons = new JButton[4];
+        String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i] = new JButton(game.getCurrentQuestion().getAnswers()[i]);
+            answerButtons[i] = new JButton(answers[i]);
             answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 20));
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
         }
@@ -93,9 +94,10 @@ public class GameScreen extends JPanel {
     }
 
     private void updateGameDisplay() {
-        questionLabel.setText(game.getCurrentQuestion().getQuestion());
+        String[] answers = game.getAnswersForCurrentQuestion();
+        questionLabel.setText(game.getCurrentQuestion());
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i].setText(game.getCurrentQuestion().getAnswers()[i]);
+            answerButtons[i].setText(answers[i]);
         }
         scoreLabel.setText("Pisteet: " + game.getScore());
         livesLabel.setText("Elämät: " + game.getLives());
@@ -124,7 +126,7 @@ public class GameScreen extends JPanel {
                 // e.g., show a game over message, switch to another screen, etc.
             } else {
                 // Continue game
-                game.nextQuestion();
+                //game.nextQuestion();
                 updateGameDisplay();
             }
         }

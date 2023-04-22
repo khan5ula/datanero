@@ -1,3 +1,5 @@
+package Backend;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,16 +24,7 @@ public class QuestionBank {
         questionsAvailable = true;
     }
 
-    public Question getRandomQuestion() throws NoQuestionsAvailableException {
-        if (this.askedQuestions.size() == this.count) {
-            this.questionsAvailable = false;
-        }
-
-        if (this.count < 1 || this.questionsAvailable == false) {
-            System.out.println("Error: There are no questions to retrieve");
-            throw new NoQuestionsAvailableException("No questions available in the question bank.");
-        }
-
+    public Question getRandomQuestion() {
         Random random = new Random();
         int index;
 
@@ -41,6 +34,18 @@ public class QuestionBank {
 
         this.askedQuestions.add(index);
 
+        if (askedQuestions.size() == this.count) {
+            this.questionsAvailable = false;
+        }
+
         return this.questions.get(index);
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public boolean areQuestionsAvailable() {
+        return this.questionsAvailable;
     }
 }

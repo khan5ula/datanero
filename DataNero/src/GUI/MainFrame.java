@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
         this.cards = new JPanel(new CardLayout());
 
         MainMenu mainMenu = new MainMenu(this);
-        GameScreen gameScreen = new GameScreen(this);
+        GameScreen gameScreen = new GameScreen(this, null);
 
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");

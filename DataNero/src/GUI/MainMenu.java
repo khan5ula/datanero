@@ -62,7 +62,7 @@ public class MainMenu extends JPanel {
         exitButton.setBackground(new Color(239, 71, 111));
 
         /* Button action handling */
-        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame, null);
         startButton.addActionListener(buttonActions);
         settingsButton.addActionListener(buttonActions);
         highScoresButton.addActionListener(buttonActions);
