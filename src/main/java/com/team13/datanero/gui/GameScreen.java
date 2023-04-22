@@ -7,6 +7,9 @@ import com.team13.datanero.backend.Game;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
@@ -24,6 +27,7 @@ public class GameScreen extends JPanel {
         this.game = game;
 
         setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
         Insets padding = new Insets(5, 5, 5, 5);
 
@@ -49,33 +53,41 @@ public class GameScreen extends JPanel {
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
         }
 
+        /* Create a list of the answer buttons and shuffle it */
+        ArrayList<JButton> buttons = new ArrayList<>();
+        buttons.add(answerButtons[0]);
+        buttons.add(answerButtons[1]);
+        buttons.add(answerButtons[2]);
+        buttons.add(answerButtons[3]);
+
+        /* Shuffle the buttons */
+        Collections.shuffle(buttons);
+
+        /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-
         livesLabel = new JLabel("Elämät: " + game.getLives());
         livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
-        GridBagConstraints gbc = new GridBagConstraints();
-
-        // Create score and lives panel
+        /* Create panel for score and lives */
         JPanel scoreAndLivesPanel = new JPanel(new GridBagLayout());
         GridBagConstraints scoreAndLivesPanelConstraints = new GridBagConstraints();
 
-        // Add score label
+        /* Add score label */
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 0;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
         scoreAndLivesPanelConstraints.insets = padding;
         scoreAndLivesPanel.add(scoreLabel, scoreAndLivesPanelConstraints);
 
-        // Add lives label
+        /* Add lives label */
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 1;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
         scoreAndLivesPanelConstraints.insets = padding;
         scoreAndLivesPanel.add(livesLabel, scoreAndLivesPanelConstraints);
 
-        // Add the score and lives panel
+        /* Add score & lives label to the grid */
         gbc.gridx = 10;
         gbc.gridy = 0;
         gbc.gridwidth = 2; // Span 2 columns
@@ -103,10 +115,10 @@ public class GameScreen extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH; // Make the component fill the grid cell
         gbc.insets = new Insets(2, 5, 2, 5); // Reduced vertical space
-        for (int i = 0; i < answerButtons.length; i++) {
+        for (int i = 0; i < buttons.size(); i++) {
             gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
             gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
-            add(answerButtons[i], gbc);
+            add(buttons.get(i), gbc);
         }
 
         // Add exit button
