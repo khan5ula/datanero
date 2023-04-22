@@ -35,7 +35,7 @@ public class GameScreen extends JPanel {
         Border borderPadding = BorderFactory.createEmptyBorder(100, 100, 100, 100);
         setBorder(borderPadding);
 
-        // Create and configure components
+        /* Create text area for the question */
         questionTextArea = new JTextArea(game.getCurrentQuestion());
         questionTextArea.setFont(new Font("Arial", Font.BOLD, 48));
         questionTextArea.setLineWrap(true);
@@ -44,8 +44,8 @@ public class GameScreen extends JPanel {
         questionTextArea.setBackground(null);
         questionTextArea.setOpaque(false);
         questionTextArea.setFocusable(false);
-        
 
+        /* Create answer buttons */
         answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < answerButtons.length; i++) {
@@ -109,7 +109,7 @@ public class GameScreen extends JPanel {
         gbc.insets = padding;
         add(questionTextArea, gbc);
 
-        // Add answer buttons
+        /* Add answer buttons to grid */
         gbc.gridwidth = 3; // Each button occupies 3 columns
         gbc.gridheight = 2; // Each button occupies 2 rows
         gbc.anchor = GridBagConstraints.CENTER;
@@ -121,7 +121,7 @@ public class GameScreen extends JPanel {
             add(buttons.get(i), gbc);
         }
 
-        // Add exit button
+        /* Create exit button */
         JButton lopetaButton = new ButtonFactory("Lopeta", 'L', new Color(239, 71, 111)).getButton();
         lopetaButton.setActionCommand("Lopeta");
 
@@ -131,23 +131,22 @@ public class GameScreen extends JPanel {
         gbc.gridx = 10;
         gbc.gridy = 8;
         gbc.gridwidth = 2; // Span 2 columns
-        gbc.gridheight = 2; // Span 2 rows
+        gbc.gridheight = 1; // Span 2 rows
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.SOUTHEAST;
         gbc.fill = GridBagConstraints.NONE; // Don't make the component fill the grid cell
         gbc.insets = padding;
         add(lopetaButton, gbc);
-        
 
-        // Load the mascot image
+        /* Load the mascot image */
         ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot.png");
 
-        // Create a JLabel to hold the image and set the icon
+        /* Create JLabel to hold the image, and set the icon */
         JLabel mascotLabel = new JLabel();
         mascotLabel.setIcon(mascotIcon);
 
-        // Add the JLabel to the GameScreen panel
+        /* Add the Mascot JLabel to grid */
         gbc.gridx = 9; // Adjust the x-coordinate as needed
         gbc.gridy = 2; // Adjust the y-coordinate as needed
         gbc.gridwidth = 3; // You can adjust the width as needed
@@ -183,16 +182,19 @@ public class GameScreen extends JPanel {
                 game.decrementLives();
             }
 
-            if (game.getLives() <= 0) {
-                // End game
-                // e.g., show a game over message, switch to another screen, etc.
-            } else if (game.areQuestionsAvailable()) {
-                // Continue game
+            if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
+                /* Show the GameOverDialog with the score */
+                GameOverScreen gameOverDialog = new GameOverScreen(mainFrame, game.getScore());
+                gameOverDialog.setVisible(true);
+
+                /* Switch back to the main menu and reset the game */
+                mainFrame.switchTo("mainMenu");
+                Game.resetInstance();
+                mainFrame.setGame(Game.getInstance());
+            } else {
+                /* There are questions available, continue game */
                 game.getNewQuestion();
                 updateGameDisplay();
-            } else {
-                // No more questions available
-                // e.g., show a message, switch to another screen, etc.
             }
         }
     }
