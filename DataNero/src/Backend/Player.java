@@ -4,17 +4,17 @@ public class Player {
     private int score;
     private int lives;
 
-    public Player(int initialLives) {
+    public Player(int lives) {
+        this.lives = lives;
         this.score = 0;
-        this.lives = initialLives;
     }
 
     public int getScore() {
-        return this.score;
+        return score;
     }
 
     public int getLives() {
-        return this.lives;
+        return lives;
     }
 
     public void incrementScore() {
@@ -22,14 +22,8 @@ public class Player {
     }
 
     public void decrementScore() {
-        this.score--;
-    }
-
-    public void decrementLives() {
-        this.lives--;
-    }
-
-    public boolean isAlive() {
-        return this.lives > 0;
+        if (score > 0) {
+            this.score--;
+        }
     }
 }

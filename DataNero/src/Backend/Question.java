@@ -1,45 +1,36 @@
 package Backend;
 
 public class Question {
-    private String questionText;
-    private String[] answers;
-    private int correctAnswerIndex;
+    private String question;
 
-    public Question(String questionText, String[] answers, int correctAnswerIndex) {
-        this.questionText = questionText;
-        this.answers = answers;
-        this.correctAnswerIndex = correctAnswerIndex;
+    /* A String array that shall contain four answers, from which the first one should be correct */
+    private String[] answers;
+
+    public Question() {
+        this.answers = new String[4];
     }
 
-    public String getQuestionText() {
-        return this.questionText;
+    public void setCorrectAnswer(String answer) {
+        this.answers[0] = answer;
+    }
+
+    public void setFirstWrongAnswer(String answer) {
+        this.answers[1] = answer;
+    }
+
+    public void setSecondWrongAnswer(String answer) {
+        this.answers[2] = answer;
+    }
+
+    public void setThirdWrongAnswer(String answer) {
+        this.answers[3] = answer;
+    }
+
+    public String getQuestion() {
+        return this.question;
     }
 
     public String[] getAnswers() {
         return this.answers;
-    }
-
-    public String getFirstAnswer() {
-        return this.answers[0];
-    }
-
-    public String getSecondAnswer() {
-        return this.answers[1];
-    }
-
-    public String getThirdAnswer() {
-        return this.answers[2];
-    }
-
-    public String getFourthAnswer() {
-        return this.answers[3];
-    }
-
-    public int getCorrectAnswerIndex() {
-        return this.correctAnswerIndex;
-    }
-
-    public boolean isAnswerCorrect(int answerIndex) {
-        return answerIndex == this.correctAnswerIndex;
     }
 }
