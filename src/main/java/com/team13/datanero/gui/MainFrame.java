@@ -1,11 +1,12 @@
-package GUI;
+package com.team13.datanero.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Backend.Game;
-import Backend.Question;
-import Backend.QuestionBank;
+import com.team13.datanero.backend.Question;
+import com.team13.datanero.backend.QuestionBank;
+import com.team13.datanero.backend.Game;
+
 
 import java.awt.CardLayout;
 
@@ -42,7 +43,6 @@ public class MainFrame extends JFrame {
     }
     
     public static void main(String[] args) {
-
         /* Initialize the question bank with one question */
         QuestionBank questionBank = new QuestionBank();
         Question question1 = new Question();

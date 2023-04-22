@@ -1,4 +1,4 @@
-package Backend;
+package com.team13.datanero.backend;
 
 public class Player {
     private int score;

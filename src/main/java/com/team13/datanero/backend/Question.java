@@ -1,5 +1,4 @@
-package Backend;
-
+package com.team13.datanero.backend;
 public class Question {
     private String question;
 

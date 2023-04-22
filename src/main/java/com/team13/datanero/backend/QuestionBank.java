@@ -1,4 +1,4 @@
-package Backend;
+package com.team13.datanero.backend;
 
 import java.util.ArrayList;
 import java.util.HashMap;

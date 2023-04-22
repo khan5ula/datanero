@@ -1,4 +1,4 @@
-package GUI;
+package com.team13.datanero.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;

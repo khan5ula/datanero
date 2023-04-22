@@ -1,9 +1,9 @@
-package GUI;
+package com.team13.datanero.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Backend.Game;
+import com.team13.datanero.backend.Game;
 
 public class ButtonActions implements ActionListener {
     private MainFrame mainFrame;

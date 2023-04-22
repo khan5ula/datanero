@@ -1,8 +1,8 @@
-package GUI;
+package com.team13.datanero.gui;
 
 import javax.swing.*;
 
-import Backend.Game;
+import com.team13.datanero.backend.Game;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,6 @@ public class GameScreen extends JPanel {
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
-        this.game.getNewQuestion();
 
         setLayout(new GridBagLayout());
 
@@ -73,15 +72,11 @@ public class GameScreen extends JPanel {
         add(livesLabel, gbc);
 
         // Add exit button
-        JButton lopetaButton = new JButton("Lopeta");
+        JButton lopetaButton = new ButtonFactory("Lopeta", 'L', new Color(239, 71, 111)).getButton();
         lopetaButton.setActionCommand("Lopeta");
 
         ButtonActions buttonActions = new ButtonActions(this.mainFrame, game);
         lopetaButton.addActionListener(buttonActions);
-
-        lopetaButton.setFont(new Font("Arial", Font.BOLD, 38));
-        lopetaButton.setBackground(new Color(239, 71, 111));
-        lopetaButton.setPreferredSize(new Dimension(800, 130));
 
         gbc.gridx = 0;
         gbc.gridy = 4;

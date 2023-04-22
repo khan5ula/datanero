@@ -1,4 +1,4 @@
-package Backend;
+package com.team13.datanero.backend;
 
 public class Game {
     private Player player;
@@ -10,6 +10,7 @@ public class Game {
         this.player = new Player(lives);
         this.questionBank = questionBank;
         this.questionsAvailable = this.questionBank.getCount();
+        this.currentQuestion = this.questionBank.getRandomQuestion();
     }
 
     public int getScore() {

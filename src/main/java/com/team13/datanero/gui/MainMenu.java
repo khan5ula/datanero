@@ -1,4 +1,4 @@
-package GUI;
+package com.team13.datanero.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
