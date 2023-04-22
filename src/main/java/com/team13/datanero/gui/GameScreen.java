@@ -147,10 +147,9 @@ public class GameScreen extends JPanel {
             boolean correct = game.submitAnswer(answerIndex);
             if (correct) {
                 // Handle correct answer
-                // e.g., show a message or update some UI element
+                game.incrementScore();
             } else {
-                // Handle incorrect answer
-                // e.g., show a message or update some UI element
+                game.decrementLives();
             }
 
             if (game.getLives() <= 0) {

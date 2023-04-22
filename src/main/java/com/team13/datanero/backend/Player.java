@@ -21,9 +21,9 @@ public class Player {
         this.score++;
     }
 
-    public void decrementScore() {
-        if (score > 0) {
-            this.score--;
+    public void decrementLives() {
+        if (this.lives > 0) {
+            this.lives--;
         }
     }
 

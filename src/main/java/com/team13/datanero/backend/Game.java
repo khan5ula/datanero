@@ -71,4 +71,12 @@ public class Game {
     public boolean areQuestionsAvailable() {
         return this.questionBank.areQuestionsAvailable();
     }
+
+    public void incrementScore() {
+        this.player.incrementScore();
+    }
+
+    public void decrementLives() {
+        this.player.decrementLives();
+    }
 }
