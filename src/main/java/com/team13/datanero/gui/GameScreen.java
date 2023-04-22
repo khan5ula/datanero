@@ -95,7 +95,7 @@ public class GameScreen extends JPanel {
         JButton lopetaButton = new ButtonFactory("Lopeta", 'L', new Color(239, 71, 111)).getButton();
         lopetaButton.setActionCommand("Lopeta");
 
-        ButtonActions buttonActions = new ButtonActions(this.mainFrame, game);
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
         lopetaButton.addActionListener(buttonActions);
 
         gbc.gridx = 0;

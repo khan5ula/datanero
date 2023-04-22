@@ -7,11 +7,9 @@ import com.team13.datanero.backend.Game;
 
 public class ButtonActions implements ActionListener {
     private MainFrame mainFrame;
-    private Game game;
 
-    public ButtonActions(MainFrame mainFrame, Game game) {
+    public ButtonActions(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-        this.game = game;
     }
 
     @Override
@@ -22,6 +20,7 @@ public class ButtonActions implements ActionListener {
             case "Aloita peli":
                 // Switch to game screen
                 mainFrame.switchTo("gameScreen");
+                Game.getInstance();
                 break;
             case "Asetukset":
                 // Settings logic
@@ -35,6 +34,7 @@ public class ButtonActions implements ActionListener {
             case "Lopeta":
                 mainFrame.switchTo("mainMenu");
                 Game.resetInstance();
+                mainFrame.setGame(Game.getInstance());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown action command: " + command);

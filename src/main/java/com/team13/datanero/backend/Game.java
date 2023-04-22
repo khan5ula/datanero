@@ -7,26 +7,35 @@ public class Game {
     private int questionsAvailable;
     private Question currentQuestion;
 
-    private Game(int lives, QuestionBank questionBank) {
-        this.player = new Player(lives);
-        this.questionBank = questionBank;
+    private Game() {
+        this.player = new Player();
+        this.questionBank = QuestionBank.getInstance();
         this.questionBank.shuffle();
         this.questionsAvailable = this.questionBank.getCount();
         this.currentQuestion = this.questionBank.getNextQuestion();
     }
 
-    public static Game getInstance(int lives, QuestionBank questionBank) {
+    public static Game getInstance() {
         if (instance == null) {
-            instance = new Game(lives, questionBank);
+            instance = new Game();
             instance.questionBank.shuffle();
+            instance.questionBank.resetIndex();
+            instance.currentQuestion = instance.questionBank.getNextQuestion();
         }
         return instance;
     }
-
+    
     public static void resetInstance() {
+        if (instance != null) {
+            instance.questionBank.resetIndex();
+            instance.questionBank.shuffle();
+            instance.currentQuestion = instance.questionBank.getNextQuestion();
+            instance.questionsAvailable = instance.questionBank.getCount();
+            instance.player.reset();
+        }
         instance = null;
-        instance.questionBank.resetIndex();
     }
+        
 
     public int getScore() {
         return this.player.getScore();

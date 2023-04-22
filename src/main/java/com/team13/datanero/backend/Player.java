@@ -4,8 +4,8 @@ public class Player {
     private int score;
     private int lives;
 
-    public Player(int lives) {
-        this.lives = lives;
+    public Player() {
+        this.lives = 3;
         this.score = 0;
     }
 
@@ -25,5 +25,10 @@ public class Player {
         if (score > 0) {
             this.score--;
         }
+    }
+
+    public void reset() {
+        this.lives = 3;
+        this.score = 0;
     }
 }

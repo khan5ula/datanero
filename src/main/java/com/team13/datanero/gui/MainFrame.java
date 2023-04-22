@@ -41,10 +41,16 @@ public class MainFrame extends JFrame {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, cardName);
     }
+
+    public void setGame(Game game) {
+        this.game = game;
+        GameScreen gameScreen = new GameScreen(this, game);
+        cards.add(gameScreen, "gameScreen");
+    }    
     
     public static void main(String[] args) {
         /* Initialize the question bank with one question */
-        QuestionBank questionBank = new QuestionBank();
+        QuestionBank questionBank = QuestionBank.getInstance();
         Question question = new Question();
         question.setQuestion("Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?");
         question.setCorrectAnswer("Absoluuttinen normaalimuoto (ANF)");
@@ -69,7 +75,7 @@ public class MainFrame extends JFrame {
         question.setThirdWrongAnswer("Insert into");
         questionBank.addQuestion(question);
 
-        Game game = Game.getInstance(3, questionBank);
+        Game game = Game.getInstance();
         new MainFrame(game);
     }
 }

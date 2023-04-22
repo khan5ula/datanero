@@ -47,7 +47,7 @@ public class MainMenu extends JPanel {
         JButton exitButton = new ButtonFactory("Poistu", 'L', new Color(239, 71, 111)).getButton();
 
         /* Button action handling */
-        ButtonActions buttonActions = new ButtonActions(this.mainFrame, null);
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
         startButton.addActionListener(buttonActions);
         settingsButton.addActionListener(buttonActions);
         highScoresButton.addActionListener(buttonActions);
