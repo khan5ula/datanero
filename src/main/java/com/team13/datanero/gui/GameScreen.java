@@ -97,14 +97,14 @@ public class GameScreen extends JPanel {
         scoreLabel.setText("Pisteet: " + game.getScore());
         livesLabel.setText("Elämät: " + game.getLives());
     }
-    
+
     private class AnswerButtonListener implements ActionListener {
         private int answerIndex;
-    
+
         public AnswerButtonListener(int answerIndex) {
             this.answerIndex = answerIndex;
         }
-    
+
         @Override
         public void actionPerformed(ActionEvent e) {
             boolean correct = game.submitAnswer(answerIndex);
@@ -115,14 +115,17 @@ public class GameScreen extends JPanel {
                 // Handle incorrect answer
                 // e.g., show a message or update some UI element
             }
-    
+
             if (game.getLives() <= 0) {
                 // End game
                 // e.g., show a game over message, switch to another screen, etc.
-            } else {
+            } else if (game.areQuestionsAvailable()) {
                 // Continue game
                 game.getNewQuestion();
                 updateGameDisplay();
+            } else {
+                // No more questions available
+                // e.g., show a message, switch to another screen, etc.
             }
         }
     }

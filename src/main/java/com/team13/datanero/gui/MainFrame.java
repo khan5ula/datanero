@@ -52,7 +52,6 @@ public class MainFrame extends JFrame {
         question1.setSecondWrongAnswer("3NF");
         question1.setThirdWrongAnswer("BCNF");
         questionBank.addQuestion(question1);
-        questionBank.addQuestion(new Question());
 
         Game game = new Game(3, questionBank);
         new MainFrame(game);

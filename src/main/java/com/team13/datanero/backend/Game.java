@@ -44,5 +44,7 @@ public class Game {
         return this.questionsAvailable;
     }
 
-    
+    public boolean areQuestionsAvailable() {
+        return this.questionBank.areQuestionsAvailable();
+    }
 }
