@@ -45,15 +45,31 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         /* Initialize the question bank with one question */
         QuestionBank questionBank = new QuestionBank();
-        Question question1 = new Question();
-        question1.setQuestion("Mikä seuraavista ei ole normaalimuoto?");
-        question1.setCorrectAnswer("CCNF");
-        question1.setFirstWrongAnswer("1NF");
-        question1.setSecondWrongAnswer("3NF");
-        question1.setThirdWrongAnswer("BCNF");
-        questionBank.addQuestion(question1);
+        Question question = new Question();
+        question.setQuestion("Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?");
+        question.setCorrectAnswer("Absoluuttinen normaalimuoto (ANF)");
+        question.setFirstWrongAnswer("Toinen normaalimuoto (2NF)");
+        question.setSecondWrongAnswer("Kolmas normaalimuoto (3NF)");
+        question.setThirdWrongAnswer("Boyce-Codd normaalimuoto (BCNF)");
+        questionBank.addQuestion(question);
 
-        Game game = new Game(3, questionBank);
+        question = new Question();
+        question.setQuestion("Millä nimellä kutsutaan prosessia, jossa taulu hajautetaan pienemmiksi tauluiksi datan redundanssin vähentämiseksi?");
+        question.setCorrectAnswer("Normalisointi");
+        question.setFirstWrongAnswer("Indeksointi");
+        question.setSecondWrongAnswer("Osittaminen");
+        question.setThirdWrongAnswer("Partitiointi");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Millä komennolla luodaan uusi SQL-taulu?");
+        question.setCorrectAnswer("Create table");
+        question.setFirstWrongAnswer("Create database");
+        question.setSecondWrongAnswer("Alter table");
+        question.setThirdWrongAnswer("Insert into");
+        questionBank.addQuestion(question);
+
+        Game game = Game.getInstance(3, questionBank);
         new MainFrame(game);
     }
 }

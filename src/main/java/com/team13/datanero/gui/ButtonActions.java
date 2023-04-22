@@ -34,6 +34,7 @@ public class ButtonActions implements ActionListener {
                 break;
             case "Lopeta":
                 mainFrame.switchTo("mainMenu");
+                Game.resetInstance();
                 break;
             default:
                 throw new IllegalArgumentException("Unknown action command: " + command);

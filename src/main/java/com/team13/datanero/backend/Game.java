@@ -1,16 +1,31 @@
 package com.team13.datanero.backend;
 
 public class Game {
+    private static Game instance;
     private Player player;
     private QuestionBank questionBank;
     private int questionsAvailable;
     private Question currentQuestion;
 
-    public Game(int lives, QuestionBank questionBank) {
+    private Game(int lives, QuestionBank questionBank) {
         this.player = new Player(lives);
         this.questionBank = questionBank;
+        this.questionBank.shuffle();
         this.questionsAvailable = this.questionBank.getCount();
-        this.currentQuestion = this.questionBank.getRandomQuestion();
+        this.currentQuestion = this.questionBank.getNextQuestion();
+    }
+
+    public static Game getInstance(int lives, QuestionBank questionBank) {
+        if (instance == null) {
+            instance = new Game(lives, questionBank);
+            instance.questionBank.shuffle();
+        }
+        return instance;
+    }
+
+    public static void resetInstance() {
+        instance = null;
+        instance.questionBank.resetIndex();
     }
 
     public int getScore() {
@@ -29,7 +44,7 @@ public class Game {
     }
 
     public void getNewQuestion() {
-        this.currentQuestion = this.questionBank.getRandomQuestion();
+        this.currentQuestion = this.questionBank.getNextQuestion();
     }
 
     public String getCurrentQuestion() {
