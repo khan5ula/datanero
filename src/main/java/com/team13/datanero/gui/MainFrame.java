@@ -69,11 +69,18 @@ public class MainFrame extends JFrame {
 
         question = new Question();
         question.setQuestion("Millä komennolla luodaan uusi SQL-taulu?");
-        question.setCorrectAnswer("Create table");
-        question.setFirstWrongAnswer("Create database");
-        question.setSecondWrongAnswer("Alter table");
-        question.setThirdWrongAnswer("Insert into");
+        question.setCorrectAnswer("CREATE TABLE");
+        question.setFirstWrongAnswer("CREATE DATABASE");
+        question.setSecondWrongAnswer("ALTER TABLE");
+        question.setThirdWrongAnswer("INSERT INTO");
         questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Millä seuraavista komennoista valitaan kaikki sarakkeet taulusta \"employees\"?");
+        question.setCorrectAnswer("SELECT * FROM employees");
+        question.setFirstWrongAnswer("SELECT ALL from employees");
+        question.setSecondWrongAnswer("SELECT employees");
+        question.setThirdWrongAnswer("SELECT FROM employees");
 
         Game game = Game.getInstance();
         new MainFrame(game);

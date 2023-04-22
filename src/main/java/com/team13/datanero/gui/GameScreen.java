@@ -146,7 +146,6 @@ public class GameScreen extends JPanel {
         public void actionPerformed(ActionEvent e) {
             boolean correct = game.submitAnswer(answerIndex);
             if (correct) {
-                // Handle correct answer
                 game.incrementScore();
             } else {
                 game.decrementLives();
