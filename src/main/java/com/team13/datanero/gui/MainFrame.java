@@ -21,12 +21,14 @@ public class MainFrame extends JFrame {
         setUndecorated(true);
         this.game = game;
 
-        // Use CardLayout to switch between screens
+        /* Use CardLayout to switch between screens */
         this.cards = new JPanel(new CardLayout());
 
+        /* Initialize main menu and game screen */
         MainMenu mainMenu = new MainMenu(this);
         GameScreen gameScreen = new GameScreen(this, this.game);
 
+        /* Add main menu and game screen to cards */
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
 
@@ -37,6 +39,10 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Method that switches the screen to the desired card.
+     * @param cardName String, name of the card to switch to.
+     */
     public void switchTo(String cardName) {
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, cardName);
@@ -49,7 +55,7 @@ public class MainFrame extends JFrame {
     }    
     
     public static void main(String[] args) {
-        /* Initialize the question bank with one question */
+        /* Lazy question feed */
         QuestionBank questionBank = QuestionBank.getInstance();
         Question question = new Question();
         question.setQuestion("Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?");
@@ -107,6 +113,31 @@ public class MainFrame extends JFrame {
         question.setThirdWrongAnswer("HAVING");
         questionBank.addQuestion(question);
 
+        question = new Question();
+        question.setQuestion("Mikä seuraavista ei ole SQL-kielen aggregaatifunktio?");
+        question.setCorrectAnswer("RANK()");
+        question.setFirstWrongAnswer("SUM()");
+        question.setSecondWrongAnswer("AVG()");
+        question.setThirdWrongAnswer("MAX()");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Mikä on seuraavista relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?");
+        question.setCorrectAnswer("Liitos (JOIN)");
+        question.setFirstWrongAnswer("Yhdistäminen (MERGE)");
+        question.setSecondWrongAnswer("Linkitys (LINK)");
+        question.setThirdWrongAnswer("Solmu (NODE)");
+        questionBank.addQuestion(question);
+
+        question = new Question();
+        question.setQuestion("Mikä on koosteattribuutti?");
+        question.setCorrectAnswer("Attribuutti, joka muodostuu useammasta aliattribuutista.");
+        question.setFirstWrongAnswer("Attribuutti, joka esiintyy vain yhdessä relaatiossa.");
+        question.setSecondWrongAnswer("Attribuutti, joka esiintyy useammassa relaatiossa.");
+        question.setThirdWrongAnswer("Attribuutti, joka on riippuvainen toisesta atribuutista.");
+        questionBank.addQuestion(question);
+
+        /* Start the game */
         Game game = Game.getInstance();
         new MainFrame(game);
     }

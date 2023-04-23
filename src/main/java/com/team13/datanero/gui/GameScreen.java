@@ -7,6 +7,8 @@ import com.team13.datanero.backend.Game;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,9 +39,26 @@ public class GameScreen extends JPanel {
         Border borderPadding = BorderFactory.createEmptyBorder(160, 100, 100, 100);
         setBorder(borderPadding);
 
+        // Load the custom font from the file
+        File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, font_file);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Create the backup font
+        Font backupFont = new Font("Arial", Font.BOLD, 48);
+
+        // Derive the custom font with the desired style and size (if font is not null)
+        Font customFont = font != null ? font.deriveFont(Font.BOLD, 48) : null;
+
         /* Create text area for the question */
         questionTextArea = new JTextArea(game.getCurrentQuestion());
-        questionTextArea.setFont(new Font("Arial", Font.BOLD, 48));
+        questionTextArea.setFont(font != null ? customFont : backupFont); // Set the custom font or backup font
         questionTextArea.setLineWrap(true);
         questionTextArea.setWrapStyleWord(true);
         questionTextArea.setEditable(false);
@@ -47,11 +66,12 @@ public class GameScreen extends JPanel {
         questionTextArea.setOpaque(false);
         questionTextArea.setFocusable(false);
 
+
         /* Create answer buttons */
         answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i] = new ButtonFactory(answers[i], 'L', Color.BLUE).getButton();
+            answerButtons[i] = new CustomButton(answers[i], Color.BLUE);
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
         }
 
@@ -124,7 +144,7 @@ public class GameScreen extends JPanel {
         }
 
         /* Create exit button */
-        JButton lopetaButton = new ButtonFactory("Lopeta", 'L', new Color(239, 71, 111)).getButton();
+        JButton lopetaButton = new CustomButton("Lopeta", new Color(239, 71, 111));
         lopetaButton.setActionCommand("Lopeta");
 
         /* Define action for exit button */
@@ -219,6 +239,7 @@ public class GameScreen extends JPanel {
             } else {
                 game.decrementLives();
             }
+    
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
