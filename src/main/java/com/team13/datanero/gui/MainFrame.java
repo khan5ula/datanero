@@ -114,7 +114,7 @@ public class MainFrame extends JFrame {
         questionBank.addQuestion(question);
 
         question = new Question();
-        question.setQuestion("Mikä seuraavista ei ole SQL-kielen aggregaatifunktio?");
+        question.setQuestion("Mikä seuraavista ei ole SQL-kielen aggregaattifunktio?");
         question.setCorrectAnswer("RANK()");
         question.setFirstWrongAnswer("SUM()");
         question.setSecondWrongAnswer("AVG()");

@@ -14,7 +14,9 @@ import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
-
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class GameScreen extends JPanel {
     private MainFrame mainFrame;
@@ -22,50 +24,58 @@ public class GameScreen extends JPanel {
     private JButton[] answerButtons;
     private JLabel scoreLabel;
     private JLabel livesLabel;
-    private JTextArea questionTextArea;
+    private JTextPane questionTextArea;
     private JLabel mascotLabel;
+    private int initialButtonWidth;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
         this.mascotLabel = new JLabel();
 
+        /* Initialize the layout manager */
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
         Insets padding = new Insets(10, 10, 10, 10);
 
         /* Set an empty border with with a padding around the panel */
         Border borderPadding = BorderFactory.createEmptyBorder(160, 100, 100, 100);
         setBorder(borderPadding);
 
-        // Load the custom font from the file
+        /* Load custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
         Font font = null;
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, font_file);
         } catch (FontFormatException e) {
+            System.out.println("Error: Problem with custom font format: " + e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
+            System.out.println("Error: IOException occured with custom font: " + e.getMessage());
             e.printStackTrace();
         }
 
-        // Create the backup font
+        /* Create backup font in case of custom font not loading properly */
         Font backupFont = new Font("Arial", Font.BOLD, 48);
 
-        // Derive the custom font with the desired style and size (if font is not null)
+        /* Derive custom font with desired style and size if font is not null */
         Font customFont = font != null ? font.deriveFont(Font.BOLD, 48) : null;
 
         /* Create text area for the question */
-        questionTextArea = new JTextArea(game.getCurrentQuestion());
+        questionTextArea = new JTextPane();
+        questionTextArea.setText(game.getCurrentQuestion());
         questionTextArea.setFont(font != null ? customFont : backupFont); // Set the custom font or backup font
-        questionTextArea.setLineWrap(true);
-        questionTextArea.setWrapStyleWord(true);
-        questionTextArea.setEditable(false);
-        questionTextArea.setBackground(null);
         questionTextArea.setOpaque(false);
+        questionTextArea.setEditable(false);
         questionTextArea.setFocusable(false);
+        questionTextArea.setPreferredSize(new Dimension(1200, 150));
+        questionTextArea.setMaximumSize(new Dimension(1200, 150));
 
+        /* Center the question text */
+        StyledDocument doc = questionTextArea.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
         /* Create answer buttons */
         answerButtons = new JButton[4];
@@ -73,6 +83,8 @@ public class GameScreen extends JPanel {
         for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new CustomButton(answers[i], Color.BLUE);
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
+            answerButtons[i].setPreferredSize(new Dimension(800, 100));
+            answerButtons[i].setMaximumSize(new Dimension(800, 100));
         }
 
         /* Create a list of the answer buttons and shuffle it */
@@ -112,22 +124,22 @@ public class GameScreen extends JPanel {
         /* Add score & lives label to the grid */
         gbc.gridx = 10;
         gbc.gridy = 0;
-        gbc.gridwidth = 2; // Span 2 columns
-        gbc.gridheight = 2; // Span 2 rows
+        gbc.gridwidth = 2;
+        gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.fill = GridBagConstraints.BOTH; // Make the component fill the grid cell
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = padding;
         add(scoreAndLivesPanel, gbc);
-        
+
         /* Add the question label to the grid */
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 9; // Span the entire width
-        gbc.gridheight = 3; // Occupy the top 4 rows
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.5;
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.fill = GridBagConstraints.BOTH; // Make the component fill the grid cell
+        gbc.gridwidth = 9;
+        gbc.gridheight = 3;
+        gbc.weightx = 0.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = padding;
         add(questionTextArea, gbc);
 
@@ -136,32 +148,37 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        // gbc.insets = new Insets(5, 5, 5, 5); // not necessary?
         for (int i = 0; i < buttons.size(); i++) {
             gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
             gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
             add(buttons.get(i), gbc);
         }
 
+        /* Store answer button size to class variable for later use */
+        this.initialButtonWidth = buttons.get(0).getWidth();
+
         /* Create exit button */
-        JButton lopetaButton = new CustomButton("Lopeta", new Color(239, 71, 111));
-        lopetaButton.setActionCommand("Lopeta");
+        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111));
+        exitButton.setActionCommand("Lopeta");
+        exitButton.setPreferredSize(new Dimension(150, 50));
+        exitButton.setMaximumSize(new Dimension(150, 50));
 
         /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
-        lopetaButton.addActionListener(buttonActions);
+        exitButton.addActionListener(buttonActions);
 
         /* Add the exit button to the grid */
-        gbc.gridx = 9;
+        gbc.gridx = 10;
         gbc.gridy = 8;
         gbc.gridwidth = 3;
         gbc.gridheight = 2;
-        gbc.weightx = 1.0;
+        gbc.weightx = 0.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.SOUTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = padding;
-        add(lopetaButton, gbc);
+        add(exitButton, gbc);
 
         /* Load the mascot image */
         ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
@@ -170,11 +187,12 @@ public class GameScreen extends JPanel {
         this.mascotLabel.setIcon(mascotIcon);
 
         /* Add the Mascot JLabel to grid */
-        gbc.gridx = 9; // Adjust the x-coordinate as needed
-        gbc.gridy = 0; // Adjust the y-coordinate as needed
-        gbc.gridwidth = 3; // You can adjust the width as needed
-        gbc.gridheight = 10; // You can adjust the height as needed
-        gbc.anchor = GridBagConstraints.EAST; // Center the mascot image
+        gbc.gridx = 10;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 10;
+        gbc.weightx = 0.0;
+        gbc.anchor = GridBagConstraints.EAST;
         gbc.insets = padding;
         add(mascotLabel, gbc);
     }
@@ -184,10 +202,12 @@ public class GameScreen extends JPanel {
      * Should be called after every turn to initialize a new turn.
      */
     private void updateGameDisplay() {
+        int textWidth = (int) (this.initialButtonWidth * 0.9);
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i].setText(answers[i]);
+            answerButtons[i].setText("<html><div style='text-align: center; width: " + textWidth + "px;'>" + answers[i]
+                    + "</div></html>");
         }
         scoreLabel.setText("Pisteet: " + game.getScore());
         livesLabel.setText("Elämät: " + game.getLives());
@@ -219,9 +239,9 @@ public class GameScreen extends JPanel {
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
         this.mascotLabel.setIcon(newMascotIcon);
     }
-    
 
-    /** Private class used by Game Class.
+    /**
+     * Private class used by Game Class.
      * Contains the actions for pressing buttons.
      */
     private class AnswerButtonListener implements ActionListener {
@@ -239,7 +259,6 @@ public class GameScreen extends JPanel {
             } else {
                 game.decrementLives();
             }
-    
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
