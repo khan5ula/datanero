@@ -56,16 +56,10 @@ public class GameScreen extends JPanel {
             e.printStackTrace();
         }
 
-        /* Create backup font in case of custom font not loading properly */
-        Font backupFont = new Font("Arial", Font.BOLD, 48);
-
-        /* Derive custom font with desired style and size if font is not null */
-        Font customFont = font != null ? font.deriveFont(Font.BOLD, 48) : null;
-
         /* Create text area for the question */
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
-        questionTextArea.setFont(font != null ? customFont : backupFont); // Set the custom font or backup font
+        questionTextArea.setFont(font.deriveFont(Font.PLAIN, 48));
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
         questionTextArea.setFocusable(false);
@@ -127,7 +121,7 @@ public class GameScreen extends JPanel {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.gridheight = 2;
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = padding;
         add(scoreAndLivesPanel, gbc);
