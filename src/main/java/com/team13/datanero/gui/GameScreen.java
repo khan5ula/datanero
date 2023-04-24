@@ -297,15 +297,11 @@ public class GameScreen extends JPanel {
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
                     updateNegativeMascot();
+                    livesLabel.setText("Elämät:");
+                    scoreLabel.setText("Pisteet: " + game.getScore());
                 }
                 /* Show the GameOverDialog with the score */
-                GameOverScreen gameOverDialog = new GameOverScreen(mainFrame, game.getScore());
-                gameOverDialog.setVisible(true);
-
-                /* Switch back to the main menu and reset the game */
-                mainFrame.switchTo("mainMenu");
-                Game.resetInstance();
-                mainFrame.setGame(Game.getInstance());
+                mainFrame.switchTo("GameOverScreen");                
             } else {
                 /* There are questions available, continue game */
                 game.getNewQuestion();

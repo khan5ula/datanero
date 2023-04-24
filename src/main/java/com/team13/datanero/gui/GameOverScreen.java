@@ -1,18 +1,29 @@
 package com.team13.datanero.gui;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.File;
 import java.io.IOException;
 
-public class GameOverScreen extends JDialog {
-    private JLabel messageLabel;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
-    public GameOverScreen(Frame owner, int score) {
-        super(owner, "Peli loppui", true);
+public class GameOverScreen extends JPanel {
+    private JLabel messageLabel;
+    private MainFrame mainFrame;
+
+    public GameOverScreen(MainFrame owner, int score) {
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        this.mainFrame = owner;
 
         /* Load the custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
@@ -25,14 +36,20 @@ public class GameOverScreen extends JDialog {
             e.printStackTrace();
         }
 
-        /* Create backup font in case the custom one could not be loaded */
-        Font backupFont = new Font("Arial", Font.BOLD, 48);
-
-        /* Derive custom font with desired style if the font is not null */
-        Font customFont = font != null ? font.deriveFont(Font.PLAIN, 48) : null;
-
+        /* Define message label */
+        Font customFont = font.deriveFont(Font.PLAIN, 48);
         messageLabel = new JLabel("Voi rähmä, peli päättyi! Pistesaaliisi on: " + score);
-        messageLabel.setFont(font != null ? customFont : backupFont);
+        messageLabel.setFont(customFont);
+
+        /* Add messagelabel to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(messageLabel, gbc);
 
         /* Add padding to the pop-up screen */
         Border padding = BorderFactory.createEmptyBorder(300, 100, 300, 100);
@@ -41,12 +58,35 @@ public class GameOverScreen extends JDialog {
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
         JLabel mascot = new JLabel(mascotImage);
-        add(mascot);
+        
+        /* Add mascot to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(mascot, gbc);
 
-        setLayout(new FlowLayout());
-        add(messageLabel);
+        /* Create exit button */
+        JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32);
+        exitButton.setActionCommand("Palaa päävalikkoon");
+        exitButton.setPreferredSize(new Dimension(500, 150));
+        exitButton.setMaximumSize(new Dimension(500, 150));
 
-        pack();
-        setLocationRelativeTo(owner);
+        /* Define action for exit button */
+        GameOverButtonActions buttonActions = new GameOverButtonActions(this.mainFrame);
+        exitButton.addActionListener(buttonActions);
+
+        /* Add the exit button to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(exitButton, gbc);
     }
 }

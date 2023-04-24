@@ -9,7 +9,6 @@ import com.team13.datanero.backend.Game;
 
 
 import java.awt.CardLayout;
-import java.awt.Color;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -28,10 +27,12 @@ public class MainFrame extends JFrame {
         /* Initialize main menu and game screen */
         MainMenu mainMenu = new MainMenu(this);
         GameScreen gameScreen = new GameScreen(this, this.game);
+        GameOverScreen gameOverScreen = new GameOverScreen(this, this.game.getScore());
 
         /* Add main menu and game screen to cards */
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
+        cards.add(gameOverScreen, "GameOverScreen");
 
         /* Set icons */
         //setIconImages(loadAppIcons());
