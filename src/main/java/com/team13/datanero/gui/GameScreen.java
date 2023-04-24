@@ -268,6 +268,9 @@ public class GameScreen extends JPanel {
         this.mascotLabel.setIcon(newMascotIcon);
     }
 
+    /**
+     * Method that changes the mascot to happy one.
+     */
     private void updatePositiveMascot() {
         String imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
