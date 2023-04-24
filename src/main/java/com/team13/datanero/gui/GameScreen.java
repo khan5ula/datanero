@@ -27,6 +27,7 @@ public class GameScreen extends JPanel {
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
     private int initialButtonWidth;
+    private String hearts;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
@@ -100,7 +101,7 @@ public class GameScreen extends JPanel {
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        livesLabel = new JLabel("Elämät: " + game.getLives());
+        livesLabel = new JLabel("Elämät: " + (hearts = countHearts(game.getLives())));
         livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         /* Create panel for score and lives */
@@ -148,7 +149,6 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
-        // gbc.insets = new Insets(5, 5, 5, 5); // not necessary?
         for (int i = 0; i < buttons.size(); i++) {
             gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
             gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
@@ -210,8 +210,16 @@ public class GameScreen extends JPanel {
                     + "</div></html>");
         }
         scoreLabel.setText("Pisteet: " + game.getScore());
-        livesLabel.setText("Elämät: " + game.getLives());
+        livesLabel.setText("Elämät: " + (hearts = countHearts(game.getLives())));
         updateMascot();
+    }
+
+    private String countHearts(int count) {
+        String hearts = "";
+        for (int i = 0; i < count; i++) {
+            hearts += "❤";
+        }
+        return hearts;
     }
 
     /**
