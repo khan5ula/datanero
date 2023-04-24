@@ -13,6 +13,7 @@ public class CustomButton extends JButton {
     public CustomButton(String name, Color color) {
         super(name);
         this.setBackground(color);
+        this.setFocusPainted(false);
 
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Medium.ttf");
         try {
