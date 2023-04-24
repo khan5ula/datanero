@@ -28,6 +28,7 @@ public class GameScreen extends JPanel {
     private JLabel mascotLabel;
     private int initialButtonWidth;
     private String hearts;
+    private ArrayList<JButton> buttons;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
@@ -73,29 +74,29 @@ public class GameScreen extends JPanel {
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
         /* Create answer buttons */
-        answerButtons = new JButton[4];
+        this.answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
-        for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i] = new CustomButton(answers[i], Color.darkGray);
-            answerButtons[i].addActionListener(new AnswerButtonListener(i));
-            answerButtons[i].setPreferredSize(new Dimension(800, 100));
-            answerButtons[i].setMaximumSize(new Dimension(800, 100));
+        for (int i = 0; i < this.answerButtons.length; i++) {
+            this.answerButtons[i] = new CustomButton(answers[i], Color.darkGray);
+            this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
+            this.answerButtons[i].setPreferredSize(new Dimension(800, 200));
+            this.answerButtons[i].setMaximumSize(new Dimension(800, 200));
         }
 
         /* Create a list of the answer buttons and shuffle it */
-        ArrayList<JButton> buttons = new ArrayList<>();
-        buttons.add(answerButtons[0]);
-        buttons.add(answerButtons[1]);
-        buttons.add(answerButtons[2]);
-        buttons.add(answerButtons[3]);
+        this.buttons = new ArrayList<>();
+        buttons.add(this.answerButtons[0]);
+        buttons.add(this.answerButtons[1]);
+        buttons.add(this.answerButtons[2]);
+        buttons.add(this.answerButtons[3]);100
 
         /* Shuffle the buttons */
-        Collections.shuffle(buttons);
+        Collections.shuffle(this.buttons);
 
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        livesLabel = new JLabel("Elämät: " + (hearts = countHearts(game.getLives())));
+        livesLabel = new JLabel("Elämät: " + (this.hearts = countHearts(game.getLives())));
         livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         /* Create panel for score and lives */
@@ -143,11 +144,8 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
-        for (int i = 0; i < buttons.size(); i++) {
-            gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
-            gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
-            add(buttons.get(i), gbc);
-        }
+        Collections.shuffle(this.buttons);
+        updateAnswerButtonLayout();
 
         /* Store answer button size to class variable for later use */
         this.initialButtonWidth = buttons.get(0).getWidth();
@@ -199,12 +197,14 @@ public class GameScreen extends JPanel {
         int textWidth = (int) (this.initialButtonWidth * 0.9);
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
-        for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i].setText("<html><div style='text-align: center; width: " + textWidth + "px;'>" + answers[i]
+        for (int i = 0; i < this.answerButtons.length; i++) {
+            this.answerButtons[i].setText("<html><div style='text-align: center; width: " + textWidth + "px;'>" + answers[i]
                     + "</div></html>");
         }
+        Collections.shuffle(this.buttons);
+        updateAnswerButtonLayout();
         scoreLabel.setText("Pisteet: " + game.getScore());
-        livesLabel.setText("Elämät: " + (hearts = countHearts(game.getLives())));
+        livesLabel.setText("Elämät: " + (this.hearts = countHearts(game.getLives())));
         updateMascot();
     }
 
@@ -215,6 +215,27 @@ public class GameScreen extends JPanel {
         }
         return hearts;
     }
+
+    /**
+     * Method that updates the layout of answer buttons.
+     * Should be used inside updateGameDisplay() method to refresh
+     * the buttons after they've been shuffled.
+     */
+    private void updateAnswerButtonLayout() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = 3;
+        gbc.gridheight = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.BOTH;
+        Insets padding = new Insets(10, 10, 10, 10);
+        gbc.insets = padding;
+    
+        for (int i = 0; i < buttons.size(); i++) {
+            gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
+            gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
+            add(buttons.get(i), gbc);
+        }
+    }    
 
     /**
      * Method that updates the game mascot based on the success of the player.
