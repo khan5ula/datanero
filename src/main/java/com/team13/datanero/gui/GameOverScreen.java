@@ -28,12 +28,11 @@ public class GameOverScreen extends JDialog {
         /* Create backup font in case the custom one could not be loaded */
         Font backupFont = new Font("Arial", Font.BOLD, 48);
 
-        // Derive the custom font with the desired style and size (if font is not null)
-        /* Derive custom font with  */
+        /* Derive custom font with desired style if the font is not null */
         Font customFont = font != null ? font.deriveFont(Font.PLAIN, 48) : null;
 
         messageLabel = new JLabel("Voi rähmä, peli päättyi! Pistesaaliisi on: " + score);
-        messageLabel.setFont(font != null ? customFont : backupFont); // Set the custom font or backup font
+        messageLabel.setFont(font != null ? customFont : backupFont);
 
         /* Add padding to the pop-up screen */
         Border padding = BorderFactory.createEmptyBorder(300, 100, 300, 100);
@@ -41,8 +40,6 @@ public class GameOverScreen extends JDialog {
 
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
-        
-        // Set the new ImageIcon to the JLabel mascot
         JLabel mascot = new JLabel(mascotImage);
         add(mascot);
 

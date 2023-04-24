@@ -9,6 +9,7 @@ import com.team13.datanero.backend.Game;
 
 
 import java.awt.CardLayout;
+import java.awt.Color;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -32,7 +33,7 @@ public class MainFrame extends JFrame {
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
 
-        // Set the application icons
+        /* Set icons */
         //setIconImages(loadAppIcons());
 
         getContentPane().add(cards);

@@ -16,7 +16,6 @@ public class MainMenu extends JPanel {
 
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-
         setLayout(new GridBagLayout());
 
         /* Set an empty border with with a padding around the panel */
@@ -28,7 +27,6 @@ public class MainMenu extends JPanel {
         
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
-        // Set the new ImageIcon to the JLabel mascot
         JLabel mascot = new JLabel(mascotImage);
         
         /* Buttons */
@@ -47,7 +45,7 @@ public class MainMenu extends JPanel {
         /* Add components to panel */
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.insets = new Insets(10, 0, 10, 0); // Top and bottom gap of 10 pixels
+        gbc.insets = new Insets(10, 0, 10, 0);
         
         gbc.gridy = 0;
         gbc.weighty = 1;
