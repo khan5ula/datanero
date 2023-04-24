@@ -30,10 +30,10 @@ public class MainMenu extends JPanel {
         JLabel mascot = new JLabel(mascotImage);
         
         /* Buttons */
-        JButton startButton = new CustomButton("Aloita peli", new Color(6,214,160));
-        JButton settingsButton = new CustomButton("Asetukset", new Color(38, 84, 124));
-        JButton highScoresButton = new CustomButton("Parhaat tulokset", new Color(255, 209, 102));
-        JButton exitButton = new CustomButton("Poistu", new Color(239, 71, 111));
+        JButton startButton = new CustomButton("Aloita peli", new Color(6,214,160), 38);
+        JButton settingsButton = new CustomButton("Asetukset", new Color(38, 84, 124), 38);
+        JButton highScoresButton = new CustomButton("Parhaat tulokset", new Color(255, 209, 102), 38);
+        JButton exitButton = new CustomButton("Poistu", new Color(239, 71, 111), 38);
 
         /* Button action handling */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);

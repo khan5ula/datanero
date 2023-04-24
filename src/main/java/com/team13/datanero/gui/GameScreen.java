@@ -29,6 +29,7 @@ public class GameScreen extends JPanel {
     private int initialButtonWidth;
     private String hearts;
     private ArrayList<JButton> buttons;
+    private boolean wasAnswerCorrect;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
@@ -77,10 +78,10 @@ public class GameScreen extends JPanel {
         this.answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < this.answerButtons.length; i++) {
-            this.answerButtons[i] = new CustomButton(answers[i], Color.darkGray);
+            this.answerButtons[i] = new CustomButton(answers[i], Color.darkGray, 32);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
-            this.answerButtons[i].setPreferredSize(new Dimension(800, 200));
-            this.answerButtons[i].setMaximumSize(new Dimension(800, 200));
+            this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
+            this.answerButtons[i].setMaximumSize(new Dimension(800, 300));
         }
 
         /* Create a list of the answer buttons and shuffle it */
@@ -88,7 +89,7 @@ public class GameScreen extends JPanel {
         buttons.add(this.answerButtons[0]);
         buttons.add(this.answerButtons[1]);
         buttons.add(this.answerButtons[2]);
-        buttons.add(this.answerButtons[3]);100
+        buttons.add(this.answerButtons[3]);
 
         /* Shuffle the buttons */
         Collections.shuffle(this.buttons);
@@ -103,14 +104,14 @@ public class GameScreen extends JPanel {
         JPanel scoreAndLivesPanel = new JPanel(new GridBagLayout());
         GridBagConstraints scoreAndLivesPanelConstraints = new GridBagConstraints();
 
-        /* Add score label */
+        /* Add score label to the panel*/
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 0;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
         scoreAndLivesPanelConstraints.insets = padding;
         scoreAndLivesPanel.add(scoreLabel, scoreAndLivesPanelConstraints);
 
-        /* Add lives label */
+        /* Add lives label to the panel*/
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 1;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
@@ -151,7 +152,7 @@ public class GameScreen extends JPanel {
         this.initialButtonWidth = buttons.get(0).getWidth();
 
         /* Create exit button */
-        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111));
+        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111), 32);
         exitButton.setActionCommand("Lopeta");
         exitButton.setPreferredSize(new Dimension(150, 100));
         exitButton.setMaximumSize(new Dimension(150, 100));
@@ -205,7 +206,11 @@ public class GameScreen extends JPanel {
         updateAnswerButtonLayout();
         scoreLabel.setText("Pisteet: " + game.getScore());
         livesLabel.setText("Elämät: " + (this.hearts = countHearts(game.getLives())));
-        updateMascot();
+        if (this.wasAnswerCorrect) {
+            updatePositiveMascot();
+        } else {
+            updateNegativeMascot();
+        }
     }
 
     private String countHearts(int count) {
@@ -240,7 +245,7 @@ public class GameScreen extends JPanel {
     /**
      * Method that updates the game mascot based on the success of the player.
      */
-    private void updateMascot() {
+    private void updateNegativeMascot() {
         String imagePath;
         switch (game.getLives()) {
             case 3:
@@ -263,6 +268,12 @@ public class GameScreen extends JPanel {
         this.mascotLabel.setIcon(newMascotIcon);
     }
 
+    private void updatePositiveMascot() {
+        String imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+        ImageIcon newMascotIcon = new ImageIcon(imagePath);
+        this.mascotLabel.setIcon(newMascotIcon);
+    }
+
     /**
      * Private class used by Game Class.
      * Contains the actions for pressing buttons.
@@ -276,8 +287,8 @@ public class GameScreen extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            boolean correct = game.submitAnswer(answerIndex);
-            if (correct) {
+            wasAnswerCorrect = game.submitAnswer(answerIndex);
+            if (wasAnswerCorrect) {
                 game.incrementScore();
             } else {
                 game.decrementLives();
@@ -285,7 +296,7 @@ public class GameScreen extends JPanel {
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
-                    updateMascot();
+                    updateNegativeMascot();
                 }
                 /* Show the GameOverDialog with the score */
                 GameOverScreen gameOverDialog = new GameOverScreen(mainFrame, game.getScore());

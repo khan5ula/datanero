@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 public class CustomButton extends JButton {
 
-    public CustomButton(String name, Color color) {
+    public CustomButton(String name, Color color, int fontSize) {
         super(name);
         this.setBackground(color);
         this.setFocusPainted(false);
@@ -18,7 +18,7 @@ public class CustomButton extends JButton {
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Medium.ttf");
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, font_file);
-            Font customFont = font.deriveFont(Font.BOLD, 38);
+            Font customFont = font.deriveFont(Font.BOLD, fontSize);
             this.setFont(customFont);
             this.setForeground(Color.WHITE);
         } catch (FontFormatException e) {
