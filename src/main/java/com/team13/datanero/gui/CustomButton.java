@@ -26,21 +26,16 @@ public class CustomButton extends JButton {
             this.setFont(customFont);
             this.setForeground(Color.WHITE);
 
-            /* Add a border with rounded corners */
-            this.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(25, 117, 210), 2),
-                    BorderFactory.createEmptyBorder(5, 15, 5, 15)));
-
             /* Enable painting with background color */
             this.setOpaque(true);
 
             /* Remove focus border */
             this.setFocusPainted(false);
         } catch (FontFormatException e) {
-            // TODO Auto-generated catch block
+            System.out.println("Error: Problem with custom font format: " + e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            System.out.println("Error: IOException occured with custom font: " + e.getMessage());
             e.printStackTrace();
         }
     }

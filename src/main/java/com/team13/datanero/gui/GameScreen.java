@@ -81,7 +81,7 @@ public class GameScreen extends JPanel {
         answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < answerButtons.length; i++) {
-            answerButtons[i] = new CustomButton(answers[i], Color.BLUE);
+            answerButtons[i] = new CustomButton(answers[i], Color.darkGray);
             answerButtons[i].addActionListener(new AnswerButtonListener(i));
             answerButtons[i].setPreferredSize(new Dimension(800, 100));
             answerButtons[i].setMaximumSize(new Dimension(800, 100));
@@ -161,8 +161,8 @@ public class GameScreen extends JPanel {
         /* Create exit button */
         JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111));
         exitButton.setActionCommand("Lopeta");
-        exitButton.setPreferredSize(new Dimension(150, 50));
-        exitButton.setMaximumSize(new Dimension(150, 50));
+        exitButton.setPreferredSize(new Dimension(150, 100));
+        exitButton.setMaximumSize(new Dimension(150, 100));
 
         /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
