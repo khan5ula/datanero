@@ -21,7 +21,6 @@ import com.team13.datanero.backend.Game;
 public class GameOverScreen extends JPanel {
     private JLabel messageLabel;
     private MainFrame mainFrame;
-    private Game game;
     private int score;
 
     // TODO: Fix bug: Score updates only after the first round of game.
@@ -30,8 +29,7 @@ public class GameOverScreen extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         this.mainFrame = owner;
-        this.game = Game.getInstance();
-        this.score = this.game.getScore();
+        this.score = Game.getInstance().getScore();
 
         /* Load the custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
@@ -46,7 +44,7 @@ public class GameOverScreen extends JPanel {
 
         /* Define message label */
         Font customFont = font.deriveFont(Font.PLAIN, 48);
-        messageLabel = new JLabel("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+        messageLabel = new JLabel();
         messageLabel.setFont(customFont);
 
         /* Add messagelabel to the grid */
@@ -98,9 +96,10 @@ public class GameOverScreen extends JPanel {
         add(exitButton, gbc);
     }
 
-    public void updateScore() {
-        this.score = game.getScore();
+    public void updateAndDisplayScore() {
+        this.score = Game.getInstance().getScore();
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+        System.out.println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
     }
     
 }

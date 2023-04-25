@@ -49,10 +49,8 @@ public class MainFrame extends JFrame {
         System.out.println("Status: MainFrame moves player to screen: " + cardName);
         CardLayout cl = (CardLayout) (cards.getLayout());
         if (cardName.equals("GameOverScreen")) {
-            System.out.println("Status: MainFrame detected that game over screen is requested");
-            System.out.println("... updating score status to game over screen.");
-            gameOverScreen.updateScore();
-            this.gameOverScreen.updateScore();
+            this.gameOverScreen.updateAndDisplayScore();
+            System.out.println("Status: Sent player score data to game over screen. Score: " + this.game.getScore());
         }
         cl.show(cards, cardName);
     }
