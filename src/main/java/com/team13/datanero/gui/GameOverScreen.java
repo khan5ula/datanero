@@ -79,8 +79,8 @@ public class GameOverScreen extends JPanel {
         /* Create exit button */
         JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32);
         exitButton.setActionCommand("Palaa päävalikkoon");
-        exitButton.setPreferredSize(new Dimension(500, 150));
-        exitButton.setMaximumSize(new Dimension(500, 150));
+        exitButton.setPreferredSize(new Dimension(500, 120));
+        exitButton.setMaximumSize(new Dimension(500, 120));
 
         /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
