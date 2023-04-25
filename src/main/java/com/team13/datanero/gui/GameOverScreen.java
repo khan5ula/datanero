@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class GameOverScreen extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         this.mainFrame = owner;
         this.score = Game.getInstance().getScore();
+        Insets padding = new Insets(80, 10, 30, 10);
 
         /* Load the custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
@@ -52,12 +54,12 @@ public class GameOverScreen extends JPanel {
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
         gbc.weighty = 0.0;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.anchor = GridBagConstraints.SOUTH;
         add(messageLabel, gbc);
 
         /* Add padding to the pop-up screen */
-        Border padding = BorderFactory.createEmptyBorder(300, 100, 300, 100);
-        messageLabel.setBorder(padding);
+        Border borderPadding = BorderFactory.createEmptyBorder(400, 100, 0, 100);
+        messageLabel.setBorder(borderPadding);
 
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
@@ -71,6 +73,7 @@ public class GameOverScreen extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0.0;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = padding;
         add(mascot, gbc);
 
         /* Create exit button */
@@ -89,8 +92,8 @@ public class GameOverScreen extends JPanel {
         gbc.gridwidth = 3;
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.2;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTH;
         add(exitButton, gbc);
     }
 

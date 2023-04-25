@@ -304,7 +304,7 @@ public class GameScreen extends JPanel {
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
-                    System.out.println("Status: Player have 0 lives. Game over.");
+                    System.out.println("Status: Player has 0 lives left. Game over.");
                     updateNegativeMascot();
                     livesLabel.setText("Elämät:");
                     scoreLabel.setText("Pisteet: " + game.getScore());
