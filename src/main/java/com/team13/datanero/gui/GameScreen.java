@@ -41,7 +41,7 @@ public class GameScreen extends JPanel {
         Insets padding = new Insets(10, 10, 10, 10);
 
         /* Set an empty border with with a padding around the panel */
-        Border borderPadding = BorderFactory.createEmptyBorder(160, 100, 100, 100);
+        Border borderPadding = BorderFactory.createEmptyBorder(250, 100, 100, 100);
         setBorder(borderPadding);
 
         /* Load custom font from file */
