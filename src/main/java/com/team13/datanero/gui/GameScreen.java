@@ -27,7 +27,6 @@ public class GameScreen extends JPanel {
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
     private int initialButtonWidth;
-    private String hearts;
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
 
@@ -97,7 +96,7 @@ public class GameScreen extends JPanel {
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        livesLabel = new JLabel("Elämät: " + (this.hearts = countHearts(game.getLives())));
+        livesLabel = new JLabel("Elämät: " + (countHearts(game.getLives())));
         livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         /* Create panel for score and lives */
@@ -195,6 +194,7 @@ public class GameScreen extends JPanel {
      * Should be called after every turn to initialize a new turn.
      */
     private void updateGameDisplay() {
+        System.out.println("Status: Updating game display");
         int textWidth = (int) (this.initialButtonWidth * 0.9);
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
@@ -205,7 +205,7 @@ public class GameScreen extends JPanel {
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
         scoreLabel.setText("Pisteet: " + game.getScore());
-        livesLabel.setText("Elämät: " + (this.hearts = countHearts(game.getLives())));
+        livesLabel.setText("Elämät: " + countHearts(game.getLives()));
         if (this.wasAnswerCorrect) {
             updatePositiveMascot();
         } else {
@@ -213,6 +213,7 @@ public class GameScreen extends JPanel {
         }
     }
 
+    /** Small method that counts the number of hear symbols to be displayed. */
     private String countHearts(int count) {
         String hearts = "";
         for (int i = 0; i < count; i++) {
@@ -276,7 +277,7 @@ public class GameScreen extends JPanel {
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
         this.mascotLabel.setIcon(newMascotIcon);
     }
-
+    
     /**
      * Private class used by Game Class.
      * Contains the actions for pressing buttons.
@@ -299,12 +300,15 @@ public class GameScreen extends JPanel {
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
                 if (game.getLives() == 0) {
+                    System.out.println("Status: Player have 0 lives. Game over.");
+                    
                     updateNegativeMascot();
                     livesLabel.setText("Elämät:");
                     scoreLabel.setText("Pisteet: " + game.getScore());
                 }
                 /* Show the GameOverDialog with the score */
-                mainFrame.switchTo("GameOverScreen");                
+                mainFrame.switchTo("GameOverScreen");     
+                System.out.println("Status: Switching to game over screen");          
             } else {
                 /* There are questions available, continue game */
                 game.getNewQuestion();

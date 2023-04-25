@@ -18,20 +18,17 @@ public class ButtonActions implements ActionListener {
 
         switch (command) {
             case "Aloita peli":
-                // Switch to game screen
                 mainFrame.switchTo("gameScreen");
                 Game.getInstance();
                 break;
             case "Asetukset":
-                // Settings logic
                 break;
             case "Parhaat tulokset":
-                // High scores logic
                 break;
             case "Poistu":
                 System.exit(0);
                 break;
-            case "Lopeta":
+            case "Lopeta": case "Palaa päävalikkoon":
                 mainFrame.switchTo("mainMenu");
                 Game.resetInstance();
                 mainFrame.setGame(Game.getInstance());

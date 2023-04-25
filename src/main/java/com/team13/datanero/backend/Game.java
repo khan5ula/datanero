@@ -8,11 +8,13 @@ public class Game {
     private Question currentQuestion;
 
     private Game() {
+        System.out.println("Status: Creating a new game");
         this.player = new Player();
         this.questionBank = QuestionBank.getInstance();
         this.questionBank.shuffle();
         this.questionsAvailable = this.questionBank.getCount();
         this.currentQuestion = this.questionBank.getNextQuestion();
+        System.out.println("Player starts with " + player.getLives() + " lives and a score of: " + player.getScore());
     }
 
     public static Game getInstance() {

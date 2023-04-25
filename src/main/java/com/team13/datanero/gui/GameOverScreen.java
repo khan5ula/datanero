@@ -16,14 +16,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import com.team13.datanero.backend.Game;
+
 public class GameOverScreen extends JPanel {
     private JLabel messageLabel;
     private MainFrame mainFrame;
+    private Game game;
+    private int score;
 
-    public GameOverScreen(MainFrame owner, int score) {
+    // TODO: Fix bug: Score updates only after the first round of game.
+
+    public GameOverScreen(MainFrame owner) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         this.mainFrame = owner;
+        this.game = Game.getInstance();
+        this.score = this.game.getScore();
 
         /* Load the custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
@@ -38,7 +46,7 @@ public class GameOverScreen extends JPanel {
 
         /* Define message label */
         Font customFont = font.deriveFont(Font.PLAIN, 48);
-        messageLabel = new JLabel("Voi rähmä, peli päättyi! Pistesaaliisi on: " + score);
+        messageLabel = new JLabel("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setFont(customFont);
 
         /* Add messagelabel to the grid */
@@ -76,7 +84,7 @@ public class GameOverScreen extends JPanel {
         exitButton.setMaximumSize(new Dimension(500, 150));
 
         /* Define action for exit button */
-        GameOverButtonActions buttonActions = new GameOverButtonActions(this.mainFrame);
+        ButtonActions buttonActions = new ButtonActions(this.mainFrame);
         exitButton.addActionListener(buttonActions);
 
         /* Add the exit button to the grid */
@@ -89,4 +97,10 @@ public class GameOverScreen extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(exitButton, gbc);
     }
+
+    public void updateScore() {
+        this.score = game.getScore();
+        messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+    }
+    
 }

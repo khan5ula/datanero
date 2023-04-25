@@ -26,6 +26,11 @@ public class QuestionParser {
         addQuestions(listOfQuestions);
     }
 
+    /**
+     * Method that parses the JSONObject of questions into an ArrayList of Question objects.
+     * @param jsonObject JSONObject that contains the questions.
+     * @return ArrayList of Question objects.
+     */
     private ArrayList<Question> parseQuestions(JSONObject jsonObject) {
         System.out.println("Status: Parsing questions from the JSON");
         JSONArray questionArray = jsonObject.getJSONArray("questions");
@@ -87,5 +92,4 @@ public class QuestionParser {
     private JSONObject stringToJsonObject(String jsonString) {
         return new JSONObject(jsonString);
     }
-    
 }
