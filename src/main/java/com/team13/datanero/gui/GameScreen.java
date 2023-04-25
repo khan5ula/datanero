@@ -76,8 +76,11 @@ public class GameScreen extends JPanel {
         /* Create answer buttons */
         this.answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
+        int textWidth = (int) (this.initialButtonWidth * 0.9);
         for (int i = 0; i < this.answerButtons.length; i++) {
-            this.answerButtons[i] = new CustomButton(answers[i], Color.darkGray, 32);
+            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>",
+                    textWidth, answers[i]);
+            this.answerButtons[i] = new CustomButton(buttonText, Color.darkGray, 32);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
             this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
             this.answerButtons[i].setMaximumSize(new Dimension(800, 300));
@@ -110,7 +113,7 @@ public class GameScreen extends JPanel {
         scoreAndLivesPanelConstraints.insets = padding;
         scoreAndLivesPanel.add(scoreLabel, scoreAndLivesPanelConstraints);
 
-        /* Add lives label to the panel*/
+        /* Add lives label to the panel */
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 1;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
@@ -199,7 +202,8 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>", textWidth, answers[i]);
+            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>",
+                    textWidth, answers[i]);
             this.answerButtons[i].setText(buttonText);
         }
         Collections.shuffle(this.buttons);
@@ -212,7 +216,6 @@ public class GameScreen extends JPanel {
             updateNegativeMascot();
         }
     }
-    
 
     /** Small method that counts the number of hear symbols to be displayed. */
     private String countHearts(int count) {
@@ -236,13 +239,13 @@ public class GameScreen extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         Insets padding = new Insets(15, 15, 15, 15);
         gbc.insets = padding;
-    
+
         for (int i = 0; i < buttons.size(); i++) {
             gbc.gridx = 3 + (i % 2) * 3; // Calculate the gridx value for each button
             gbc.gridy = 4 + (i / 2) * 2; // Place the buttons below the question
             add(buttons.get(i), gbc);
         }
-    }    
+    }
 
     /**
      * Method that updates the game mascot based on the success of the player.
@@ -278,7 +281,7 @@ public class GameScreen extends JPanel {
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
         this.mascotLabel.setIcon(newMascotIcon);
     }
-    
+
     /**
      * Private class used by Game Class.
      * Contains the actions for pressing buttons.
@@ -307,8 +310,8 @@ public class GameScreen extends JPanel {
                     scoreLabel.setText("Pisteet: " + game.getScore());
                 }
                 /* Show the GameOverDialog with the score */
-                mainFrame.switchTo("GameOverScreen");     
-                System.out.println("Status: Switching to game over screen");          
+                mainFrame.switchTo("GameOverScreen");
+                System.out.println("Status: Switching to game over screen");
             } else {
                 /* There are questions available, continue game */
                 game.getNewQuestion();
