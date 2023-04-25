@@ -12,14 +12,14 @@ import java.awt.CardLayout;
 public class MainFrame extends JFrame {
     private JPanel cards;
     private Game game;
-    GameOverScreen gameOverScreen;
+    private GameOverScreen gameOverScreen;
 
     public MainFrame(Game game) {
         setTitle("DataNero");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
-        this.game = game;
+        this.game = Game.getInstance();
 
         /* Use CardLayout to switch between screens */
         this.cards = new JPanel(new CardLayout());
@@ -55,13 +55,20 @@ public class MainFrame extends JFrame {
         cl.show(cards, cardName);
     }
 
-
+    /**
+     * Method that creates game screen.
+     * @param game The game.
+     */
     public void setGame(Game game) {
         this.game = game;
         GameScreen gameScreen = new GameScreen(this, game);
         cards.add(gameScreen, "gameScreen");
     }    
     
+    /**
+     * It's 106 miles to Chicago, we got a full tank of gas, half a pack of cigarettes, it's dark... and we're wearing sunglasses. 
+     * @param args The sound you make when you rise from couch.
+     */
     public static void main(String[] args) {
         /* Start the game */
         QuestionParser questionParser = new QuestionParser();

@@ -103,7 +103,7 @@ public class GameScreen extends JPanel {
         JPanel scoreAndLivesPanel = new JPanel(new GridBagLayout());
         GridBagConstraints scoreAndLivesPanelConstraints = new GridBagConstraints();
 
-        /* Add score label to the panel*/
+        /* Add score label to the panel */
         scoreAndLivesPanelConstraints.gridx = 0;
         scoreAndLivesPanelConstraints.gridy = 0;
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
@@ -199,8 +199,8 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < this.answerButtons.length; i++) {
-            this.answerButtons[i].setText("<html><div style='text-align: center; width: " + textWidth + "px;'>" + answers[i]
-                    + "</div></html>");
+            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>", textWidth, answers[i]);
+            this.answerButtons[i].setText(buttonText);
         }
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
@@ -212,6 +212,7 @@ public class GameScreen extends JPanel {
             updateNegativeMascot();
         }
     }
+    
 
     /** Small method that counts the number of hear symbols to be displayed. */
     private String countHearts(int count) {
@@ -233,7 +234,7 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
-        Insets padding = new Insets(10, 10, 10, 10);
+        Insets padding = new Insets(15, 15, 15, 15);
         gbc.insets = padding;
     
         for (int i = 0; i < buttons.size(); i++) {

@@ -23,8 +23,6 @@ public class GameOverScreen extends JPanel {
     private MainFrame mainFrame;
     private int score;
 
-    // TODO: Fix bug: Score updates only after the first round of game.
-
     public GameOverScreen(MainFrame owner) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -96,10 +94,12 @@ public class GameOverScreen extends JPanel {
         add(exitButton, gbc);
     }
 
+    /**
+     * Method that gets a fresh Game instance and updates the score information to game over screen.
+     */
     public void updateAndDisplayScore() {
         this.score = Game.getInstance().getScore();
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         System.out.println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
     }
-    
 }
