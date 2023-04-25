@@ -87,7 +87,7 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         int textWidth = (int) (this.initialButtonWidth * 0.9);
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>",
+            String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
                     textWidth, answers[i]);
             this.answerButtons[i] = new CustomButton(buttonText, Color.darkGray, 32);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
@@ -211,7 +211,7 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format("<html><body style='text-align: center; width: %dpx'>%s</body></html>",
+            String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
                     textWidth, answers[i]);
             this.answerButtons[i].setText(buttonText);
         }
