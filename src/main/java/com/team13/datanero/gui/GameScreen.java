@@ -127,7 +127,7 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 2;
         gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = padding;
+        gbc.insets = new Insets(10, 80, 10, 10);
         add(scoreAndLivesPanel, gbc);
 
         /* Add the question label to the grid */
@@ -172,7 +172,7 @@ public class GameScreen extends JPanel {
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.SOUTHEAST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = padding;
+        gbc.insets = new Insets(10, 80, 10, 10);
         add(exitButton, gbc);
 
         /* Load the mascot image */
@@ -188,7 +188,7 @@ public class GameScreen extends JPanel {
         gbc.gridheight = 10;
         gbc.weightx = 0.0;
         gbc.anchor = GridBagConstraints.EAST;
-        gbc.insets = padding;
+        gbc.insets = new Insets(10, 80, 10, 10);
         add(mascotLabel, gbc);
     }
 
