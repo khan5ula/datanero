@@ -73,7 +73,7 @@
       ]
     },
     {
-      "question": "Mikä on seuraavista relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
+      "question": "Mikä seuraavista on relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
       "correctAnswer": "Liitos (JOIN)",
       "wrongAnswers": [
         "Yhdistäminen (MERGE)",
@@ -88,6 +88,42 @@
         "Attribuutti, joka esiintyy vain yhdessä relaatiossa.",
         "Attribuutti, joka esiintyy useammassa relaatiossa.",
         "Attribuutti, joka on riippuvainen toisesta atribuutista."
+      ]
+    },
+        {
+      "question": "Mikä seuraavista on yksi transaktioiden ACID-ominaisuuksista?",
+      "correctAnswer": "Eristettävyys (Isolation)",
+      "wrongAnswers": [
+        "Integroitavuus (Integration)",
+        "Inkrementaalisuus (Incrementality)",
+        "Sisäsyntyisyys (Intrinsicy)"
+      ]
+    },
+    {
+      "question": "Mikä erottaa SQL- ja NoSQL -tietokantatyypit toisistaan?",
+      "correctAnswer": "SQL käyttää relaatiomalleja, NoSQL ei",
+      "wrongAnswers": [
+        "SQL on ohjelmointikieli, NoSQL ei",
+        "SQL on hidas, NoSQL on nopea",
+        "SQL on tietokanta, NoSQL on tiedostojärjestelmä"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on tietokantojen perusyksikkö, joka voi sisältää yhden tai useamman tietueen?",
+      "correctAnswer": "Taulu",
+      "wrongAnswers": [
+        "Sarake",
+        "Rivi",
+        "Solmu"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
+      "correctAnswer": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",
+      "wrongAnswers": [
+        "Toinen näistä ei ole tietokanta, vaan taulukointimenetelmä",
+        "Toinen näistä on relaatiotietokanta",
+        "Toiseen voi tallentaa vain numeerista tietoa"
       ]
     }
   ]
