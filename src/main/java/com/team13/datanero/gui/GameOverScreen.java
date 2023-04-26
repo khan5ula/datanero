@@ -24,10 +24,10 @@ public class GameOverScreen extends JPanel {
     private MainFrame mainFrame;
     private int score;
 
-    public GameOverScreen(MainFrame owner) {
+    public GameOverScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        this.mainFrame = owner;
+        this.mainFrame = mainFrame;
         this.score = Game.getInstance().getScore();
         Insets padding = new Insets(80, 10, 30, 10);
 
@@ -57,9 +57,9 @@ public class GameOverScreen extends JPanel {
         gbc.anchor = GridBagConstraints.SOUTH;
         add(messageLabel, gbc);
 
-        /* Add padding to the pop-up screen */
+        /* Add padding to the screen */
         Border borderPadding = BorderFactory.createEmptyBorder(400, 100, 0, 100);
-        messageLabel.setBorder(borderPadding);
+        setBorder(borderPadding);
 
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");

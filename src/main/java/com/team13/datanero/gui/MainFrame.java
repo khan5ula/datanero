@@ -28,11 +28,13 @@ public class MainFrame extends JFrame {
         MainMenu mainMenu = new MainMenu(this);
         GameScreen gameScreen = new GameScreen(this, this.game);
         this.gameOverScreen = new GameOverScreen(this);
+        SettingsScreen settingsScreen = new SettingsScreen(this);
 
         /* Add main menu and game screen to cards */
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
         cards.add(gameOverScreen, "GameOverScreen");
+        cards.add(settingsScreen, "settingsScreen");
 
         /* Set icons */
         //setIconImages(loadAppIcons());

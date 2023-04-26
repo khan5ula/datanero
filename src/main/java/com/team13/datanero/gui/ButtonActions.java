@@ -22,6 +22,7 @@ public class ButtonActions implements ActionListener {
                 Game.getInstance();
                 break;
             case "Asetukset":
+            mainFrame.switchTo("settingsScreen");
                 break;
             case "Parhaat tulokset":
                 break;
