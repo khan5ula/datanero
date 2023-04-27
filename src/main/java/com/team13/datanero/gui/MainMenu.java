@@ -35,17 +35,19 @@ public class MainMenu extends JPanel {
         setBorder(borderPadding);
 
         /* Logo */
-        this.logo = new JLabel("DataNero");
-        this.logo.setFont(theme.getCustomFont(FontStyle.BOLD, 148));
+        // this.logo = new JLabel("DataNero");
+        // this.logo.setFont(theme.getCustomFont(FontStyle.BOLD, 148));
+        ImageIcon logoImage = new ImageIcon("src/main/java/com/team13/datanero/images/datanerologo.png");
+        JLabel logoLabel = new JLabel(logoImage);
 
         /* Sub-title */
         this.subtitle = new JLabel("Tietojenkäsittelyn tietovisa");
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
-        
+
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
         JLabel mascot = new JLabel(mascotImage);
-        
+
         /* Create buttons */
         this.startButton = new CustomButton("Aloita peli", theme.getStartGameButtonColor(), 38, FontStyle.BOLD);
         this.startButton.setPreferredSize(new Dimension(500, 120));
@@ -72,32 +74,32 @@ public class MainMenu extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.SOUTH;
-        add(logo, gbc);
+        add(logoLabel, gbc);
 
         gbc.gridy = 1;
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.NORTH;
         add(subtitle, gbc);
-        
+
         gbc.gridy = 2;
         add(mascot, gbc);
-        
+
         gbc.gridy = 3;
         add(startButton, gbc);
-        
+
         gbc.gridy = 4;
         add(settingsButton, gbc);
-        
+
         gbc.gridy = 5;
         add(highScoresButton, gbc);
-        
+
         gbc.gridy = 6;
         add(exitButton, gbc);
     }
 
     public void setTheme() {
         setBackground(theme.getScreenBackGroundColor());
-        this.logo.setForeground(theme.getGeneralTextColor());
+        // this.logo.setForeground(theme.getGeneralTextColor());
         this.subtitle.setForeground(theme.getGeneralTextColor());
         this.startButton.setBackground(theme.getStartGameButtonColor());
         this.settingsButton.setBackground(theme.getSettingsButtonColor());
