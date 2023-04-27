@@ -33,6 +33,7 @@ public class GameScreen extends JPanel {
     private JButton[] answerButtons;
     private JLabel scoreLabel;
     private JLabel livesLabel;
+    private JLabel heartLabel1, heartLabel2, heartLabel3;
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
     private int initialButtonWidth;
@@ -108,7 +109,8 @@ public class GameScreen extends JPanel {
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        livesLabel = new JLabel("Elämät: " + (countHearts(game.getLives())));
+        // livesLabel = new JLabel("Elämät: " + (countHearts(game.getLives())));
+        livesLabel = new JLabel("Elämät: ");
         livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         /* Create panel for score and lives */
@@ -128,6 +130,23 @@ public class GameScreen extends JPanel {
         scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
         scoreAndLivesPanelConstraints.insets = padding;
         scoreAndLivesPanel.add(livesLabel, scoreAndLivesPanelConstraints);
+
+        /* Create labels for hearts */
+        ImageIcon heartIcon = new ImageIcon("src/main/java/com/team13/datanero/images/heart.png");
+        this.heartLabel1 = new JLabel(heartIcon);
+        this.heartLabel2 = new JLabel(heartIcon);
+        this.heartLabel3 = new JLabel(heartIcon);
+
+        /* Add heart labels to the panel */
+        scoreAndLivesPanelConstraints.gridx = 1;
+        scoreAndLivesPanelConstraints.gridy = 1;
+        scoreAndLivesPanel.add(heartLabel1, scoreAndLivesPanelConstraints);
+
+        scoreAndLivesPanelConstraints.gridx = 2;
+        scoreAndLivesPanel.add(heartLabel2, scoreAndLivesPanelConstraints);
+
+        scoreAndLivesPanelConstraints.gridx = 3;
+        scoreAndLivesPanel.add(heartLabel3, scoreAndLivesPanelConstraints);
 
         /* Add score & lives label to the grid */
         gbc.gridx = 10;
@@ -218,7 +237,7 @@ public class GameScreen extends JPanel {
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
         scoreLabel.setText("Pisteet: " + game.getScore());
-        livesLabel.setText("Elämät: " + countHearts(game.getLives()));
+        updateHearts(game.getLives());
         if (this.wasAnswerCorrect) {
             updatePositiveMascot();
         } else {
@@ -226,13 +245,23 @@ public class GameScreen extends JPanel {
         }
     }
 
-    /** Small method that counts the number of hear symbols to be displayed. */
-    private String countHearts(int count) {
-        String hearts = "";
-        for (int i = 0; i < count; i++) {
-            hearts += "❤";
+    /**
+     * Method that updates the heart icon life indicators based on the players
+     * lives.
+     */
+    private void updateHearts(int lives) {
+        ImageIcon heartlessIcon = new ImageIcon("src/main/java/com/team13/datanero/images/heartless.png");
+        switch (lives) {
+            case 2:
+                this.heartLabel3.setIcon(heartlessIcon);
+                break;
+            case 1:
+                this.heartLabel2.setIcon(heartlessIcon);
+                break;
+            case 0:
+                this.heartLabel1.setIcon(heartlessIcon);
+                break;
         }
-        return hearts;
     }
 
     /**
