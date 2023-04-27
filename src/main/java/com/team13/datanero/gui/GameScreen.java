@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.Timer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -359,6 +360,7 @@ public class GameScreen extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             wasAnswerCorrect = game.submitAnswer(answerIndex);
+
             if (wasAnswerCorrect) {
                 game.incrementScore();
             } else {
@@ -366,15 +368,30 @@ public class GameScreen extends JPanel {
             }
 
             if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
+                /* Game over. Player ran out of lives or the game ran out of questions. */
                 if (game.getLives() == 0) {
                     System.out.println("Status: Player has 0 lives left. Game over.");
                     updateNegativeMascot();
                     livesLabel.setText("Elämät:");
                     scoreLabel.setText("Pisteet: " + game.getScore());
                 }
-                /* Show the GameOverDialog with the score */
-                mainFrame.switchTo("GameOverScreen");
-                System.out.println("Status: Switching to game over screen");
+                
+                /* Functionality that allows a delay after player runs out of lives.
+                 * The delay variable below should be adjusted to a proper delay.
+                 * The game elements should be updated properly before implementing this feature.
+                 */
+                int delay = 0; // Delay in milliseconds (1000 ms = 1 second)
+                ActionListener taskPerformer = new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        /* Show the GameOverDialog with the score */
+                        mainFrame.switchTo("GameOverScreen");
+                        System.out.println("Status: Switching to game over screen");
+                    }
+                };
+                Timer timer = new javax.swing.Timer(delay, taskPerformer);
+                timer.setRepeats(false); // Make the timer execute only once
+                timer.start();
+
             } else {
                 /* There are questions available, continue game */
                 game.getNewQuestion();
