@@ -2,15 +2,11 @@ package com.team13.datanero.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -20,24 +16,31 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.team13.datanero.gui.Theme.FontStyle;
 import com.team13.datanero.gui.Theme.ThemeType;
 
 public class SettingsScreen extends JPanel {
     private MainFrame mainFrame;
+    private JLabel header;
     private JButton soundButton;
     private JButton languageButton;
     private JButton difficultyButton;
     private JButton themeButton;
     private ArrayList<JButton> optionButtons;
+    private ArrayList<JLabel> optionTextList;
     private Theme theme;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.optionButtons = new ArrayList<JButton>();
+        this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
         init();
     }
 
+    /**
+     * Method that initializes the settings screen elements.
+     */
     private void init() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -47,21 +50,9 @@ public class SettingsScreen extends JPanel {
         Border borderPadding = BorderFactory.createEmptyBorder(300, 100, 0, 100);
         setBorder(borderPadding);
 
-        /* Load the custom font from file */
-        File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Bold.ttf");
-        Font font = null;
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, font_file);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         /* Create Header label */
-        JLabel header = new JLabel("Asetukset");
-        Font customFont = font.deriveFont(Font.PLAIN, 84);
-        header.setFont(customFont);
+        this.header = new JLabel("Asetukset");
+        header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
 
         /* Add Header label to the grid */
         gbc.gridx = 0;
@@ -96,17 +87,16 @@ public class SettingsScreen extends JPanel {
         optionButtonGbc.anchor = GridBagConstraints.LINE_START;
         optionButtonGbc.insets = padding;
 
-        Font customFont32 = font.deriveFont(Font.PLAIN, 32);
         Dimension buttonDimension = new Dimension(250, 60);
 
         for (int i = 0; i < 4; i++) {
-            JLabel optionLabel = new JLabel(optionNames[i]);
-            optionLabel.setFont(customFont32);
-            add(optionLabel, optionGbc);
+            this.optionTextList.add(new JLabel(optionNames[i]));
+            optionTextList.get(i).setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 32));
+            add(optionTextList.get(i), optionGbc);
 
             switch (i) {
                 case 0: // Set sound button
-                    this.soundButton = new CustomButton("Ei saatavilla", Color.WHITE, 24);
+                    this.soundButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.soundButton.setForeground(Color.BLACK);
                     this.soundButton.setPreferredSize(buttonDimension);
                     this.soundButton.setMaximumSize(buttonDimension);
@@ -115,7 +105,7 @@ public class SettingsScreen extends JPanel {
                     this.optionButtons.add(this.soundButton);
                     break;
                 case 1: // Set language button
-                    this.languageButton = new CustomButton("Ei saatavilla", Color.WHITE, 24);
+                    this.languageButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.languageButton.setForeground(Color.BLACK);
                     this.languageButton.setPreferredSize(buttonDimension);
                     this.languageButton.setMaximumSize(buttonDimension);
@@ -124,7 +114,7 @@ public class SettingsScreen extends JPanel {
                     this.optionButtons.add(this.languageButton);
                     break;
                 case 2: // Set difficulty button
-                    this.difficultyButton = new CustomButton("Ei saatavilla", Color.WHITE, 24);
+                    this.difficultyButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.difficultyButton.setForeground(Color.BLACK);
                     this.difficultyButton.setPreferredSize(buttonDimension);
                     this.difficultyButton.setMaximumSize(buttonDimension);
@@ -134,7 +124,7 @@ public class SettingsScreen extends JPanel {
                     this.optionButtons.add(this.difficultyButton);
                     break;
                 case 3: // Set theme button
-                    this.themeButton = new CustomButton("Vaalea", Color.WHITE, 24);
+                    this.themeButton = new CustomButton("Vaalea", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.themeButton.setForeground(Color.BLACK);
                     this.themeButton.setPreferredSize(buttonDimension);
                     this.themeButton.setMaximumSize(buttonDimension);
@@ -149,7 +139,7 @@ public class SettingsScreen extends JPanel {
         }
 
         /* Create exit button */
-        JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32);
+        JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32, FontStyle.BOLD);
         exitButton.setActionCommand("Palaa päävalikkoon");
         exitButton.setPreferredSize(new Dimension(500, 120));
         exitButton.setMaximumSize(new Dimension(500, 120));
@@ -178,28 +168,31 @@ public class SettingsScreen extends JPanel {
         if (themeButton.getText().equals("Vaalea")) {
             System.out.println("Status: Player chose dark theme");
             theme.setCurrentTheme(ThemeType.DARK);
-            setBackground(theme.getScreenBackGroundColor());
-            for (JButton button : this.optionButtons) {
-                button.setBackground(Color.BLACK);
-                button.setForeground(Color.WHITE);
-            }
             themeButton.setText("Tumma");
 
-        /* If player chose light theme */
+            /* If player chose light theme */
         } else {
             System.out.println("Status: Player chose light theme");
             theme.setCurrentTheme(ThemeType.LIGHT);
             setBackground(theme.getScreenBackGroundColor());
-            for (JButton button : this.optionButtons) {
-                button.setBackground(Color.WHITE);
-                button.setForeground(Color.BLACK);
-            }
             themeButton.setText("Vaalea");
         }
+
+        /* General theme adjustments */
+        setBackground(theme.getScreenBackGroundColor());
+        for (JButton button : this.optionButtons) {
+            button.setBackground(theme.getButtonTextColor()); // Borrow button text colors for this
+            button.setForeground(theme.getGeneralTextColor());
+        }
+        for (JLabel label : this.optionTextList) {
+            label.setForeground(theme.getGeneralTextColor());
+        }
+        this.header.setForeground(theme.getGeneralTextColor());
     }
 
     /**
-     * Small private class for theme button. Calls changeTheme() method when pressed.
+     * Small private class for theme button. Calls changeTheme() method when
+     * pressed.
      */
     private class ThemeButtonListener implements ActionListener {
         @Override

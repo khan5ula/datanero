@@ -2,15 +2,11 @@ package com.team13.datanero.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,6 +23,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameScreen extends JPanel {
     private MainFrame mainFrame;
@@ -40,7 +37,6 @@ public class GameScreen extends JPanel {
     private int initialButtonWidth;
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
-    private Font font;
     private Theme theme;
 
     public GameScreen(MainFrame mainFrame, Game game) {
@@ -53,7 +49,7 @@ public class GameScreen extends JPanel {
     }
 
     /**
-     * Method that initializes the game screen elements
+     * Method that initializes the game screen elements.
      */
     private void init() {
         /* Initialize the layout manager */
@@ -65,14 +61,11 @@ public class GameScreen extends JPanel {
         Border borderPadding = BorderFactory.createEmptyBorder(250, 100, 100, 100);
         setBorder(borderPadding);
 
-        /* Load custom font from file */
-        this.font = getCustomFont("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
-
         /* Create text area for the question */
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
-        questionTextArea.setFont(this.font.deriveFont(Font.PLAIN, 48));
-        questionTextArea.setForeground(theme.getQuestionTextColor());
+        questionTextArea.setFont(theme.getCustomFont(FontStyle.LIGHT, 48));
+        questionTextArea.setForeground(theme.getGeneralTextColor());
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
         questionTextArea.setFocusable(false);
@@ -92,7 +85,7 @@ public class GameScreen extends JPanel {
         for (int i = 0; i < this.answerButtons.length; i++) {
             String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
                     textWidth, answers[i]);
-            this.answerButtons[i] = new CustomButton(buttonText, Color.darkGray, 32);
+            this.answerButtons[i] = new CustomButton(buttonText, theme.getAnswerButtonColor(), 30, FontStyle.SEMIBOLD);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
             this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
             this.answerButtons[i].setMaximumSize(new Dimension(800, 300));
@@ -110,13 +103,11 @@ public class GameScreen extends JPanel {
 
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
-        scoreLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
         livesLabel = new JLabel("Elämät:");
-        livesLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
 
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
-        scoreLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
+        scoreLabel.setFont(theme.getCustomFont(FontStyle.RETINA, 32));
 
         /* Create panel for lives and hearts */
         JPanel livesPanel = new JPanel(new GridBagLayout());
@@ -124,7 +115,8 @@ public class GameScreen extends JPanel {
 
         /* Create and add lives label to lives panel */
         livesLabel = new JLabel("Elämät:");
-        livesLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
+        livesLabel.setFont(theme.getCustomFont(FontStyle.RETINA, 32));
+        livesLabel.setForeground(theme.getGeneralTextColor());
         livesPanelConstraints.gridx = 0;
         livesPanelConstraints.gridy = 0;
         livesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
@@ -155,6 +147,7 @@ public class GameScreen extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(10, 80, 10, 10);
+        scoreLabel.setForeground(theme.getGeneralTextColor());
         add(scoreLabel, gbc);
 
         /* Add lives panel to grid */
@@ -201,7 +194,7 @@ public class GameScreen extends JPanel {
      */
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111), 32);
+        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111), 32, FontStyle.BOLD);
         exitButton.setActionCommand("Lopeta");
         exitButton.setPreferredSize(new Dimension(150, 100));
         exitButton.setMaximumSize(new Dimension(150, 100));
@@ -243,27 +236,6 @@ public class GameScreen extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         gbc.insets = new Insets(10, 80, 10, 10);
         add(mascotLabel, gbc);
-    }
-
-    /**
-     * Method that retrieves the desired font from a filepath.
-     * 
-     * @param filepath Path to the font.
-     * @return Font file.
-     */
-    private Font getCustomFont(String filepath) {
-        File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
-        Font font = null;
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, font_file);
-        } catch (FontFormatException e) {
-            System.out.println("Error: Problem with custom font format: " + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Error: IOException occured with custom font: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return font;
     }
 
     /**
