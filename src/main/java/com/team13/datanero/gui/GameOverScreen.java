@@ -23,6 +23,7 @@ public class GameOverScreen extends JPanel {
     private JLabel messageLabel;
     private MainFrame mainFrame;
     private int score;
+    private Theme theme;
 
     public GameOverScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
@@ -30,6 +31,8 @@ public class GameOverScreen extends JPanel {
         this.mainFrame = mainFrame;
         this.score = Game.getInstance().getScore();
         Insets padding = new Insets(80, 10, 30, 10);
+        this.theme = Theme.getInstance();
+        setBackground(theme.getScreenBackGroundColor());
 
         /* Load the custom font from file */
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");

@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     private JPanel cards;
     private Game game;
     private GameOverScreen gameOverScreen;
+    private MainMenu mainMenu;
 
     public MainFrame(Game game) {
         setTitle("DataNero");
@@ -25,7 +26,7 @@ public class MainFrame extends JFrame {
         this.cards = new JPanel(new CardLayout());
 
         /* Initialize main menu and game screen */
-        MainMenu mainMenu = new MainMenu(this);
+        this.mainMenu = new MainMenu(this);
         GameScreen gameScreen = new GameScreen(this, this.game);
         this.gameOverScreen = new GameOverScreen(this);
         SettingsScreen settingsScreen = new SettingsScreen(this);
@@ -65,7 +66,15 @@ public class MainFrame extends JFrame {
         this.game = game;
         GameScreen gameScreen = new GameScreen(this, game);
         cards.add(gameScreen, "gameScreen");
-    }    
+    }
+
+    /**
+     * Return the class variable Main Menu. Can be used to reach the Main Menu from other classes such as ButtonActions.
+     * @return Main Menu class variable from the Main Frame.
+     */
+    public MainMenu getMainMenu() {
+        return this.mainMenu;
+    }
     
     /**
      * It's 106 miles to Chicago, we got a full tank of gas, half a pack of cigarettes, it's dark... and we're wearing sunglasses. 

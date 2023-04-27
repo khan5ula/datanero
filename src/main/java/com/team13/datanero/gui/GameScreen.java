@@ -41,11 +41,14 @@ public class GameScreen extends JPanel {
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
     private Font font;
+    private Theme theme;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
         this.mascotLabel = new JLabel();
+        this.theme = Theme.getInstance();
+        setBackground(theme.getScreenBackGroundColor());
         init();
     }
 
@@ -69,6 +72,7 @@ public class GameScreen extends JPanel {
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
         questionTextArea.setFont(this.font.deriveFont(Font.PLAIN, 48));
+        questionTextArea.setForeground(theme.getQuestionTextColor());
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
         questionTextArea.setFocusable(false);
@@ -161,6 +165,7 @@ public class GameScreen extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 80, 10, 10);
+        livesPanel.setBackground(theme.getScreenBackGroundColor());
         add(livesPanel, gbc);
 
         /* Add the question label to the grid */

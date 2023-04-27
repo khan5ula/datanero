@@ -13,10 +13,13 @@ import java.awt.Color;
 
 public class MainMenu extends JPanel {
     private MainFrame mainFrame;
+    private Theme theme;
 
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         setLayout(new GridBagLayout());
+        this.theme = Theme.getInstance();
+        setBackground(theme.getScreenBackGroundColor());
 
         /* Set an empty border with with a padding around the panel */
         Border borderPadding = BorderFactory.createEmptyBorder(160, 100, 100, 100);
@@ -66,5 +69,9 @@ public class MainMenu extends JPanel {
         
         gbc.gridy = 5;
         add(exitButton, gbc);
+    }
+
+    public void setBackground() {
+        setBackground(theme.getScreenBackGroundColor());
     }
 }

@@ -9,11 +9,13 @@ import java.io.IOException;
 import javax.swing.JButton;
 
 public class CustomButton extends JButton {
+    private Theme theme;
 
     public CustomButton(String name, Color color, int fontSize) {
         super(name);
         this.setBackground(color);
         this.setFocusPainted(false);
+        this.theme = theme.getInstance();
 
         File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Medium.ttf");
         try {

@@ -30,6 +30,7 @@ public class ButtonActions implements ActionListener {
                 System.exit(0);
                 break;
             case "Lopeta": case "Palaa päävalikkoon":
+                this.mainFrame.getMainMenu().setBackground();
                 mainFrame.switchTo("mainMenu");
                 Game.resetInstance();
                 mainFrame.setGame(Game.getInstance());

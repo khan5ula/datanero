@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.team13.datanero.gui.Theme.ThemeType;
+
 public class SettingsScreen extends JPanel {
     private MainFrame mainFrame;
     private JButton soundButton;
@@ -27,10 +29,12 @@ public class SettingsScreen extends JPanel {
     private JButton difficultyButton;
     private JButton themeButton;
     private ArrayList<JButton> optionButtons;
+    private Theme theme;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.optionButtons = new ArrayList<JButton>();
+        this.theme = Theme.getInstance();
         init();
     }
 
@@ -166,11 +170,15 @@ public class SettingsScreen extends JPanel {
         add(exitButton, gbc);
     }
 
+    /**
+     * Method that changes the system theme between Light and Dark.
+     */
     private void changeTheme() {
-        // TODO: Implement theme change logic
-
         /* If player chose dark theme */
         if (themeButton.getText().equals("Vaalea")) {
+            System.out.println("Status: Player chose dark theme");
+            theme.setCurrentTheme(ThemeType.DARK);
+            setBackground(theme.getScreenBackGroundColor());
             for (JButton button : this.optionButtons) {
                 button.setBackground(Color.BLACK);
                 button.setForeground(Color.WHITE);
@@ -179,6 +187,9 @@ public class SettingsScreen extends JPanel {
 
         /* If player chose light theme */
         } else {
+            System.out.println("Status: Player chose light theme");
+            theme.setCurrentTheme(ThemeType.LIGHT);
+            setBackground(theme.getScreenBackGroundColor());
             for (JButton button : this.optionButtons) {
                 button.setBackground(Color.WHITE);
                 button.setForeground(Color.BLACK);
@@ -187,11 +198,13 @@ public class SettingsScreen extends JPanel {
         }
     }
 
+    /**
+     * Small private class for theme button. Calls changeTheme() method when pressed.
+     */
     private class ThemeButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             changeTheme();
         }
     }
-
 }
