@@ -26,6 +26,7 @@ public class SettingsScreen extends JPanel {
     private JButton languageButton;
     private JButton difficultyButton;
     private JButton themeButton;
+    private JButton exitButton;
     private ArrayList<JButton> optionButtons;
     private ArrayList<JLabel> optionTextList;
     private Theme theme;
@@ -139,10 +140,10 @@ public class SettingsScreen extends JPanel {
         }
 
         /* Create exit button */
-        JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32, FontStyle.BOLD);
-        exitButton.setActionCommand("Palaa päävalikkoon");
-        exitButton.setPreferredSize(new Dimension(500, 120));
-        exitButton.setMaximumSize(new Dimension(500, 120));
+        this.exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32, FontStyle.BOLD);
+        this.exitButton.setActionCommand("Palaa päävalikkoon");
+        this.exitButton.setPreferredSize(new Dimension(500, 120));
+        this.exitButton.setMaximumSize(new Dimension(500, 120));
 
         /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
@@ -180,14 +181,18 @@ public class SettingsScreen extends JPanel {
 
         /* General theme adjustments */
         setBackground(theme.getScreenBackGroundColor());
+
         for (JButton button : this.optionButtons) {
             button.setBackground(theme.getButtonTextColor()); // Borrow button text colors for this
             button.setForeground(theme.getGeneralTextColor());
         }
+
         for (JLabel label : this.optionTextList) {
             label.setForeground(theme.getGeneralTextColor());
         }
+
         this.header.setForeground(theme.getGeneralTextColor());
+        this.exitButton.setBackground(theme.getQuitGameButtonColor());
     }
 
     /**

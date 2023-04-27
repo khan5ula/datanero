@@ -194,7 +194,7 @@ public class GameScreen extends JPanel {
      */
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111), 32, FontStyle.BOLD);
+        JButton exitButton = new CustomButton("Lopeta", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
         exitButton.setActionCommand("Lopeta");
         exitButton.setPreferredSize(new Dimension(150, 100));
         exitButton.setMaximumSize(new Dimension(150, 100));

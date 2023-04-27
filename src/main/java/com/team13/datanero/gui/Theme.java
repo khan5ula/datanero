@@ -97,8 +97,36 @@ public class Theme {
      * @return Color depending on the style.
      */
     public Color getAnswerButtonColor() {
-        if (currentTheme == Theme.ThemeType.LIGHT) {
+        if (currentTheme == ThemeType.LIGHT) {
             return Color.DARK_GRAY;
+        }
+        return Color.BLACK;
+    }
+
+    public Color getStartGameButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(6,214,160);
+        }
+        return Color.BLACK;
+    }
+
+    public Color getSettingsButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(38, 84, 124);
+        }
+        return Color.BLACK;
+    }
+
+    public Color getHighScoreButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(255, 209, 102);
+        }
+        return Color.BLACK;
+    }
+
+    public Color getQuitGameButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(239, 71, 111);
         }
         return Color.BLACK;
     }

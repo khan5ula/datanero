@@ -19,6 +19,10 @@ public class MainMenu extends JPanel {
     private Theme theme;
     private JLabel logo;
     private JLabel subtitle;
+    private JButton startButton;
+    private JButton settingsButton;
+    private JButton highScoresButton;
+    private JButton exitButton;
 
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -42,15 +46,18 @@ public class MainMenu extends JPanel {
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
         JLabel mascot = new JLabel(mascotImage);
         
-        /* Buttons */
-        JButton startButton = new CustomButton("Aloita peli", new Color(6,214,160), 38, FontStyle.BOLD);
-        startButton.setPreferredSize(new Dimension(500, 120));
-        JButton settingsButton = new CustomButton("Asetukset", new Color(38, 84, 124), 38, FontStyle.BOLD);
-        settingsButton.setPreferredSize(new Dimension(500, 120));
-        JButton highScoresButton = new CustomButton("Parhaat tulokset", new Color(255, 209, 102), 38, FontStyle.BOLD);
-        highScoresButton.setPreferredSize(new Dimension(500, 120));
-        JButton exitButton = new CustomButton("Poistu", new Color(239, 71, 111), 38, FontStyle.BOLD);
-        exitButton.setPreferredSize(new Dimension(500, 120));
+        /* Create buttons */
+        this.startButton = new CustomButton("Aloita peli", theme.getStartGameButtonColor(), 38, FontStyle.BOLD);
+        this.startButton.setPreferredSize(new Dimension(500, 120));
+
+        this.settingsButton = new CustomButton("Asetukset", theme.getSettingsButtonColor(), 38, FontStyle.BOLD);
+        this.settingsButton.setPreferredSize(new Dimension(500, 120));
+
+        this.highScoresButton = new CustomButton("Parhaat tulokset", new Color(255, 209, 102), 38, FontStyle.BOLD);
+        this.highScoresButton.setPreferredSize(new Dimension(500, 120));
+
+        this.exitButton = new CustomButton("Poistu", new Color(239, 71, 111), 38, FontStyle.BOLD);
+        this.exitButton.setPreferredSize(new Dimension(500, 120));
 
         /* Button action handling */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
@@ -92,5 +99,9 @@ public class MainMenu extends JPanel {
         setBackground(theme.getScreenBackGroundColor());
         this.logo.setForeground(theme.getGeneralTextColor());
         this.subtitle.setForeground(theme.getGeneralTextColor());
+        this.startButton.setBackground(theme.getStartGameButtonColor());
+        this.settingsButton.setBackground(theme.getSettingsButtonColor());
+        this.highScoresButton.setBackground(theme.getHighScoreButtonColor());
+        this.exitButton.setBackground(theme.getQuitGameButtonColor());
     }
 }
