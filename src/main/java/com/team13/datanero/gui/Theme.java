@@ -38,6 +38,7 @@ public class Theme {
 
     /**
      * Getter for current theme.
+     * 
      * @return Class variable currentTheme.
      */
     public ThemeType getCurrentTheme() {
@@ -46,6 +47,7 @@ public class Theme {
 
     /**
      * Method that can be used to change the current theme.
+     * 
      * @param theme LIGHT or DARK.
      */
     public void setCurrentTheme(ThemeType theme) {
@@ -54,65 +56,71 @@ public class Theme {
 
     /**
      * Defines the color for general buttons depending on the style.
+     * 
      * @return Color depending on the style.
      */
     public Color getButtonTextColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.WHITE;
-        } else {
-            return Color.BLACK;
         }
+        return Color.BLACK;
     }
 
     /**
-     * Defines the color for general text that has no background, depending on the style.
+     * Defines the color for general text that has no background, depending on the
+     * style.
+     * 
      * @return Color depending on the style.
      */
     public Color getGeneralTextColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.BLACK;
-        } else {
-            return Color.WHITE;
         }
+        return Color.WHITE;
     }
 
     /**
      * Defines the color for screen background depending on the style.
+     * 
      * @return Color depending on the style.
      */
     public Color getScreenBackGroundColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.WHITE;
-        } else {
-            return Color.DARK_GRAY;
         }
+        return Color.DARK_GRAY;
     }
 
     /**
      * Defines the color for answer buttons depending on the style.
+     * 
      * @return Color depending on the style.
      */
     public Color getAnswerButtonColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.DARK_GRAY;
-        } else {
-            return Color.BLACK;
         }
+        return Color.BLACK;
     }
 
     /**
      * Method that retrieves a font from <b>Fira Code</b> font family.
-     * <p>Example of usage: theme.getCustomFont(FontStyle.LIGHT, 48)
-     * @param style Desired font style. Available styles are defined as ENUMS in Theme class.
-     * <p><b>Available styles:</b></p>
-     * <ul>
-     * <li>BOLD</li>
-        <li>LIGHT</li>
-        <li>MEDIUM</li>
-        <li>REGULAR</li>
-        <li>RETINA</li>
-        <li>SEMIBOLD</li>
-        </ul>
+     * <p>
+     * Example of usage: theme.getCustomFont(FontStyle.LIGHT, 48)
+     * 
+     * @param style    Desired font style. Available styles are defined as ENUMS in
+     *                 Theme class.
+     *                 <p>
+     *                 <b>Available styles:</b>
+     *                 </p>
+     *                 <ul>
+     *                 <li>BOLD</li>
+     *                 <li>LIGHT</li>
+     *                 <li>MEDIUM</li>
+     *                 <li>REGULAR</li>
+     *                 <li>RETINA</li>
+     *                 <li>SEMIBOLD</li>
+     *                 </ul>
      * @param fontSize Desired font size eg. 32, 48, 56, ...
      * @return Font with the desired style and size.
      */
