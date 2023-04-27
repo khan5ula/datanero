@@ -123,7 +123,7 @@ public class GameScreen extends JPanel {
         livesPanelConstraints.gridx = 0;
         livesPanelConstraints.gridy = 0;
         livesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
-        livesPanelConstraints.insets = padding;
+        livesPanelConstraints.insets = new Insets(10, 0, 10, 10);
         livesPanel.add(livesLabel, livesPanelConstraints);
 
         /* Create labels for hearts */
