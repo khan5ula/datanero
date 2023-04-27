@@ -186,6 +186,15 @@ public class GameScreen extends JPanel {
         /* Store answer button size to class variable for later use */
         this.initialButtonWidth = buttons.get(0).getWidth();
 
+        setMascot(gbc);
+        setExitButton(gbc);
+    }
+
+    /**
+     * Method that creates an exit button (Lopeta) that allows the player to quit game.
+     * @param gbc GridBagConstraints used on Game Screen.
+     */
+    private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
         JButton exitButton = new CustomButton("Lopeta", new Color(239, 71, 111), 32);
         exitButton.setActionCommand("Lopeta");
@@ -207,7 +216,13 @@ public class GameScreen extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 80, 10, 10);
         add(exitButton, gbc);
+    }
 
+    /**
+     * Method that sets the default mascot image and inserts it to the grid.
+     * @param gbc GridBagConstraints used on Game Screen.
+     */
+    private void setMascot(GridBagConstraints gbc) {
         /* Load the mascot image */
         ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
 
@@ -375,10 +390,12 @@ public class GameScreen extends JPanel {
                     livesLabel.setText("Elämät:");
                     scoreLabel.setText("Pisteet: " + game.getScore());
                 }
-                
-                /* Functionality that allows a delay after player runs out of lives.
+
+                /*
+                 * Functionality that allows a delay after player runs out of lives.
                  * The delay variable below should be adjusted to a proper delay.
-                 * The game elements should be updated properly before implementing this feature.
+                 * The game elements should be updated properly before implementing this
+                 * feature.
                  */
                 int delay = 0; // Delay in milliseconds (1000 ms = 1 second)
                 ActionListener taskPerformer = new ActionListener() {
