@@ -39,12 +39,19 @@ public class GameScreen extends JPanel {
     private int initialButtonWidth;
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
+    private Font font;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
         this.mascotLabel = new JLabel();
+        init();
+    }
 
+    /**
+     * Method that initializes the game screen elements
+     */
+    private void init() {
         /* Initialize the layout manager */
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -55,22 +62,12 @@ public class GameScreen extends JPanel {
         setBorder(borderPadding);
 
         /* Load custom font from file */
-        File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
-        Font font = null;
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, font_file);
-        } catch (FontFormatException e) {
-            System.out.println("Error: Problem with custom font format: " + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Error: IOException occured with custom font: " + e.getMessage());
-            e.printStackTrace();
-        }
+        this.font = getCustomFont("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
 
         /* Create text area for the question */
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
-        questionTextArea.setFont(font.deriveFont(Font.PLAIN, 48));
+        questionTextArea.setFont(this.font.deriveFont(Font.PLAIN, 48));
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
         questionTextArea.setFocusable(false);
@@ -108,28 +105,26 @@ public class GameScreen extends JPanel {
 
         /* Create labels for score and lives */
         scoreLabel = new JLabel("Pisteet: " + game.getScore());
-        scoreLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        // livesLabel = new JLabel("Elämät: " + (countHearts(game.getLives())));
-        livesLabel = new JLabel("Elämät: ");
-        livesLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        scoreLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
+        livesLabel = new JLabel("Elämät:");
+        livesLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
 
-        /* Create panel for score and lives */
-        JPanel scoreAndLivesPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints scoreAndLivesPanelConstraints = new GridBagConstraints();
+        /* Create labels for score and lives */
+        scoreLabel = new JLabel("Pisteet: " + game.getScore());
+        scoreLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
 
-        /* Add score label to the panel */
-        scoreAndLivesPanelConstraints.gridx = 0;
-        scoreAndLivesPanelConstraints.gridy = 0;
-        scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
-        scoreAndLivesPanelConstraints.insets = padding;
-        scoreAndLivesPanel.add(scoreLabel, scoreAndLivesPanelConstraints);
+        /* Create panel for lives and hearts */
+        JPanel livesPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints livesPanelConstraints = new GridBagConstraints();
 
-        /* Add lives label to the panel */
-        scoreAndLivesPanelConstraints.gridx = 0;
-        scoreAndLivesPanelConstraints.gridy = 1;
-        scoreAndLivesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
-        scoreAndLivesPanelConstraints.insets = padding;
-        scoreAndLivesPanel.add(livesLabel, scoreAndLivesPanelConstraints);
+        /* Create and add lives label to lives panel */
+        livesLabel = new JLabel("Elämät:");
+        livesLabel.setFont(this.font.deriveFont(Font.BOLD, 32));
+        livesPanelConstraints.gridx = 0;
+        livesPanelConstraints.gridy = 0;
+        livesPanelConstraints.anchor = GridBagConstraints.NORTHWEST;
+        livesPanelConstraints.insets = padding;
+        livesPanel.add(livesLabel, livesPanelConstraints);
 
         /* Create labels for hearts */
         ImageIcon heartIcon = new ImageIcon("src/main/java/com/team13/datanero/images/heart.png");
@@ -137,26 +132,35 @@ public class GameScreen extends JPanel {
         this.heartLabel2 = new JLabel(heartIcon);
         this.heartLabel3 = new JLabel(heartIcon);
 
-        /* Add heart labels to the panel */
-        scoreAndLivesPanelConstraints.gridx = 1;
-        scoreAndLivesPanelConstraints.gridy = 1;
-        scoreAndLivesPanel.add(heartLabel1, scoreAndLivesPanelConstraints);
+        /* Add heart labels to lives panel */
+        livesPanelConstraints.gridx = 1;
+        livesPanel.add(heartLabel1, livesPanelConstraints);
 
-        scoreAndLivesPanelConstraints.gridx = 2;
-        scoreAndLivesPanel.add(heartLabel2, scoreAndLivesPanelConstraints);
+        livesPanelConstraints.gridx = 2;
+        livesPanel.add(heartLabel2, livesPanelConstraints);
 
-        scoreAndLivesPanelConstraints.gridx = 3;
-        scoreAndLivesPanel.add(heartLabel3, scoreAndLivesPanelConstraints);
+        livesPanelConstraints.gridx = 3;
+        livesPanel.add(heartLabel3, livesPanelConstraints);
 
-        /* Add score & lives label to the grid */
+        /* Add score label to grid */
         gbc.gridx = 10;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
-        gbc.gridheight = 2;
+        gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.EAST;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(10, 80, 10, 10);
-        add(scoreAndLivesPanel, gbc);
+        add(scoreLabel, gbc);
+
+        /* Add lives panel to grid */
+        gbc.gridx = 10;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(0, 80, 10, 10);
+        add(livesPanel, gbc);
 
         /* Add the question label to the grid */
         gbc.gridx = 0;
@@ -218,6 +222,27 @@ public class GameScreen extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         gbc.insets = new Insets(10, 80, 10, 10);
         add(mascotLabel, gbc);
+    }
+
+    /**
+     * Method that retrieves the desired font from a filepath.
+     * 
+     * @param filepath Path to the font.
+     * @return Font file.
+     */
+    private Font getCustomFont(String filepath) {
+        File font_file = new File("src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf");
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, font_file);
+        } catch (FontFormatException e) {
+            System.out.println("Error: Problem with custom font format: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error: IOException occured with custom font: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return font;
     }
 
     /**
