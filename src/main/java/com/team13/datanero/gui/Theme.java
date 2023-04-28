@@ -101,7 +101,8 @@ public class Theme {
      */
     public Color getAnswerButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return Color.DARK_GRAY;
+            // return Color.DARK_GRAY;
+            return new Color(0, 95, 123);
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
@@ -109,7 +110,8 @@ public class Theme {
 
     public Color getStartGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(6, 214, 160);
+            // return new Color(6, 214, 160);
+            return new Color(0, 160, 230);
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
@@ -117,7 +119,7 @@ public class Theme {
 
     public Color getSettingsButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(38, 84, 124);
+            return new Color(1, 76, 140);
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
@@ -125,7 +127,8 @@ public class Theme {
 
     public Color getHighScoreButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(255, 209, 102);
+            // return new Color(255, 209, 102);
+            return new Color(0, 95, 123);
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
@@ -133,7 +136,8 @@ public class Theme {
 
     public Color getQuitGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(239, 71, 111);
+            // return new Color(239, 71, 111);
+            return new Color(247, 145, 197);
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
