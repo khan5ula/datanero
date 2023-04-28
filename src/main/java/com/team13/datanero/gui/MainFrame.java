@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import com.team13.datanero.backend.QuestionParser;
 import com.team13.datanero.backend.Game;
 
-
 import java.awt.CardLayout;
 
 public class MainFrame extends JFrame {
@@ -38,7 +37,7 @@ public class MainFrame extends JFrame {
         cards.add(settingsScreen, "settingsScreen");
 
         /* Set icons */
-        //setIconImages(loadAppIcons());
+        // setIconImages(loadAppIcons());
 
         getContentPane().add(cards);
         setVisible(true);
@@ -46,6 +45,7 @@ public class MainFrame extends JFrame {
 
     /**
      * Method that switches the screen to the desired card.
+     * 
      * @param cardName String, name of the card to switch to.
      */
     public void switchTo(String cardName) {
@@ -60,6 +60,7 @@ public class MainFrame extends JFrame {
 
     /**
      * Method that creates game screen.
+     * 
      * @param game The game.
      */
     public void setGame(Game game) {
@@ -69,15 +70,19 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Return the class variable Main Menu. Can be used to reach the Main Menu from other classes such as ButtonActions.
+     * Return the class variable Main Menu. Can be used to reach the Main Menu from
+     * other classes such as ButtonActions.
+     * 
      * @return Main Menu class variable from the Main Frame.
      */
     public MainMenu getMainMenu() {
         return this.mainMenu;
     }
-    
+
     /**
-     * It's 106 miles to Chicago, we got a full tank of gas, half a pack of cigarettes, it's dark... and we're wearing sunglasses. 
+     * It's 106 miles to Chicago, we got a full tank of gas, half a pack of
+     * cigarettes, it's dark... and we're wearing sunglasses.
+     * 
      * @param args The sound you make when you rise from couch.
      */
     public static void main(String[] args) {

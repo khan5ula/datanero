@@ -140,7 +140,7 @@ public class SettingsScreen extends JPanel {
         }
 
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
         this.exitButton.setActionCommand("Palaa päävalikkoon");
         this.exitButton.setPreferredSize(new Dimension(500, 120));
         this.exitButton.setMaximumSize(new Dimension(500, 120));

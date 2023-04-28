@@ -1,6 +1,5 @@
 package com.team13.datanero.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -189,7 +188,9 @@ public class GameScreen extends JPanel {
     }
 
     /**
-     * Method that creates an exit button (Lopeta) that allows the player to quit game.
+     * Method that creates an exit button (Lopeta) that allows the player to quit
+     * game.
+     * 
      * @param gbc GridBagConstraints used on Game Screen.
      */
     private void setExitButton(GridBagConstraints gbc) {
@@ -218,6 +219,7 @@ public class GameScreen extends JPanel {
 
     /**
      * Method that sets the default mascot image and inserts it to the grid.
+     * 
      * @param gbc GridBagConstraints used on Game Screen.
      */
     private void setMascot(GridBagConstraints gbc) {

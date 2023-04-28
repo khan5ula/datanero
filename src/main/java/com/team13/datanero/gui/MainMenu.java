@@ -11,13 +11,11 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 public class MainMenu extends JPanel {
     private MainFrame mainFrame;
     private Theme theme;
-    private JLabel logo;
     private JLabel subtitle;
     private JButton startButton;
     private JButton settingsButton;
@@ -35,10 +33,8 @@ public class MainMenu extends JPanel {
         setBorder(borderPadding);
 
         /* Logo */
-        // this.logo = new JLabel("DataNero");
-        // this.logo.setFont(theme.getCustomFont(FontStyle.BOLD, 148));
         ImageIcon logoImage = new ImageIcon("src/main/java/com/team13/datanero/images/datanerologo.png");
-        JLabel logoLabel = new JLabel(logoImage);
+        JLabel logo = new JLabel(logoImage);
 
         /* Sub-title */
         this.subtitle = new JLabel("Tietojenkäsittelyn tietovisa");
@@ -55,10 +51,11 @@ public class MainMenu extends JPanel {
         this.settingsButton = new CustomButton("Asetukset", theme.getSettingsButtonColor(), 38, FontStyle.BOLD);
         this.settingsButton.setPreferredSize(new Dimension(500, 120));
 
-        this.highScoresButton = new CustomButton("Parhaat tulokset", new Color(255, 209, 102), 38, FontStyle.BOLD);
+        this.highScoresButton = new CustomButton("Parhaat tulokset", theme.getHighScoreButtonColor(), 38,
+                FontStyle.BOLD);
         this.highScoresButton.setPreferredSize(new Dimension(500, 120));
 
-        this.exitButton = new CustomButton("Poistu", new Color(239, 71, 111), 38, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Poistu", theme.getQuitGameButtonColor(), 38, FontStyle.BOLD);
         this.exitButton.setPreferredSize(new Dimension(500, 120));
 
         /* Button action handling */
@@ -74,7 +71,7 @@ public class MainMenu extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.SOUTH;
-        add(logoLabel, gbc);
+        add(logo, gbc);
 
         gbc.gridy = 1;
         gbc.weighty = 1;

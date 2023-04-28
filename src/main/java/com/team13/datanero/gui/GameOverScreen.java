@@ -1,6 +1,5 @@
 package com.team13.datanero.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -52,7 +51,7 @@ public class GameOverScreen extends JPanel {
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
         JLabel mascot = new JLabel(mascotImage);
-        
+
         /* Add mascot to the grid */
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -65,7 +64,7 @@ public class GameOverScreen extends JPanel {
         add(mascot, gbc);
 
         /* Create exit button */
-        JButton exitButton = new CustomButton("Palaa päävalikkoon", new Color(239, 71, 111), 32, FontStyle.BOLD);
+        JButton exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
         exitButton.setActionCommand("Palaa päävalikkoon");
         exitButton.setPreferredSize(new Dimension(500, 120));
         exitButton.setMaximumSize(new Dimension(500, 120));
@@ -86,13 +85,15 @@ public class GameOverScreen extends JPanel {
     }
 
     /**
-     * Method that gets a fresh Game instance and updates the score information to game over screen.
+     * Method that gets a fresh Game instance and updates the score information to
+     * game over screen.
      */
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
         this.score = Game.getInstance().getScore();
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());
-        System.out.println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+        System.out
+                .println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
     }
 }

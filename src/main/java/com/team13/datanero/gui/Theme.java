@@ -63,7 +63,8 @@ public class Theme {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.WHITE;
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(43, 16, 50);
     }
 
     /**
@@ -76,7 +77,8 @@ public class Theme {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.BLACK;
         }
-        return Color.WHITE;
+        // return Color.WHITE;
+        return new Color(0, 160, 230);
     }
 
     /**
@@ -88,7 +90,8 @@ public class Theme {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.WHITE;
         }
-        return Color.DARK_GRAY;
+        // return Color.DARK_GRAY;
+        return new Color(43, 16, 50);
     }
 
     /**
@@ -100,35 +103,40 @@ public class Theme {
         if (currentTheme == ThemeType.LIGHT) {
             return Color.DARK_GRAY;
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(0, 95, 123);
     }
 
     public Color getStartGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(6,214,160);
+            return new Color(6, 214, 160);
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(0, 95, 123);
     }
 
     public Color getSettingsButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(38, 84, 124);
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(0, 95, 123);
     }
 
     public Color getHighScoreButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(255, 209, 102);
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(0, 95, 123);
     }
 
     public Color getQuitGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(239, 71, 111);
         }
-        return Color.BLACK;
+        // return Color.BLACK;
+        return new Color(0, 95, 123);
     }
 
     /**
