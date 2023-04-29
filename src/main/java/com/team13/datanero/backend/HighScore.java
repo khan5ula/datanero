@@ -34,9 +34,9 @@ public class HighScore {
      * Returns a list of high score elements in descending order.
      * @return List containing 5 best high score entries.
      */
-    public List<Score> getHighScore() {
+    public ArrayList<Score> getHighScore() {
         PriorityQueue<Score> tempQueue = new PriorityQueue<>(scores);
-        List<Score> topScores = new ArrayList<>();
+        ArrayList<Score> topScores = new ArrayList<>();
     
         while (!tempQueue.isEmpty()) {
             topScores.add(0, tempQueue.poll());

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.team13.datanero.backend.QuestionParser;
+import com.team13.datanero.backend.Score;
 import com.team13.datanero.backend.Game;
 import com.team13.datanero.backend.HighScore;
 
@@ -89,7 +90,7 @@ public class MainFrame extends JFrame {
      * 
      * @return Main Menu class variable from the Main Frame.
      */
-    public HighScoreScreen getHighScoScreen() {
+    public HighScoreScreen getHighScoreScreen() {
         return this.highScoreScreen;
     }
 
@@ -104,6 +105,13 @@ public class MainFrame extends JFrame {
         QuestionParser questionParser = new QuestionParser();
         questionParser.execute();
         Game game = Game.getInstance();
+        HighScore highScore = HighScore.getInstance();
+
+        /* Some fixed scores for testing purposes */
+        highScore.addScore(new Score("Kristian", 56));
+        highScore.addScore(new Score("Totoro", 32));
+        highScore.addScore(new Score("Nero", 13));
+
         new MainFrame(game);
     }
 }

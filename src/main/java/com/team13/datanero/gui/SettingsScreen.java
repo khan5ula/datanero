@@ -54,6 +54,7 @@ public class SettingsScreen extends JPanel {
         /* Create Header label */
         this.header = new JLabel("Asetukset");
         header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
+        // TODO: Add some border and background to the header.
 
         /* Add Header label to the grid */
         gbc.gridx = 0;

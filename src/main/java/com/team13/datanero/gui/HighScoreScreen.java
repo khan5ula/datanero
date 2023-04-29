@@ -5,14 +5,18 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.List;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import com.team13.datanero.backend.HighScore;
+import com.team13.datanero.backend.Score;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class HighScoreScreen extends JPanel {
@@ -20,10 +24,14 @@ public class HighScoreScreen extends JPanel {
     private JLabel header;
     private final Theme theme;
     private JButton exitButton;
+    private ArrayList<JButton> nicknameButtons;
+    private ArrayList<JButton> scoreButtons;
 
     public HighScoreScreen(final MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.theme = Theme.getInstance();
+        this.nicknameButtons = new ArrayList<JButton>();
+        this.scoreButtons = new ArrayList<JButton>();
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -53,6 +61,7 @@ public class HighScoreScreen extends JPanel {
         /* Create Header label */
         this.header = new JLabel("Parhaat tulokset");
         header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
+        // TODO: Add border and background color to the header.
 
         /* Add Header label to the grid */
         gbc.gridx = 0;
@@ -97,18 +106,21 @@ public class HighScoreScreen extends JPanel {
     private void setHighScoreButtons(GridBagConstraints gbc) {
         for (int i = 0; i < 5; i++) {
             /* Create button for nickname */
-            JButton nicknameButton = new CustomButton("Nickname" + (i + 1), Color.WHITE, 32,
+            JButton nicknameButton = new CustomButton("", Color.WHITE, 32,
                     FontStyle.RETINA);
             nicknameButton.setForeground(Color.BLACK);
             nicknameButton.setPreferredSize(new Dimension(400, 60));
             nicknameButton.setMaximumSize(new Dimension(400, 60));
+            nicknameButton.setHorizontalAlignment(SwingConstants.LEFT);
+            this.nicknameButtons.add(nicknameButton);
 
             /* Create button for score */
-            JButton scoreButton = new CustomButton("Score " + (i + 1), Color.WHITE, 32,
+            JButton scoreButton = new CustomButton("", Color.WHITE, 32,
                     FontStyle.RETINA);
             scoreButton.setForeground(Color.BLACK);
             scoreButton.setPreferredSize(new Dimension(200, 60));
             scoreButton.setMaximumSize(new Dimension(200, 60));
+            this.scoreButtons.add(scoreButton);
 
             /* Set gbc and add nickname button */
             gbc.gridx = 0;
@@ -130,6 +142,18 @@ public class HighScoreScreen extends JPanel {
     }
 
     /**
+     * Method that gets a fresh list of high scores and updates the score display accordingly.
+     */
+    public void sethighScoreResults() {
+        ArrayList<Score> scores = HighScore.getInstance().getHighScore();
+        System.out.println("Status: Setting high score results. " + scores.size() + " scores found.");
+        for (int i = 0; i < scores.size(); i++) {
+            this.nicknameButtons.get(i).setText((i+1) + ". "  + scores.get(i).getNick());
+            this.scoreButtons.get(i).setText(String.valueOf(scores.get(i).getScore())); // oh god
+        }
+    }
+
+    /**
      * Method that sets theme for High Score screen.
      */
     public void setTheme() {
@@ -137,5 +161,4 @@ public class HighScoreScreen extends JPanel {
         this.header.setForeground(theme.getGeneralTextColor());
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
     }
-
 }

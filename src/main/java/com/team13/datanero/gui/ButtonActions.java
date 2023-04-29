@@ -25,7 +25,8 @@ public class ButtonActions implements ActionListener {
                 mainFrame.switchTo("settingsScreen");
                 break;
             case "Parhaat tulokset":
-                this.mainFrame.getHighScoScreen().setTheme();
+                this.mainFrame.getHighScoreScreen().setTheme();
+                this.mainFrame.getHighScoreScreen().sethighScoreResults();
                 mainFrame.switchTo("highScoreScreen");
                 break;
             case "Poistu":
