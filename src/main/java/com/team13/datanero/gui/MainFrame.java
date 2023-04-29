@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import com.team13.datanero.backend.QuestionParser;
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.backend.HighScore;
 
 import java.awt.CardLayout;
 
@@ -13,28 +14,31 @@ public class MainFrame extends JFrame {
     private Game game;
     private GameOverScreen gameOverScreen;
     private MainMenu mainMenu;
+    private HighScoreScreen highScoreScreen;
 
     public MainFrame(Game game) {
         setTitle("DataNero");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        setUndecorated(false);
         this.game = Game.getInstance();
 
         /* Use CardLayout to switch between screens */
         this.cards = new JPanel(new CardLayout());
 
-        /* Initialize main menu and game screen */
+        /* Initialize different screens */
         this.mainMenu = new MainMenu(this);
         GameScreen gameScreen = new GameScreen(this, this.game);
         this.gameOverScreen = new GameOverScreen(this);
         SettingsScreen settingsScreen = new SettingsScreen(this);
+        this.highScoreScreen = new HighScoreScreen(this);
 
         /* Add main menu and game screen to cards */
         cards.add(mainMenu, "mainMenu");
         cards.add(gameScreen, "gameScreen");
         cards.add(gameOverScreen, "GameOverScreen");
         cards.add(settingsScreen, "settingsScreen");
+        cards.add(highScoreScreen, "highScoreScreen");
 
         /* Set icons */
         // setIconImages(loadAppIcons());
@@ -77,6 +81,16 @@ public class MainFrame extends JFrame {
      */
     public MainMenu getMainMenu() {
         return this.mainMenu;
+    }
+
+    /**
+     * Return the class variable High Score Screen. Can be used to reach the High Score Screen from
+     * other classes such as ButtonActions.
+     * 
+     * @return Main Menu class variable from the Main Frame.
+     */
+    public HighScoreScreen getHighScoScreen() {
+        return this.highScoreScreen;
     }
 
     /**

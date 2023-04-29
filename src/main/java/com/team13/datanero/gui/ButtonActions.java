@@ -22,14 +22,17 @@ public class ButtonActions implements ActionListener {
                 Game.getInstance();
                 break;
             case "Asetukset":
-            mainFrame.switchTo("settingsScreen");
+                mainFrame.switchTo("settingsScreen");
                 break;
             case "Parhaat tulokset":
+                this.mainFrame.getHighScoScreen().setTheme();
+                mainFrame.switchTo("highScoreScreen");
                 break;
             case "Poistu":
                 System.exit(0);
                 break;
-            case "Lopeta": case "Palaa päävalikkoon":
+            case "Lopeta":
+            case "Palaa päävalikkoon":
                 this.mainFrame.getMainMenu().setTheme();
                 mainFrame.switchTo("mainMenu");
                 Game.resetInstance();
