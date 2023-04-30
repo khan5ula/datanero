@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.backend.HighScore;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameOverScreen extends JPanel {
@@ -21,6 +22,7 @@ public class GameOverScreen extends JPanel {
     private int score;
     private Theme theme;
     private ButtonActions buttonActions;
+    private JButton scoreInputButton;
 
     public GameOverScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
@@ -99,14 +101,14 @@ public class GameOverScreen extends JPanel {
 
     private void setScoreInputButton(GridBagConstraints gbc) {
         /* Create score input button */
-        JButton scoreInputButton = new CustomButton("Tallenna pisteet", theme.getQuitGameButtonColor(), 32,
+        this.scoreInputButton = new CustomButton("Tallenna pisteet", theme.getQuitGameButtonColor(), 32,
                 FontStyle.BOLD);
-        scoreInputButton.setActionCommand("Siirry syöttämään pisteet");
-        scoreInputButton.setPreferredSize(new Dimension(500, 120));
-        scoreInputButton.setMaximumSize(new Dimension(500, 120));
+        this.scoreInputButton.setActionCommand("Siirry syöttämään pisteet");
+        this.scoreInputButton.setPreferredSize(new Dimension(500, 120));
+        this.scoreInputButton.setMaximumSize(new Dimension(500, 120));
 
         /* Define action for score input button */
-        scoreInputButton.addActionListener(this.buttonActions);
+        this.scoreInputButton.addActionListener(this.buttonActions);
 
         /* Add the score input button to the grid */
         gbc.gridx = 1;
@@ -127,8 +129,17 @@ public class GameOverScreen extends JPanel {
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
         this.score = Game.getInstance().getScore();
+        this.scoreInputButton.setBackground(theme.getStartGameButtonColor());
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());
+
+        /* Disable high score input option if the player score is too low */
+        if (Game.getInstance().getScore() < HighScore.getInstance().getLowestScore()) {
+            this.scoreInputButton.setEnabled(false);
+        } else {
+            this.scoreInputButton.setEnabled(true);
+        }
+
         System.out
                 .println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
     }

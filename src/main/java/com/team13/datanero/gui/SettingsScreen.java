@@ -53,21 +53,7 @@ public class SettingsScreen extends JPanel {
         Border borderPadding = BorderFactory.createEmptyBorder(300, 100, 0, 100);
         setBorder(borderPadding);
 
-        /* Create Header label */
-        this.header = new JLabel("Asetukset");
-        header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
-        // TODO: Add some border and background to the header.
-
-        /* Add Header label to the grid */
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.0;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(10, 10, 200, 10);
-        add(header, gbc);
+        setHeader(gbc);
 
         /* Create options */
         String[] optionNames = { "Äänet", "Kieli", "Vaikeustaso", "Teema" };
@@ -143,6 +129,31 @@ public class SettingsScreen extends JPanel {
             optionButtonGbc.gridy++;
         }
 
+        setExitButton(gbc, optionNames, padding);
+    }
+
+    /**
+     * Method that creates header label to the screen and adds it to the grid.
+     * @param gbc The gridbagconstraints used on this screen.
+     */
+    private void setHeader(GridBagConstraints gbc) {
+        /* Create Header label */
+        this.header = new JLabel("Asetukset");
+        header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
+
+        /* Add Header label to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10, 10, 200, 10);
+        add(header, gbc);
+    }
+
+    private void setExitButton(GridBagConstraints gbc, String[] optionNames, Insets padding) {
         /* Create exit button */
         this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
         this.exitButton.setActionCommand("Palaa päävalikkoon");
