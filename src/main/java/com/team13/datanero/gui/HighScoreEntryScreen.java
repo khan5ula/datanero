@@ -42,7 +42,7 @@ public class HighScoreEntryScreen extends JPanel {
     private void setPromptLabel(GridBagConstraints gbc) {
         /* Define prompt label */
         promptLabel = new JLabel("Syötä nimimerkkisi:");
-        promptLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 32));
+        promptLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 44));
 
         /* Add prompt label to the grid */
         gbc.gridx = 0;
@@ -52,18 +52,20 @@ public class HighScoreEntryScreen extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0.0;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(20, 0, 40, 0);
         add(promptLabel, gbc);
     }
 
     private void setInputField(GridBagConstraints gbc) {
         /* Define name input field */
         this.nameInput = new JTextField(20);
-        this.nameInput.setFont(theme.getCustomFont(FontStyle.RETINA, 24));
-        this.nameInput.setPreferredSize(new Dimension(400, 60));
-        this.nameInput.setMaximumSize(new Dimension(400, 60));
+        this.nameInput.setFont(theme.getCustomFont(FontStyle.RETINA, 32));
+        this.nameInput.setPreferredSize(new Dimension(400, 80));
+        this.nameInput.setMaximumSize(new Dimension(400, 80));
+        this.nameInput.setMargin(new Insets(0, 10, 0, 0));
 
         /* Set character limit to the name input field */
-        int maxLength = 12;
+        int maxLength = 15;
         this.nameInput.setDocument(new LengthRestrictedDocument(maxLength));
 
         /* Add name input field to the grid */
@@ -82,8 +84,8 @@ public class HighScoreEntryScreen extends JPanel {
         /* Create submit button */
         submitButton = new CustomButton("Tallenna", theme.getQuitGameButtonColor(), 24, FontStyle.BOLD);
         submitButton.setActionCommand("Tallenna nimimerkki");
-        submitButton.setPreferredSize(new Dimension(200, 60));
-        submitButton.setMaximumSize(new Dimension(200, 60));
+        submitButton.setPreferredSize(new Dimension(200, 80));
+        submitButton.setMaximumSize(new Dimension(200, 80));
 
         /* Define action for submit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
@@ -107,6 +109,7 @@ public class HighScoreEntryScreen extends JPanel {
      */
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
+        this.promptLabel.setForeground(theme.getGeneralTextColor());
         this.score = Game.getInstance().getScore();
         System.out
                 .println("Status: High score entry screen message: Enter your nickname. Your score is: " + this.score);

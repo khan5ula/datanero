@@ -160,5 +160,9 @@ public class HighScoreScreen extends JPanel {
         setBackground(theme.getScreenBackGroundColor());
         this.header.setForeground(theme.getGeneralTextColor());
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
+        for (int i = 0; i < this.nicknameButtons.size(); i++) {
+            this.nicknameButtons.get(i).setBackground(theme.getScreenBackGroundColor());
+            this.scoreButtons.get(i).setBackground(theme.getScreenBackGroundColor());
+        }
     }
 }
