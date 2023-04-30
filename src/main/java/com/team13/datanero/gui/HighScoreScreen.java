@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.List;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -142,13 +141,14 @@ public class HighScoreScreen extends JPanel {
     }
 
     /**
-     * Method that gets a fresh list of high scores and updates the score display accordingly.
+     * Method that gets a fresh list of high scores and updates the score display
+     * accordingly.
      */
     public void sethighScoreResults() {
         ArrayList<Score> scores = HighScore.getInstance().getHighScore();
         System.out.println("Status: Setting high score results. " + scores.size() + " scores found.");
         for (int i = 0; i < scores.size(); i++) {
-            this.nicknameButtons.get(i).setText((i+1) + ". "  + scores.get(i).getNick());
+            this.nicknameButtons.get(i).setText((i + 1) + ". " + scores.get(i).getNick());
             this.scoreButtons.get(i).setText(String.valueOf(scores.get(i).getScore())); // oh god
         }
     }

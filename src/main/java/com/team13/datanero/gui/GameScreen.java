@@ -1,5 +1,6 @@
 package com.team13.datanero.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -253,16 +254,12 @@ public class GameScreen extends JPanel {
             String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
                     textWidth, answers[i]);
             this.answerButtons[i].setText(buttonText);
+            this.answerButtons[i].setBackground(theme.getAnswerButtonColor());
         }
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
         scoreLabel.setText("Pisteet: " + game.getScore());
         updateHearts(game.getLives());
-        if (this.wasAnswerCorrect) {
-            updatePositiveMascot();
-        } else {
-            updateNegativeMascot();
-        }
     }
 
     /**
@@ -341,58 +338,58 @@ public class GameScreen extends JPanel {
     }
 
     /**
-     * Private class used by Game Class.
+     * Private class used by Game Screen Class.
      * Contains the actions for pressing buttons.
      */
     private class AnswerButtonListener implements ActionListener {
         private int answerIndex;
-
+    
         public AnswerButtonListener(int answerIndex) {
             this.answerIndex = answerIndex;
         }
-
+    
         @Override
         public void actionPerformed(ActionEvent e) {
             wasAnswerCorrect = game.submitAnswer(answerIndex);
-
+            JButton clickedButton = answerButtons[answerIndex];
+    
             if (wasAnswerCorrect) {
+                clickedButton.setBackground(Color.GREEN);
                 game.incrementScore();
+                updatePositiveMascot();
             } else {
+                clickedButton.setBackground(Color.RED);
                 game.decrementLives();
+                updateNegativeMascot();
             }
-
-            if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
-                /* Game over. Player ran out of lives or the game ran out of questions. */
-                if (game.getLives() == 0) {
-                    System.out.println("Status: Player has 0 lives left. Game over.");
-                    updateNegativeMascot();
-                    livesLabel.setText("Elämät:");
-                    scoreLabel.setText("Pisteet: " + game.getScore());
-                }
-
-                /*
-                 * Functionality that allows a delay after player runs out of lives.
-                 * The delay variable below should be adjusted to a proper delay.
-                 * The game elements should be updated properly before implementing this
-                 * feature.
-                 */
-                int delay = 0; // Delay in milliseconds (1000 ms = 1 second)
-                ActionListener taskPerformer = new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
+    
+            int delay = 1500; // 1000 ms = 1 second
+            ActionListener taskPerformer = new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
+                        /* Game over. Player ran out of lives or the game ran out of questions. */
+                        if (game.getLives() == 0) {
+                            System.out.println("Status: Player has 0 lives left. Game over.");
+                            updateNegativeMascot();
+                            livesLabel.setText("Elämät:");
+                            scoreLabel.setText("Pisteet: " + game.getScore());
+                        }
+    
                         /* Show the GameOverDialog with the score */
                         mainFrame.switchTo("GameOverScreen");
                         System.out.println("Status: Switching to game over screen");
+    
+                    } else {
+                        /* There are questions available, continue game */
+                        game.getNewQuestion();
+                        updateGameDisplay();
                     }
-                };
-                Timer timer = new javax.swing.Timer(delay, taskPerformer);
-                timer.setRepeats(false); // Make the timer execute only once
-                timer.start();
-
-            } else {
-                /* There are questions available, continue game */
-                game.getNewQuestion();
-                updateGameDisplay();
-            }
+                }
+            };
+            Timer timer = new javax.swing.Timer(delay, taskPerformer);
+            timer.setRepeats(false); // Make the timer execute only once
+            timer.start();
         }
     }
+    
 }
