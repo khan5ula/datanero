@@ -35,6 +35,9 @@ public class ButtonActions implements ActionListener {
             case "Siirry syöttämään pisteet":
                 this.mainFrame.switchTo("highScoreEntryScreen");
                 break;
+            case "Tallenna nimimerkki":
+                this.mainFrame.getHighScoreEntryScreen().submitScore();
+                this.mainFrame.switchTo("highScoreScreen");
             case "Lopeta":
             case "Palaa päävalikkoon":
                 this.mainFrame.getMainMenu().setTheme();

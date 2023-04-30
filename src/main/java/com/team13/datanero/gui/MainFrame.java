@@ -118,13 +118,6 @@ public class MainFrame extends JFrame {
         QuestionParser questionParser = new QuestionParser();
         questionParser.execute();
         Game game = Game.getInstance();
-        HighScore highScore = HighScore.getInstance();
-
-        /* Some fixed scores for testing purposes */
-        highScore.addScore(new Score("Kristian", 56));
-        highScore.addScore(new Score("Totoro", 32));
-        highScore.addScore(new Score("Nero", 13));
-
         new MainFrame(game);
     }
 }

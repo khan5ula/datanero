@@ -27,29 +27,22 @@ public class GameOverScreen extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         this.mainFrame = mainFrame;
         this.score = Game.getInstance().getScore();
-        Insets padding = new Insets(80, 10, 30, 10);
         this.theme = Theme.getInstance();
         this.buttonActions = new ButtonActions(this.mainFrame);
         setBackground(theme.getScreenBackGroundColor());
 
-        /* Define message label */
-        messageLabel = new JLabel();
-        messageLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 48));
-
-        /* Add messagelabel to the grid */
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 3;
-        gbc.gridheight = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.0;
-        gbc.anchor = GridBagConstraints.SOUTH;
-        add(messageLabel, gbc);
-
         /* Add padding to the screen */
-        Border borderPadding = BorderFactory.createEmptyBorder(400, 100, 0, 100);
+        Border borderPadding = BorderFactory.createEmptyBorder(300, 100, 0, 200);
         setBorder(borderPadding);
 
+        /* Create and add rest of the elements */
+        setMascot(gbc);
+        setMessageLabel(gbc);
+        setExitButton(gbc);
+        setScoreInputButton(gbc);
+    }
+
+    private void setMascot(GridBagConstraints gbc) {
         /* Teacher mascot */
         ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
         JLabel mascot = new JLabel(mascotImage);
@@ -62,9 +55,27 @@ public class GameOverScreen extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0.0;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = padding;
+        gbc.insets = new Insets(80, 10, 30, 10);
         add(mascot, gbc);
+    }
 
+    private void setMessageLabel(GridBagConstraints gbc) {
+        /* Define message label */
+        messageLabel = new JLabel();
+        messageLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 48));
+
+        /* Add messagelabel to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(messageLabel, gbc);
+    }
+
+    private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
         JButton exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
         exitButton.setActionCommand("Palaa päävalikkoon");
@@ -77,19 +88,19 @@ public class GameOverScreen extends JPanel {
         /* Add the exit button to the grid */
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = 3;
+        gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.weightx = 1.0;
+        gbc.weightx = 0.5;
         gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
         add(exitButton, gbc);
-
-        setScoreInputButton(gbc);
     }
 
     private void setScoreInputButton(GridBagConstraints gbc) {
         /* Create score input button */
-        JButton scoreInputButton = new CustomButton("Kyllä", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
+        JButton scoreInputButton = new CustomButton("Tallenna pisteet", theme.getQuitGameButtonColor(), 32,
+                FontStyle.BOLD);
         scoreInputButton.setActionCommand("Siirry syöttämään pisteet");
         scoreInputButton.setPreferredSize(new Dimension(500, 120));
         scoreInputButton.setMaximumSize(new Dimension(500, 120));
@@ -98,13 +109,14 @@ public class GameOverScreen extends JPanel {
         scoreInputButton.addActionListener(this.buttonActions);
 
         /* Add the score input button to the grid */
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.weightx = 1.0;
+        gbc.weightx = 0.5;
         gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 5, 0, 0);
         add(scoreInputButton, gbc);
     }
 

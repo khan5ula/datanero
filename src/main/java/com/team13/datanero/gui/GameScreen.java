@@ -258,8 +258,13 @@ public class GameScreen extends JPanel {
         }
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
+    }
+
+    /**
+     * Method that updates the score display current score.
+     */
+    private void updateScore() {
         scoreLabel.setText("Pisteet: " + game.getScore());
-        updateHearts(game.getLives());
     }
 
     /**
@@ -357,10 +362,13 @@ public class GameScreen extends JPanel {
                 clickedButton.setBackground(Color.GREEN);
                 game.incrementScore();
                 updatePositiveMascot();
+                updateScore();
             } else {
                 clickedButton.setBackground(Color.RED);
                 game.decrementLives();
                 updateNegativeMascot();
+                updateHearts(game.getLives());
+                updateScore();
             }
 
             for (JButton button : answerButtons) {

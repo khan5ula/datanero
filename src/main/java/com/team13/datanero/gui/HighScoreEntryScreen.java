@@ -9,8 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.backend.HighScore;
+import com.team13.datanero.backend.Score;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class HighScoreEntryScreen extends JPanel {
@@ -52,11 +57,15 @@ public class HighScoreEntryScreen extends JPanel {
 
     private void setInputField(GridBagConstraints gbc) {
         /* Define name input field */
-        nameInput = new JTextField(20);
-        nameInput.setFont(theme.getCustomFont(FontStyle.REGULAR, 24));
-        nameInput.setPreferredSize(new Dimension(400, 60));
-        nameInput.setMaximumSize(new Dimension(400, 60));
-    
+        this.nameInput = new JTextField(20);
+        this.nameInput.setFont(theme.getCustomFont(FontStyle.RETINA, 24));
+        this.nameInput.setPreferredSize(new Dimension(400, 60));
+        this.nameInput.setMaximumSize(new Dimension(400, 60));
+
+        /* Set character limit to the name input field */
+        int maxLength = 12;
+        this.nameInput.setDocument(new LengthRestrictedDocument(maxLength));
+
         /* Add name input field to the grid */
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -66,20 +75,20 @@ public class HighScoreEntryScreen extends JPanel {
         gbc.weighty = 0.0;
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(20, 10, 10, 5);
-        add(nameInput, gbc);
+        add(this.nameInput, gbc);
     }
-    
+
     private void setSubmitButton(GridBagConstraints gbc) {
         /* Create submit button */
-        submitButton = new CustomButton("Submit", theme.getQuitGameButtonColor(), 24, FontStyle.BOLD);
-        submitButton.setActionCommand("Submit");
+        submitButton = new CustomButton("Tallenna", theme.getQuitGameButtonColor(), 24, FontStyle.BOLD);
+        submitButton.setActionCommand("Tallenna nimimerkki");
         submitButton.setPreferredSize(new Dimension(200, 60));
         submitButton.setMaximumSize(new Dimension(200, 60));
-    
+
         /* Define action for submit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
         submitButton.addActionListener(buttonActions);
-    
+
         /* Add the submit button to the grid */
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -91,7 +100,6 @@ public class HighScoreEntryScreen extends JPanel {
         gbc.insets = new Insets(20, 5, 10, 10);
         add(submitButton, gbc);
     }
-    
 
     /**
      * Method that gets a fresh Game instance and updates the score information to
@@ -103,4 +111,35 @@ public class HighScoreEntryScreen extends JPanel {
         System.out
                 .println("Status: High score entry screen message: Enter your nickname. Your score is: " + this.score);
     }
+
+    public void submitScore() {
+        System.out.println("Status: Submitting the player nickname and adding the score to High Score Chart");
+        this.score = Game.getInstance().getScore();
+        Score scoreWithNickname = new Score(this.nameInput.getText(), score);
+        HighScore.getInstance().addScore(scoreWithNickname);
+    }
+
+    /**
+     * Helper class for High Score Entry Screen.
+     * This class is used to limit the number of characters player can enter to the nickname input field.
+     */
+    private static class LengthRestrictedDocument extends PlainDocument {
+        private final int limit;
+
+        public LengthRestrictedDocument(int limit) {
+            this.limit = limit;
+        }
+
+        @Override
+        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+            if (str == null) {
+                return;
+            }
+
+            if ((getLength() + str.length()) <= limit) {
+                super.insertString(offset, str, attr);
+            }
+        }
+    }
+
 }
