@@ -33,6 +33,7 @@ public class ButtonActions implements ActionListener {
                 System.exit(0);
                 break;
             case "Siirry syöttämään pisteet":
+                this.mainFrame.getHighScoreEntryScreen().updateAndDisplayScore();
                 this.mainFrame.switchTo("highScoreEntryScreen");
                 break;
             case "Tallenna nimimerkki":
