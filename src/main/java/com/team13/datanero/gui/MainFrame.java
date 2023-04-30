@@ -16,6 +16,7 @@ public class MainFrame extends JFrame {
     private GameOverScreen gameOverScreen;
     private MainMenu mainMenu;
     private HighScoreScreen highScoreScreen;
+    private HighScoreEntryScreen highScoreEntryScreen;
 
     public MainFrame(Game game) {
         setTitle("DataNero");
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame {
         this.gameOverScreen = new GameOverScreen(this);
         SettingsScreen settingsScreen = new SettingsScreen(this);
         this.highScoreScreen = new HighScoreScreen(this);
+        this.highScoreEntryScreen = new HighScoreEntryScreen(this);
 
         /* Add main menu and game screen to cards */
         cards.add(mainMenu, "mainMenu");
@@ -40,6 +42,7 @@ public class MainFrame extends JFrame {
         cards.add(gameOverScreen, "GameOverScreen");
         cards.add(settingsScreen, "settingsScreen");
         cards.add(highScoreScreen, "highScoreScreen");
+        cards.add(highScoreEntryScreen, "highScoreEntryScreen");
 
         /* Set icons */
         // setIconImages(loadAppIcons());
@@ -92,6 +95,16 @@ public class MainFrame extends JFrame {
      */
     public HighScoreScreen getHighScoreScreen() {
         return this.highScoreScreen;
+    }
+
+    /**
+     * Return the class variable High Score Entry Screen. Can be used to reach the High Score Entry Screen from
+     * other classes such as ButtonActions.
+     * 
+     * @return Main Menu class variable from the Main Frame.
+     */
+    public HighScoreEntryScreen getHighScoreEntryScreen() {
+        return this.highScoreEntryScreen;
     }
 
     /**

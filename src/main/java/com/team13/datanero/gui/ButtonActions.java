@@ -18,19 +18,22 @@ public class ButtonActions implements ActionListener {
 
         switch (command) {
             case "Aloita peli":
-                mainFrame.switchTo("gameScreen");
+                this.mainFrame.switchTo("gameScreen");
                 Game.getInstance();
                 break;
             case "Asetukset":
-                mainFrame.switchTo("settingsScreen");
+                this.mainFrame.switchTo("settingsScreen");
                 break;
             case "Parhaat tulokset":
                 this.mainFrame.getHighScoreScreen().setTheme();
                 this.mainFrame.getHighScoreScreen().sethighScoreResults();
-                mainFrame.switchTo("highScoreScreen");
+                this.mainFrame.switchTo("highScoreScreen");
                 break;
             case "Poistu":
                 System.exit(0);
+                break;
+            case "Siirry syöttämään pisteet":
+                this.mainFrame.switchTo("highScoreEntryScreen");
                 break;
             case "Lopeta":
             case "Palaa päävalikkoon":

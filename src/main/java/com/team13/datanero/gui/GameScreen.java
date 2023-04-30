@@ -343,16 +343,16 @@ public class GameScreen extends JPanel {
      */
     private class AnswerButtonListener implements ActionListener {
         private int answerIndex;
-    
+
         public AnswerButtonListener(int answerIndex) {
             this.answerIndex = answerIndex;
         }
-    
+
         @Override
         public void actionPerformed(ActionEvent e) {
             wasAnswerCorrect = game.submitAnswer(answerIndex);
             JButton clickedButton = answerButtons[answerIndex];
-    
+
             if (wasAnswerCorrect) {
                 clickedButton.setBackground(Color.GREEN);
                 game.incrementScore();
@@ -366,7 +366,7 @@ public class GameScreen extends JPanel {
             for (JButton button : answerButtons) {
                 button.setEnabled(false); // Disable the buttons
             }
-    
+
             int delay = 2000; // 1000 ms = 1 second
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -378,11 +378,11 @@ public class GameScreen extends JPanel {
                             livesLabel.setText("Elämät:");
                             scoreLabel.setText("Pisteet: " + game.getScore());
                         }
-    
+
                         /* Show the GameOverDialog with the score */
                         mainFrame.switchTo("GameOverScreen");
                         System.out.println("Status: Switching to game over screen");
-    
+
                     } else {
                         /* There are questions available, continue game */
                         game.getNewQuestion();
@@ -398,5 +398,5 @@ public class GameScreen extends JPanel {
             timer.start();
         }
     }
-    
+
 }
