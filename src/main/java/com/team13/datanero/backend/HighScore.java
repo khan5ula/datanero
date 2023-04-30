@@ -49,6 +49,14 @@ public class HighScore {
     }
 
     /**
+     * Method that returns the count of high score records stored in the container.
+     * @return Int between 0-5, the count of scores.
+     */
+    public int getCount() {
+        return this.scores.size();
+    }
+
+    /**
      * Returns a list of high score elements in descending order.
      * 
      * @return List containing 5 best high score entries.

@@ -133,11 +133,15 @@ public class GameOverScreen extends JPanel {
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());
 
-        /* Disable high score input option if the player score is too low */
-        if (Game.getInstance().getScore() < HighScore.getInstance().getLowestScore()) {
-            this.scoreInputButton.setEnabled(false);
-        } else {
+        /*
+         * Enable high score input option if the player score is greater than 0 and:
+         * 1. There is room in the scoreboard
+         * 2. The player score is greater than the lowest score in the scoreboard
+         */
+        if (score > 0 && (HighScore.getInstance().getCount() < 5 || score > HighScore.getInstance().getLowestScore())) {
             this.scoreInputButton.setEnabled(true);
+        } else {
+            this.scoreInputButton.setEnabled(false);
         }
 
         System.out

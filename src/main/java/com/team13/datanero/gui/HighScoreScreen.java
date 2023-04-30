@@ -60,7 +60,6 @@ public class HighScoreScreen extends JPanel {
         /* Create Header label */
         this.header = new JLabel("Parhaat tulokset");
         header.setFont(theme.getCustomFont(FontStyle.BOLD, 84));
-        // TODO: Add border and background color to the header.
 
         /* Add Header label to the grid */
         gbc.gridx = 0;
@@ -162,9 +161,9 @@ public class HighScoreScreen extends JPanel {
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
         for (int i = 0; i < this.nicknameButtons.size(); i++) {
             this.nicknameButtons.get(i).setBackground(theme.getScreenBackGroundColor());
-            this.nicknameButtons.get(i).setForeground(theme.getButtonTextColor());
+            this.nicknameButtons.get(i).setForeground(theme.getGeneralTextColor());
             this.scoreButtons.get(i).setBackground(theme.getScreenBackGroundColor());
-            this.scoreButtons.get(i).setForeground(theme.getButtonTextColor());
+            this.scoreButtons.get(i).setForeground(theme.getGeneralTextColor());
         }
     }
 }
