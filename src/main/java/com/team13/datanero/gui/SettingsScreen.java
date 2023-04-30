@@ -30,12 +30,14 @@ public class SettingsScreen extends JPanel {
     private ArrayList<JButton> optionButtons;
     private ArrayList<JLabel> optionTextList;
     private Theme theme;
+    private Sound sound;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.optionButtons = new ArrayList<JButton>();
         this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
+        this.sound = new Sound("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
         init();
     }
 
@@ -98,11 +100,12 @@ public class SettingsScreen extends JPanel {
 
             switch (i) {
                 case 0: // Set sound button
-                    this.soundButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    this.soundButton = new CustomButton("Pois päältä", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.soundButton.setForeground(Color.BLACK);
                     this.soundButton.setPreferredSize(buttonDimension);
                     this.soundButton.setMaximumSize(buttonDimension);
                     this.soundButton.setHorizontalAlignment(SwingConstants.RIGHT);
+                    this.soundButton.addActionListener(new SoundButtonListener());
                     add(this.soundButton, optionButtonGbc);
                     this.optionButtons.add(this.soundButton);
                     break;
@@ -162,6 +165,18 @@ public class SettingsScreen extends JPanel {
         add(exitButton, gbc);
     }
 
+    private void changeSound() {
+        if (soundButton.getText().equals("Pois päältä")) {
+            System.out.println("Status: Player switched sounds on");
+            playSound(sound);
+            soundButton.setText("Päällä");
+        } else {
+            System.out.println("Status: Player switched sounds off");
+            stopSound(sound);
+            soundButton.setText("Pois päältä");
+        }
+    }
+
     /**
      * Method that changes the system theme between Light and Dark.
      */
@@ -196,6 +211,15 @@ public class SettingsScreen extends JPanel {
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
     }
 
+    private class SoundButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            changeSound();
+        }
+
+    }
+
     /**
      * Small private class for theme button. Calls changeTheme() method when
      * pressed.
@@ -205,5 +229,15 @@ public class SettingsScreen extends JPanel {
         public void actionPerformed(ActionEvent e) {
             changeTheme();
         }
+    }
+
+    public void playSound(Sound sound) {
+        sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
+        sound.start();
+        sound.loop();
+    }
+
+    public void stopSound(Sound sound) {
+        sound.stop();
     }
 }

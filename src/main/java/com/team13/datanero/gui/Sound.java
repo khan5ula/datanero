@@ -31,14 +31,6 @@ public class Sound {
         }
     }
 
-    public Clip getClip() {
-        return clip;
-    }
-
-    public String getAudioFilePath() {
-        return audioFilePath;
-    }
-
     public void start() {
         clip.start();
     }
