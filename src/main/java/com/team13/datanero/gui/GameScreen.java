@@ -362,8 +362,12 @@ public class GameScreen extends JPanel {
                 game.decrementLives();
                 updateNegativeMascot();
             }
+
+            for (JButton button : answerButtons) {
+                button.setEnabled(false); // Disable the buttons
+            }
     
-            int delay = 1500; // 1000 ms = 1 second
+            int delay = 2000; // 1000 ms = 1 second
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
@@ -383,6 +387,9 @@ public class GameScreen extends JPanel {
                         /* There are questions available, continue game */
                         game.getNewQuestion();
                         updateGameDisplay();
+                        for (JButton button : answerButtons) {
+                            button.setEnabled(true); // Enable the buttons
+                        }
                     }
                 }
             };

@@ -36,7 +36,7 @@ public class GameOverScreen extends JPanel {
 
         /* Add messagelabel to the grid */
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.gridwidth = 3;
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
@@ -54,7 +54,7 @@ public class GameOverScreen extends JPanel {
 
         /* Add mascot to the grid */
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         gbc.gridwidth = 3;
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
