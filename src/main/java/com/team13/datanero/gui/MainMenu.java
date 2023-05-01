@@ -96,7 +96,6 @@ public class MainMenu extends JPanel {
 
     public void setTheme() {
         setBackground(theme.getScreenBackGroundColor());
-        // this.logo.setForeground(theme.getGeneralTextColor());
         this.subtitle.setForeground(theme.getGeneralTextColor());
         this.startButton.setBackground(theme.getStartGameButtonColor());
         this.settingsButton.setBackground(theme.getSettingsButtonColor());

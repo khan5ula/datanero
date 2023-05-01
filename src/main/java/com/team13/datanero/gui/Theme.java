@@ -100,11 +100,8 @@ public class Theme {
      */
     public Color getScreenBackGroundColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
-            // return Color.WHITE;
             return new Color(249, 246, 254);
         }
-        // return Color.DARK_GRAY;
-        // return new Color(43, 16, 50);
         return new Color(33, 13, 38);
     }
 
