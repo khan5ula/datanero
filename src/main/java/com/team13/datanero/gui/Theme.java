@@ -64,7 +64,7 @@ public class Theme {
             return Color.WHITE;
         }
         // return Color.BLACK;
-        return new Color(43, 16, 50);
+        return new Color(33, 13, 38);
     }
 
     /**
@@ -88,11 +88,12 @@ public class Theme {
      */
     public Color getScreenBackGroundColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
-            return Color.WHITE;
-            // return new Color(220, 248, 251);
+            // return Color.WHITE;
+            return new Color(249, 246, 254);
         }
         // return Color.DARK_GRAY;
-        return new Color(43, 16, 50);
+        // return new Color(43, 16, 50);
+        return new Color(33, 13, 38);
     }
 
     /**
@@ -106,7 +107,7 @@ public class Theme {
             return new Color(0, 95, 123);
         }
         // return Color.BLACK;
-        return new Color(0, 95, 123);
+        return new Color(12, 87, 110);
         // return new Color(84, 68, 81);
     }
 
@@ -116,7 +117,7 @@ public class Theme {
             return new Color(0, 160, 230);
         }
         // return Color.BLACK;
-        return new Color(0, 95, 123);
+        return new Color(12, 87, 110);
     }
 
     public Color getSettingsButtonColor() {
@@ -124,7 +125,7 @@ public class Theme {
             return new Color(1, 76, 140);
         }
         // return Color.BLACK;
-        return new Color(0, 95, 123);
+        return new Color(12, 87, 110);
     }
 
     public Color getHighScoreButtonColor() {
@@ -133,30 +134,33 @@ public class Theme {
             return new Color(0, 95, 123);
         }
         // return Color.BLACK;
-        return new Color(0, 95, 123);
+        return new Color(12, 87, 110);
     }
 
     public Color getQuitGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             // return new Color(239, 71, 111);
-            return new Color(247, 145, 197);
+            return new Color(178, 143, 188);
+            // return new Color(228, 166, 199);
         }
         // return Color.BLACK;
-        return new Color(0, 95, 123);
+        return new Color(12, 87, 110);
     }
 
     public Color getCorrectAnswerButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(60, 136, 126);
+            // return new Color(93, 235, 175);
         }
-        return new Color(60, 136, 126);
+        return new Color(47, 106, 98);
     }
 
     public Color getIncorrectAnswerButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            return new Color(255, 107, 108);
+            // return new Color(255, 107, 108);
+            return new Color(230, 120, 120);
         }
-        return new Color(255, 107, 108);
+        return new Color(190, 85, 85);
     }
 
     /**
