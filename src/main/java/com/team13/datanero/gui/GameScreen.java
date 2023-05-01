@@ -359,13 +359,13 @@ public class GameScreen extends JPanel {
             JButton clickedButton = answerButtons[answerIndex];
 
             if (wasAnswerCorrect) {
-                clickedButton.setBackground(new Color(60, 136, 126));
+                clickedButton.setBackground(theme.getCorrectAnswerButtonColor());
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
             } else {
-                clickedButton.setBackground(new Color(255, 107, 108));
-                answerButtons[0].setBackground(new Color(60, 136, 126));
+                clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
+                answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
                 game.decrementLives();
                 updateNegativeMascot();
                 updateHearts(game.getLives());

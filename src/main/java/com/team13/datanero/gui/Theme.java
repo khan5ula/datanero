@@ -145,6 +145,20 @@ public class Theme {
         return new Color(0, 95, 123);
     }
 
+    public Color getCorrectAnswerButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(60, 136, 126);
+        }
+        return new Color(60, 136, 126);
+    }
+
+    public Color getIncorrectAnswerButtonColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(255, 107, 108);
+        }
+        return new Color(255, 107, 108);
+    }
+
     /**
      * Method that retrieves a font from <b>Fira Code</b> font family.
      * <p>
