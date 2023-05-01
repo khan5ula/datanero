@@ -348,6 +348,7 @@ public class GameScreen extends JPanel {
      */
     private class AnswerButtonListener implements ActionListener {
         private int answerIndex;
+        private int timerDelay;
 
         public AnswerButtonListener(int answerIndex) {
             this.answerIndex = answerIndex;
@@ -363,6 +364,7 @@ public class GameScreen extends JPanel {
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
+                this.timerDelay = 2000;
             } else {
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
@@ -370,13 +372,13 @@ public class GameScreen extends JPanel {
                 updateNegativeMascot();
                 updateHearts(game.getLives());
                 updateScore();
+                this.timerDelay = 3300; // longer delay for wrong answer
             }
 
             for (JButton button : answerButtons) {
                 button.setEnabled(false); // Disable the buttons
             }
 
-            int delay = 2000; // 1000 ms = 1 second
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
@@ -402,7 +404,7 @@ public class GameScreen extends JPanel {
                     }
                 }
             };
-            Timer timer = new javax.swing.Timer(delay, taskPerformer);
+            Timer timer = new javax.swing.Timer(timerDelay, taskPerformer);
             timer.setRepeats(false); // Make the timer execute only once
             timer.start();
         }

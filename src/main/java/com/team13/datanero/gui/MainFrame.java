@@ -4,9 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.team13.datanero.backend.QuestionParser;
-import com.team13.datanero.backend.Score;
 import com.team13.datanero.backend.Game;
-import com.team13.datanero.backend.HighScore;
 
 import java.awt.CardLayout;
 

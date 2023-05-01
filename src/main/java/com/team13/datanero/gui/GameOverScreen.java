@@ -18,6 +18,7 @@ import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameOverScreen extends JPanel {
     private JLabel messageLabel;
+    private JLabel scoreStatusLabel;
     private MainFrame mainFrame;
     private int score;
     private Theme theme;
@@ -34,12 +35,13 @@ public class GameOverScreen extends JPanel {
         setBackground(theme.getScreenBackGroundColor());
 
         /* Add padding to the screen */
-        Border borderPadding = BorderFactory.createEmptyBorder(300, 100, 0, 200);
+        Border borderPadding = BorderFactory.createEmptyBorder(150, 100, 0, 250);
         setBorder(borderPadding);
 
         /* Create and add rest of the elements */
         setMascot(gbc);
         setMessageLabel(gbc);
+        setScoreStatusLabel(gbc);
         setExitButton(gbc);
         setScoreInputButton(gbc);
     }
@@ -77,6 +79,22 @@ public class GameOverScreen extends JPanel {
         add(messageLabel, gbc);
     }
 
+    private void setScoreStatusLabel(GridBagConstraints gbc) {
+        /* Define the label */
+        this.scoreStatusLabel = new JLabel();
+        this.scoreStatusLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 48));
+
+        /* Add label to the grid */
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        add(scoreStatusLabel, gbc);
+    }
+
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
         JButton exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
@@ -89,7 +107,7 @@ public class GameOverScreen extends JPanel {
 
         /* Add the exit button to the grid */
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 0.5;
@@ -112,7 +130,7 @@ public class GameOverScreen extends JPanel {
 
         /* Add the score input button to the grid */
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 0.5;
@@ -140,8 +158,12 @@ public class GameOverScreen extends JPanel {
          */
         if (score > 0 && (HighScore.getInstance().getCount() < 5 || score > HighScore.getInstance().getLowestScore())) {
             this.scoreInputButton.setEnabled(true);
+            this.scoreStatusLabel.setText("Hienoa! Pisteesi riittävät Parhaat Pisteet -tilastoon!");
+            this.scoreStatusLabel.setForeground(theme.getGeneralTextColor());
         } else {
             this.scoreInputButton.setEnabled(false);
+            this.scoreStatusLabel.setText("Höh! Pisteesi eivät riitä parhaat Pisteet -tilastoon!");
+            this.scoreStatusLabel.setForeground(theme.getGeneralTextColor());
         }
 
         System.out

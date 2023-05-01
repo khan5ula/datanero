@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -125,7 +126,8 @@ public class HighScoreEntryScreen extends JPanel {
 
     /**
      * Helper class for High Score Entry Screen.
-     * This class is used to limit the number of characters player can enter to the nickname input field.
+     * This class is used to limit the number of characters player can enter to the
+     * nickname input field.
      */
     private static class LengthRestrictedDocument extends PlainDocument {
         private final int limit;
