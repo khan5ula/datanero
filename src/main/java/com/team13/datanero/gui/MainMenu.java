@@ -41,7 +41,7 @@ public class MainMenu extends JPanel {
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
 
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
+        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
         JLabel mascot = new JLabel(mascotImage);
 
         /* Create buttons */

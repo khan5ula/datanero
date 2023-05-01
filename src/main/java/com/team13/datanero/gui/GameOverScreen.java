@@ -49,7 +49,7 @@ public class GameOverScreen extends JPanel {
 
     private void setMascot(GridBagConstraints gbc) {
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_terminated.png");
+        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
         JLabel mascot = new JLabel(mascotImage);
 
         /* Add mascot to the grid */

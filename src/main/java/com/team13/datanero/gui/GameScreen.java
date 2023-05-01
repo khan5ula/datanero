@@ -224,7 +224,7 @@ public class GameScreen extends JPanel {
      */
     private void setMascot(GridBagConstraints gbc) {
         /* Load the mascot image */
-        ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/mascot_happy.png");
+        ImageIcon mascotIcon = new ImageIcon("src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png");
 
         /* Create JLabel to hold the image, and set the icon */
         this.mascotLabel.setIcon(mascotIcon);
@@ -311,19 +311,19 @@ public class GameScreen extends JPanel {
         String imagePath;
         switch (game.getLives()) {
             case 3:
-                imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
                 break;
             case 2:
-                imagePath = "src/main/java/com/team13/datanero/images/mascot_worried.png";
+                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
                 break;
             case 1:
-                imagePath = "src/main/java/com/team13/datanero/images/mascot_terrified.png";
+                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
                 break;
             case 0:
-                imagePath = "src/main/java/com/team13/datanero/images/mascot_terminated.png";
+                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
                 break;
             default:
-                imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
         }
 
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
@@ -334,7 +334,7 @@ public class GameScreen extends JPanel {
      * Method that changes the mascot to happy one.
      */
     private void updatePositiveMascot() {
-        String imagePath = "src/main/java/com/team13/datanero/images/mascot_happy.png";
+        String imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
         ImageIcon newMascotIcon = new ImageIcon(imagePath);
         this.mascotLabel.setIcon(newMascotIcon);
     }
@@ -447,23 +447,17 @@ public class GameScreen extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mouseClicked'");
+            // Probably not needed
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mousePressed'");
+            // Do we want a press sound?
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mouseReleased'");
+            // Probably not needed
         }
 
         @Override
