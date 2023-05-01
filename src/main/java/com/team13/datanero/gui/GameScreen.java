@@ -36,7 +36,6 @@ public class GameScreen extends JPanel {
     private JLabel heartLabel1, heartLabel2, heartLabel3;
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
-    private int initialButtonWidth;
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
     private Theme theme;
@@ -47,7 +46,7 @@ public class GameScreen extends JPanel {
         this.game = game;
         this.mascotLabel = new JLabel();
         this.theme = Theme.getInstance();
-        this.htmlFormat = "<html><body style=width: %dpx'>%s</body></html>";
+        this.htmlFormat = "<html><body style='width: 500px; padding: 0px 20px;'>%s</body></html>";
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -76,8 +75,6 @@ public class GameScreen extends JPanel {
         questionTextArea.setPreferredSize(new Dimension(1200, 150));
         questionTextArea.setMaximumSize(new Dimension(1200, 150));
 
-        /* Store answer button size to class variable for later use */
-        this.initialButtonWidth = questionTextArea.getWidth();
 
         /* Center the question text */
         StyledDocument doc = questionTextArea.getStyledDocument();
@@ -88,10 +85,8 @@ public class GameScreen extends JPanel {
         /* Create answer buttons */
         this.answerButtons = new JButton[4];
         String[] answers = game.getAnswersForCurrentQuestion();
-        int textWidth = (int) (this.initialButtonWidth * 0.9);
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format(this.htmlFormat,
-                    textWidth, answers[i]);
+            String buttonText = String.format(this.htmlFormat, answers[i]);
             this.answerButtons[i] = new CustomButton(buttonText, theme.getAnswerButtonColor(), 30, FontStyle.SEMIBOLD);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
             this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
@@ -252,12 +247,10 @@ public class GameScreen extends JPanel {
      */
     private void updateGameDisplay() {
         System.out.println("Status: Updating game display");
-        int textWidth = (int) (this.initialButtonWidth * 0.9);
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format(this.htmlFormat,
-                    textWidth, answers[i]);
+            String buttonText = String.format(this.htmlFormat, answers[i]);
             this.answerButtons[i].setText(buttonText);
             this.answerButtons[i].setBackground(theme.getAnswerButtonColor());
         }
