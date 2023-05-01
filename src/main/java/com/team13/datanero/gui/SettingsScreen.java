@@ -134,6 +134,7 @@ public class SettingsScreen extends JPanel {
 
     /**
      * Method that creates header label to the screen and adds it to the grid.
+     * 
      * @param gbc The gridbagconstraints used on this screen.
      */
     private void setHeader(GridBagConstraints gbc) {
@@ -176,6 +177,9 @@ public class SettingsScreen extends JPanel {
         add(exitButton, gbc);
     }
 
+    /**
+     * Method that switches the system sound On and Off.
+     */
     private void changeSound() {
         if (soundButton.getText().equals("Pois päältä")) {
             System.out.println("Status: Player switched sounds on");
@@ -222,8 +226,11 @@ public class SettingsScreen extends JPanel {
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
     }
 
+    /**
+     * Small private class for sound button. Calls changeSound() method when
+     * pressed.
+     */
     private class SoundButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             changeSound();
@@ -242,13 +249,19 @@ public class SettingsScreen extends JPanel {
         }
     }
 
-    public void playSound(Sound sound) {
+    /**
+     * Method that starts the background music playback.
+     */
+    private void playSound(Sound sound) {
         sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
         sound.start();
         sound.loop();
     }
 
-    public void stopSound(Sound sound) {
+    /**
+     * Method that stops the background music playback.
+     */
+    private void stopSound(Sound sound) {
         sound.stop();
     }
 }

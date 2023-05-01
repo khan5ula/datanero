@@ -89,6 +89,7 @@ public class Theme {
     public Color getScreenBackGroundColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
             return Color.WHITE;
+            // return new Color(220, 248, 251);
         }
         // return Color.DARK_GRAY;
         return new Color(43, 16, 50);
@@ -106,6 +107,7 @@ public class Theme {
         }
         // return Color.BLACK;
         return new Color(0, 95, 123);
+        // return new Color(84, 68, 81);
     }
 
     public Color getStartGameButtonColor() {
