@@ -75,7 +75,6 @@ public class GameScreen extends JPanel {
         questionTextArea.setPreferredSize(new Dimension(1200, 150));
         questionTextArea.setMaximumSize(new Dimension(1200, 150));
 
-
         /* Center the question text */
         StyledDocument doc = questionTextArea.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
@@ -341,6 +340,22 @@ public class GameScreen extends JPanel {
     }
 
     /**
+     * Method that sets the Mouse Hover Boolean ON or OFF.
+     * <p>This method should be used with the Mouse Listener Class.
+     * @param enabled Boolean that determines the state of the Hover.
+     */
+    private void setHoverEffectEnabled(boolean enabled) {
+        for (JButton button : answerButtons) {
+            for (MouseListener listener : button.getMouseListeners()) {
+                if (listener instanceof MouseAdapter) {
+                    ((MouseAdapter) listener).setHoverEnabled(enabled);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
      * Private class used by Game Screen Class.
      * Contains the actions for pressing buttons.
      */
@@ -377,6 +392,9 @@ public class GameScreen extends JPanel {
                 button.setEnabled(false); // Disable the buttons
             }
 
+            /* Temporarily disable hover effect */
+            setHoverEffectEnabled(false);
+
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     if (game.getLives() <= 0 || !game.areQuestionsAvailable()) {
@@ -399,6 +417,9 @@ public class GameScreen extends JPanel {
                         for (JButton button : answerButtons) {
                             button.setEnabled(true); // Enable the buttons
                         }
+
+                        /* Enable hover effect */
+                        setHoverEffectEnabled(true);
                     }
                 }
             };
@@ -414,9 +435,14 @@ public class GameScreen extends JPanel {
      */
     private class MouseAdapter implements MouseListener {
         private int answerIndex;
+        private boolean hoverEnabled = true;
 
         public MouseAdapter(int answerIndex) {
             this.answerIndex = answerIndex;
+        }
+
+        public void setHoverEnabled(boolean enabled) {
+            hoverEnabled = enabled;
         }
 
         @Override
@@ -442,14 +468,18 @@ public class GameScreen extends JPanel {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            JButton hoverButton = answerButtons[answerIndex];
-            hoverButton.setBackground(theme.getAnswerButtonHoverColor());
+            if (hoverEnabled) {
+                JButton hoverButton = answerButtons[answerIndex];
+                hoverButton.setBackground(theme.getAnswerButtonHoverColor());
+            }
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            JButton hoverButton = answerButtons[answerIndex];
-            hoverButton.setBackground(theme.getAnswerButtonColor());
+            if (hoverEnabled) {
+                JButton hoverButton = answerButtons[answerIndex];
+                hoverButton.setBackground(theme.getAnswerButtonColor());
+            }
         }
 
     }
