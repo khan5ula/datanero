@@ -88,9 +88,9 @@ public class Theme {
      */
     public Color getExitButtonColor() {
         if (currentTheme == Theme.ThemeType.LIGHT) {
-            return Color.RED;
+            return new Color(239, 71, 111);
         }
-        return Color.BLACK;
+        return new Color(178, 143, 188);
     }
 
     /**
@@ -151,12 +151,11 @@ public class Theme {
 
     public Color getQuitGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
-            // return new Color(239, 71, 111);
-            return new Color(178, 143, 188);
+            return new Color(239, 71, 111);
             // return new Color(228, 166, 199);
         }
         // return Color.BLACK;
-        return new Color(12, 87, 110);
+        return new Color(178, 143, 188);
     }
 
     public Color getCorrectAnswerButtonColor() {
