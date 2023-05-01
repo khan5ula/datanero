@@ -1,9 +1,6 @@
 package com.team13.datanero.backend;
 
 import java.util.PriorityQueue;
-
-import com.team13.datanero.gui.DataBase;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;

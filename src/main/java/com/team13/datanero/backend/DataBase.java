@@ -1,4 +1,4 @@
-package com.team13.datanero.gui;
+package com.team13.datanero.backend;
 
 import java.io.File;
 import java.sql.Connection;
@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.team13.datanero.backend.Score;
 
 public class DataBase {
     private static DataBase instance;
