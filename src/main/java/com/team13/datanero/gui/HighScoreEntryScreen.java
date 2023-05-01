@@ -122,6 +122,7 @@ public class HighScoreEntryScreen extends JPanel {
         this.score = Game.getInstance().getScore();
         Score scoreWithNickname = new Score(this.nameInput.getText(), score);
         HighScore.getInstance().addScore(scoreWithNickname);
+        HighScore.getInstance().setScoresToDatabase();
         this.nameInput.setText("");
     }
 

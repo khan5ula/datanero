@@ -144,6 +144,7 @@ public class HighScoreScreen extends JPanel {
      * accordingly.
      */
     public void sethighScoreResults() {
+        HighScore.getInstance().getScoresFromDatabase();
         ArrayList<Score> scores = HighScore.getInstance().getHighScore();
         System.out.println("Status: Setting high score results. " + scores.size() + " scores found.");
         for (int i = 0; i < scores.size(); i++) {

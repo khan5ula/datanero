@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import com.team13.datanero.backend.QuestionParser;
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.backend.HighScore;
 
 import java.awt.CardLayout;
 
@@ -55,7 +56,10 @@ public class MainFrame extends JFrame {
         System.out.println("Status: MainFrame moves player to screen: " + cardName);
         CardLayout cl = (CardLayout) (cards.getLayout());
 
-        /* Handle Game Over screen refresh here since moving to that screen does not require button input */
+        /*
+         * Handle Game Over screen refresh here since moving to that screen does not
+         * require button input
+         */
         if (cardName.equals("GameOverScreen")) {
             this.gameOverScreen.updateAndDisplayScore();
             System.out.println("Status: Sent player score data to game over screen. Score: " + this.game.getScore());
@@ -85,7 +89,8 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Return the class variable High Score Screen. Can be used to reach the High Score Screen from
+     * Return the class variable High Score Screen. Can be used to reach the High
+     * Score Screen from
      * other classes such as ButtonActions.
      * 
      * @return Main Menu class variable from the Main Frame.
@@ -95,7 +100,8 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Return the class variable High Score Entry Screen. Can be used to reach the High Score Entry Screen from
+     * Return the class variable High Score Entry Screen. Can be used to reach the
+     * High Score Entry Screen from
      * other classes such as ButtonActions.
      * 
      * @return Main Menu class variable from the Main Frame.
@@ -105,7 +111,8 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * Return the class variable Game Over Screen. Can be used to reach the Game Over Screen from
+     * Return the class variable Game Over Screen. Can be used to reach the Game
+     * Over Screen from
      * other classes such as ButtonActions.
      * 
      * @return Main Menu class variable from the Main Frame.
@@ -121,10 +128,32 @@ public class MainFrame extends JFrame {
      * @param args The sound you make when you rise from couch.
      */
     public static void main(String[] args) {
-        /* Start the game */
-        QuestionParser questionParser = new QuestionParser();
-        questionParser.execute();
-        Game game = Game.getInstance();
-        new MainFrame(game);
+        try {
+            /* Initialize database */
+            DataBase dataBase = DataBase.getInstance();
+
+            /* Set database connection */
+            try {
+                dataBase.open("src/main/java/com/team13/datanero/data/scores.db");
+
+                HighScore highScore = HighScore.getInstance();
+                highScore.getScoresFromDatabase();
+
+                /* Start the game */
+                QuestionParser questionParser = new QuestionParser();
+                questionParser.execute();
+                Game game = Game.getInstance();
+                new MainFrame(game);
+
+            } catch (Exception e) {
+                System.out.println(
+                        "Error occurred while the server tried to open a database connection: " + e.getMessage());
+            } finally {
+                dataBase.closeDB();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: Executing main resulted in failure: " + e.getMessage());
+        }
     }
 }

@@ -364,7 +364,7 @@ public class GameScreen extends JPanel {
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
-                this.timerDelay = 2000;
+                this.timerDelay = 1500;
             } else {
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
