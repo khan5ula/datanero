@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -88,6 +91,7 @@ public class GameScreen extends JPanel {
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
             this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
             this.answerButtons[i].setMaximumSize(new Dimension(800, 300));
+            this.answerButtons[i].addMouseListener(new MouseAdapter(i));
         }
 
         /* Create a list of the answer buttons and shuffle it */
@@ -407,5 +411,51 @@ public class GameScreen extends JPanel {
             timer.setRepeats(false); // Make the timer execute only once
             timer.start();
         }
+    }
+
+    /**
+     * Private class used by Game Screen Class.
+     * Contains methods for mouse actions.
+     */
+    private class MouseAdapter implements MouseListener {
+        private int answerIndex;
+
+        public MouseAdapter(int answerIndex) {
+            this.answerIndex = answerIndex;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // TODO Auto-generated method stub
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'mouseClicked'");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            // TODO Auto-generated method stub
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'mousePressed'");
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            // TODO Auto-generated method stub
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'mouseReleased'");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            JButton hoverButton = answerButtons[answerIndex];
+            hoverButton.setBackground(theme.getExitButtonColor());
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            JButton hoverButton = answerButtons[answerIndex];
+            hoverButton.setBackground(theme.getAnswerButtonColor());
+        }
+
     }
 }
