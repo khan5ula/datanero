@@ -40,12 +40,14 @@ public class GameScreen extends JPanel {
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
     private Theme theme;
+    private String htmlFormat;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
         this.game = game;
         this.mascotLabel = new JLabel();
         this.theme = Theme.getInstance();
+        this.htmlFormat = "<html><body style=width: %dpx'>%s</body></html>";
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -74,6 +76,9 @@ public class GameScreen extends JPanel {
         questionTextArea.setPreferredSize(new Dimension(1200, 150));
         questionTextArea.setMaximumSize(new Dimension(1200, 150));
 
+        /* Store answer button size to class variable for later use */
+        this.initialButtonWidth = questionTextArea.getWidth();
+
         /* Center the question text */
         StyledDocument doc = questionTextArea.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
@@ -85,7 +90,7 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         int textWidth = (int) (this.initialButtonWidth * 0.9);
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
+            String buttonText = String.format(this.htmlFormat,
                     textWidth, answers[i]);
             this.answerButtons[i] = new CustomButton(buttonText, theme.getAnswerButtonColor(), 30, FontStyle.SEMIBOLD);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
@@ -184,9 +189,6 @@ public class GameScreen extends JPanel {
         Collections.shuffle(this.buttons);
         updateAnswerButtonLayout();
 
-        /* Store answer button size to class variable for later use */
-        this.initialButtonWidth = buttons.get(0).getWidth();
-
         setMascot(gbc);
         setExitButton(gbc);
     }
@@ -254,7 +256,7 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         questionTextArea.setText(game.getCurrentQuestion());
         for (int i = 0; i < this.answerButtons.length; i++) {
-            String buttonText = String.format("<html><body style=width: %dpx'>%s</body></html>",
+            String buttonText = String.format(this.htmlFormat,
                     textWidth, answers[i]);
             this.answerButtons[i].setText(buttonText);
             this.answerButtons[i].setBackground(theme.getAnswerButtonColor());
