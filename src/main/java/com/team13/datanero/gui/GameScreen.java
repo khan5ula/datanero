@@ -443,7 +443,7 @@ public class GameScreen extends JPanel {
         @Override
         public void mouseEntered(MouseEvent e) {
             JButton hoverButton = answerButtons[answerIndex];
-            hoverButton.setBackground(theme.getExitButtonColor());
+            hoverButton.setBackground(theme.getAnswerButtonHoverColor());
         }
 
         @Override
