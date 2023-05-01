@@ -66,7 +66,7 @@ public class GameScreen extends JPanel {
         /* Create text area for the question */
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
-        questionTextArea.setFont(theme.getCustomFont(FontStyle.LIGHT, 48));
+        questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 48));
         questionTextArea.setForeground(theme.getGeneralTextColor());
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
