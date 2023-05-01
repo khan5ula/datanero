@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound {
     Clip clip;
-    String audioFilePath = "src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav";
+    String audioFilePath;
 
     public Sound(String audioFilePath) {
         this.audioFilePath = audioFilePath;
