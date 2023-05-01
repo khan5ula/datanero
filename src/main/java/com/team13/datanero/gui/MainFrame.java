@@ -42,9 +42,6 @@ public class MainFrame extends JFrame {
         cards.add(highScoreScreen, "highScoreScreen");
         cards.add(highScoreEntryScreen, "highScoreEntryScreen");
 
-        /* Set icons */
-        // setIconImages(loadAppIcons());
-
         getContentPane().add(cards);
         setVisible(true);
     }
@@ -57,6 +54,8 @@ public class MainFrame extends JFrame {
     public void switchTo(String cardName) {
         System.out.println("Status: MainFrame moves player to screen: " + cardName);
         CardLayout cl = (CardLayout) (cards.getLayout());
+
+        /* Handle Game Over screen refresh here since moving to that screen does not require button input */
         if (cardName.equals("GameOverScreen")) {
             this.gameOverScreen.updateAndDisplayScore();
             System.out.println("Status: Sent player score data to game over screen. Score: " + this.game.getScore());
@@ -103,6 +102,16 @@ public class MainFrame extends JFrame {
      */
     public HighScoreEntryScreen getHighScoreEntryScreen() {
         return this.highScoreEntryScreen;
+    }
+
+    /**
+     * Return the class variable Game Over Screen. Can be used to reach the Game Over Screen from
+     * other classes such as ButtonActions.
+     * 
+     * @return Main Menu class variable from the Main Frame.
+     */
+    public GameOverScreen getGameOverScreen() {
+        return this.gameOverScreen;
     }
 
     /**

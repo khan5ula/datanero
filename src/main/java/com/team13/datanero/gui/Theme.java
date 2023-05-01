@@ -82,6 +82,18 @@ public class Theme {
     }
 
     /**
+     * Defines the background color for exit buttons, depending on the style.
+     * 
+     * @return Color depending on the style.
+     */
+    public Color getExitButtonColor() {
+        if (currentTheme == Theme.ThemeType.LIGHT) {
+            return Color.RED;
+        }
+        return Color.BLACK;
+    }
+
+    /**
      * Defines the color for screen background depending on the style.
      * 
      * @return Color depending on the style.

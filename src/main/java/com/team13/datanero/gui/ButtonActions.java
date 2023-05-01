@@ -38,7 +38,10 @@ public class ButtonActions implements ActionListener {
                 break;
             case "Tallenna nimimerkki":
                 this.mainFrame.getHighScoreEntryScreen().submitScore();
+                this.mainFrame.getHighScoreScreen().setTheme();
+                this.mainFrame.getHighScoreScreen().sethighScoreResults();
                 this.mainFrame.switchTo("highScoreScreen");
+                break;
             case "Lopeta":
             case "Palaa päävalikkoon":
                 this.mainFrame.getMainMenu().setTheme();

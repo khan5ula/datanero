@@ -24,6 +24,7 @@ public class GameOverScreen extends JPanel {
     private Theme theme;
     private ButtonActions buttonActions;
     private JButton scoreInputButton;
+    private JButton exitButton;
 
     public GameOverScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
@@ -97,13 +98,13 @@ public class GameOverScreen extends JPanel {
 
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        JButton exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
-        exitButton.setActionCommand("Palaa päävalikkoon");
-        exitButton.setPreferredSize(new Dimension(500, 120));
-        exitButton.setMaximumSize(new Dimension(500, 120));
+        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton.setActionCommand("Palaa päävalikkoon");
+        this.exitButton.setPreferredSize(new Dimension(500, 120));
+        this.exitButton.setMaximumSize(new Dimension(500, 120));
 
         /* Define action for exit button */
-        exitButton.addActionListener(this.buttonActions);
+        this.exitButton.addActionListener(this.buttonActions);
 
         /* Add the exit button to the grid */
         gbc.gridx = 0;
@@ -114,7 +115,7 @@ public class GameOverScreen extends JPanel {
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 5);
-        add(exitButton, gbc);
+        add(this.exitButton, gbc);
     }
 
     private void setScoreInputButton(GridBagConstraints gbc) {
@@ -148,6 +149,7 @@ public class GameOverScreen extends JPanel {
         setBackground(theme.getScreenBackGroundColor());
         this.score = Game.getInstance().getScore();
         this.scoreInputButton.setBackground(theme.getStartGameButtonColor());
+        this.exitButton.setBackground(theme.getExitButtonColor());
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());
 
