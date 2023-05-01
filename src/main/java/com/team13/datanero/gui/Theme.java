@@ -120,6 +120,13 @@ public class Theme {
         // return new Color(84, 68, 81);
     }
 
+    public Color getAnswerButtonHoverColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(0, 133, 165);
+        }
+        return new Color(10, 118, 149);
+    }
+
     public Color getStartGameButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             // return new Color(6, 214, 160);
