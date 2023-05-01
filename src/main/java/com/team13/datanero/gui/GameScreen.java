@@ -378,7 +378,7 @@ public class GameScreen extends JPanel {
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
-                this.timerDelay = 1500;
+                this.timerDelay = 1200;
             } else {
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
@@ -386,7 +386,7 @@ public class GameScreen extends JPanel {
                 updateNegativeMascot();
                 updateHearts(game.getLives());
                 updateScore();
-                this.timerDelay = 3300; // longer delay for wrong answer
+                this.timerDelay = 2000; // longer delay for wrong answer
             }
 
             for (JButton button : answerButtons) {
