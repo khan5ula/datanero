@@ -91,6 +91,13 @@ public class Theme {
         return new Color(178, 143, 188);
     }
 
+    public Color getExitButtonHoverColor() {
+        if (currentTheme == Theme.ThemeType.LIGHT) {
+            return new Color(245, 75, 140);
+        }
+        return new Color(169, 159, 221);
+    }
+
     /**
      * Defines the color for screen background depending on the style.
      * 
@@ -129,6 +136,13 @@ public class Theme {
         return new Color(12, 87, 110);
     }
 
+    public Color getStartGameButtonHoverColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(0, 175, 245);
+        }
+        return new Color(10, 118, 149);
+    }
+
     public Color getSettingsButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(1, 76, 140);
@@ -136,11 +150,25 @@ public class Theme {
         return new Color(12, 87, 110);
     }
 
+    public Color getSettingsButtonHoverColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(1, 99, 165);
+        }
+        return new Color(10, 118, 149);
+    }
+
     public Color getHighScoreButtonColor() {
         if (currentTheme == ThemeType.LIGHT) {
             return new Color(0, 95, 123);
         }
         return new Color(12, 87, 110);
+    }
+
+    public Color getHighScoreButtonHoverColor() {
+        if (currentTheme == ThemeType.LIGHT) {
+            return new Color(0, 133, 165);
+        }
+        return new Color(10, 118, 149);
     }
 
     public Color getCorrectAnswerButtonColor() {

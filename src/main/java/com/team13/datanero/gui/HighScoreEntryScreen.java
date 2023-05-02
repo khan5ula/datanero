@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -87,6 +89,21 @@ public class HighScoreEntryScreen extends JPanel {
         submitButton.setActionCommand("Tallenna nimimerkki");
         submitButton.setPreferredSize(new Dimension(200, 80));
         submitButton.setMaximumSize(new Dimension(200, 80));
+
+        /* Add hover effect for submit button */
+        submitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                submitButton.setBackground(theme.getAnswerButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                submitButton.setBackground(theme.getAnswerButtonColor());
+                repaint();
+            }
+        });
 
         /* Define action for submit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);

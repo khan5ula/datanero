@@ -11,6 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 
 public class MainMenu extends JPanel {
@@ -65,6 +67,63 @@ public class MainMenu extends JPanel {
         settingsButton.addActionListener(buttonActions);
         highScoresButton.addActionListener(buttonActions);
         exitButton.addActionListener(buttonActions);
+
+        /* Button hover handling */
+        startButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                startButton.setBackground(theme.getStartGameButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                startButton.setBackground(theme.getStartGameButtonColor());
+                repaint();
+            }
+        });
+
+        settingsButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                settingsButton.setBackground(theme.getSettingsButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                settingsButton.setBackground(theme.getSettingsButtonColor());
+                repaint();
+            }
+        });
+
+        highScoresButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                highScoresButton.setBackground(theme.getHighScoreButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                highScoresButton.setBackground(theme.getHighScoreButtonColor());
+                repaint();
+            }
+        });
+
+        exitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonColor());
+                repaint();
+            }
+        });
 
         /* Add components to panel */
         GridBagConstraints gbc = new GridBagConstraints();

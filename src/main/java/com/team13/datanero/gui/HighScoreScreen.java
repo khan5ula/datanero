@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -85,6 +87,21 @@ public class HighScoreScreen extends JPanel {
         this.exitButton.setActionCommand("Palaa päävalikkoon");
         exitButton.setPreferredSize(new Dimension(500, 120));
         exitButton.setMaximumSize(new Dimension(500, 120));
+
+        /* Add hover effect for exit button */
+        exitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonColor());
+                repaint();
+            }
+        });
 
         /* Define action for exit button */
         final ButtonActions buttonActions = new ButtonActions(this.mainFrame);
