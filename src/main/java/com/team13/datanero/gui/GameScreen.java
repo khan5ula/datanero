@@ -509,7 +509,7 @@ public class GameScreen extends JPanel {
      * Method that plays correct answer sound effect.
      */
     private void playCorrectAnswerSound(Sound correctAnswerSound) {
-        wrongAnswerSound.setAudioFile("src/main/java/com/team13/datanero/sounds/correctanswer.wav");
-        wrongAnswerSound.start();
+        correctAnswerSound.setAudioFile("src/main/java/com/team13/datanero/sounds/correctanswer.wav");
+        correctAnswerSound.start();
     }
 }

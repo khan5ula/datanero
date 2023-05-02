@@ -40,10 +40,6 @@ public class Sound {
         this.soundStatus = sound;
     }
 
-    // public Sound(String audioFilePath) {
-    // this.audioFilePath = audioFilePath;
-    // }
-
     public void setAudioFile(String audioFilePath) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audioFilePath));
