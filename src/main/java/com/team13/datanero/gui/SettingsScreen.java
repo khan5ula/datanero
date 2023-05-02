@@ -37,8 +37,8 @@ public class SettingsScreen extends JPanel {
         this.optionButtons = new ArrayList<JButton>();
         this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
+        this.sound = Sound.getInstance();
         setBackground(theme.getScreenBackGroundColor());
-        this.sound = new Sound("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
         init();
     }
 

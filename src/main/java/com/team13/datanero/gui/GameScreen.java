@@ -47,10 +47,10 @@ public class GameScreen extends JPanel {
         this.game = game;
         this.mascotLabel = new JLabel();
         this.theme = Theme.getInstance();
+        this.wrongAnswerSound = Sound.getInstance();
+        this.correctAnswerSound = Sound.getInstance();
         this.htmlFormat = "<html><body style='width: 500px; padding: 0px 20px;'>%s</body></html>";
         setBackground(theme.getScreenBackGroundColor());
-        this.wrongAnswerSound = new Sound("src/main/java/com/team13/datanero/sounds/wronganswer.wav");
-        this.correctAnswerSound = new Sound("src/main/java/com/team13/datanero/sounds/correctanswer.wav");
         init();
     }
 

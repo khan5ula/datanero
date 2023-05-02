@@ -10,12 +10,39 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound {
+    private static Sound instance;
     Clip clip;
     String audioFilePath;
 
-    public Sound(String audioFilePath) {
-        this.audioFilePath = audioFilePath;
+    public enum SoundStatus {
+        ON,
+        OFF
     }
+
+    private SoundStatus soundStatus;
+
+    private Sound() {
+    }
+
+    public static Sound getInstance() {
+        if (instance == null) {
+            instance = new Sound();
+            instance.setSoundStatus(SoundStatus.ON);
+        }
+        return instance;
+    }
+
+    public SoundStatus getSoundStatus() {
+        return this.soundStatus;
+    }
+
+    public void setSoundStatus(SoundStatus sound) {
+        this.soundStatus = sound;
+    }
+
+    // public Sound(String audioFilePath) {
+    // this.audioFilePath = audioFilePath;
+    // }
 
     public void setAudioFile(String audioFilePath) {
         try {
