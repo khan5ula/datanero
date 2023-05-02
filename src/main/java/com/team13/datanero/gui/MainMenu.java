@@ -16,6 +16,7 @@ import java.awt.Dimension;
 public class MainMenu extends JPanel {
     private MainFrame mainFrame;
     private Theme theme;
+    private Sound sound;
     private JLabel subtitle;
     private JButton startButton;
     private JButton settingsButton;
@@ -26,7 +27,9 @@ public class MainMenu extends JPanel {
         this.mainFrame = mainFrame;
         setLayout(new GridBagLayout());
         this.theme = Theme.getInstance();
+        this.sound = Sound.getInstance();
         setBackground(theme.getScreenBackGroundColor());
+        startPlayback(sound);
 
         /* Set an empty border with with a padding around the panel */
         Border borderPadding = BorderFactory.createEmptyBorder(110, 100, 100, 60);
@@ -41,7 +44,8 @@ public class MainMenu extends JPanel {
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
 
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
+        ImageIcon mascotImage = new ImageIcon(
+                "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
         JLabel mascot = new JLabel(mascotImage);
 
         /* Create buttons */
@@ -101,5 +105,11 @@ public class MainMenu extends JPanel {
         this.settingsButton.setBackground(theme.getSettingsButtonColor());
         this.highScoresButton.setBackground(theme.getHighScoreButtonColor());
         this.exitButton.setBackground(theme.getQuitGameButtonColor());
+    }
+
+    private void startPlayback(Sound sound) {
+        sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
+        sound.start();
+        sound.loop();
     }
 }

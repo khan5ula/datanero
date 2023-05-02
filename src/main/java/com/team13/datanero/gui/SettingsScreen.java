@@ -89,7 +89,7 @@ public class SettingsScreen extends JPanel {
 
             switch (i) {
                 case 0: // Set music button
-                    this.musicButton = new CustomButton("Pois päältä", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    this.musicButton = new CustomButton("Päällä", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.musicButton.setForeground(Color.BLACK);
                     this.musicButton.setPreferredSize(buttonDimension);
                     this.musicButton.setMaximumSize(buttonDimension);
@@ -195,11 +195,11 @@ public class SettingsScreen extends JPanel {
      */
     private void toggleMusic() {
         if (musicButton.getText().equals("Pois päältä")) {
-            System.out.println("Status: Player toggled background music playback on");
+            System.out.println("Status: Player toggled background music on");
             startPlayback(sound);
             musicButton.setText("Päällä");
         } else {
-            System.out.println("Status: Player toggled background music playback off");
+            System.out.println("Status: Player toggled background music off");
             stopPlayback(sound);
             musicButton.setText("Pois päältä");
         }
