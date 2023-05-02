@@ -16,12 +16,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.team13.datanero.gui.Sound.SoundStatus;
 import com.team13.datanero.gui.Theme.FontStyle;
 import com.team13.datanero.gui.Theme.ThemeType;
 
 public class SettingsScreen extends JPanel {
     private MainFrame mainFrame;
     private JLabel header;
+    private JButton musicButton;
     private JButton soundButton;
     private JButton languageButton;
     private JButton difficultyButton;
@@ -57,7 +59,7 @@ public class SettingsScreen extends JPanel {
         setHeader(gbc);
 
         /* Create options */
-        String[] optionNames = { "Äänet", "Kieli", "Vaikeustaso", "Teema" };
+        String[] optionNames = { "Musiikki", "Peliäänet", "Kieli", "Vaikeustaso", "Teema" };
         GridBagConstraints optionGbc = new GridBagConstraints();
         optionGbc.gridx = 0;
         optionGbc.gridy = 1;
@@ -80,14 +82,24 @@ public class SettingsScreen extends JPanel {
 
         Dimension buttonDimension = new Dimension(250, 60);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             this.optionTextList.add(new JLabel(optionNames[i]));
             optionTextList.get(i).setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 32));
             add(optionTextList.get(i), optionGbc);
 
             switch (i) {
-                case 0: // Set sound button
-                    this.soundButton = new CustomButton("Pois päältä", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                case 0: // Set music button
+                    this.musicButton = new CustomButton("Pois päältä", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    this.musicButton.setForeground(Color.BLACK);
+                    this.musicButton.setPreferredSize(buttonDimension);
+                    this.musicButton.setMaximumSize(buttonDimension);
+                    this.musicButton.setHorizontalAlignment(SwingConstants.RIGHT);
+                    this.musicButton.addActionListener(new MusicButtonListener());
+                    add(this.musicButton, optionButtonGbc);
+                    this.optionButtons.add(this.musicButton);
+                    break;
+                case 1: // Set sound button
+                    this.soundButton = new CustomButton("Päällä", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.soundButton.setForeground(Color.BLACK);
                     this.soundButton.setPreferredSize(buttonDimension);
                     this.soundButton.setMaximumSize(buttonDimension);
@@ -96,7 +108,7 @@ public class SettingsScreen extends JPanel {
                     add(this.soundButton, optionButtonGbc);
                     this.optionButtons.add(this.soundButton);
                     break;
-                case 1: // Set language button
+                case 2: // Set language button
                     this.languageButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.languageButton.setForeground(Color.BLACK);
                     this.languageButton.setPreferredSize(buttonDimension);
@@ -105,7 +117,7 @@ public class SettingsScreen extends JPanel {
                     add(this.languageButton, optionButtonGbc);
                     this.optionButtons.add(this.languageButton);
                     break;
-                case 2: // Set difficulty button
+                case 3: // Set difficulty button
                     this.difficultyButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.difficultyButton.setForeground(Color.BLACK);
                     this.difficultyButton.setPreferredSize(buttonDimension);
@@ -115,7 +127,7 @@ public class SettingsScreen extends JPanel {
                     this.optionButtons.add(this.difficultyButton);
                     this.optionButtons.add(this.difficultyButton);
                     break;
-                case 3: // Set theme button
+                case 4: // Set theme button
                     this.themeButton = new CustomButton("Vaalea", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.themeButton.setForeground(Color.BLACK);
                     this.themeButton.setPreferredSize(buttonDimension);
@@ -179,16 +191,31 @@ public class SettingsScreen extends JPanel {
     }
 
     /**
-     * Method that switches the system sound On and Off.
+     * Method that toggles background music playback On and Off.
+     */
+    private void toggleMusic() {
+        if (musicButton.getText().equals("Pois päältä")) {
+            System.out.println("Status: Player toggled background music playback on");
+            startPlayback(sound);
+            musicButton.setText("Päällä");
+        } else {
+            System.out.println("Status: Player toggled background music playback off");
+            stopPlayback(sound);
+            musicButton.setText("Pois päältä");
+        }
+    }
+
+    /**
+     * Method that switches game sounds On and Off.
      */
     private void changeSound() {
         if (soundButton.getText().equals("Pois päältä")) {
-            System.out.println("Status: Player switched sounds on");
-            playSound(sound);
+            System.out.println("Status: Player switched game sounds on");
+            sound.setSoundStatus(SoundStatus.ON);
             soundButton.setText("Päällä");
         } else {
-            System.out.println("Status: Player switched sounds off");
-            stopSound(sound);
+            System.out.println("Status: Player switched game sounds off");
+            sound.setSoundStatus(SoundStatus.OFF);
             soundButton.setText("Pois päältä");
         }
     }
@@ -228,7 +255,18 @@ public class SettingsScreen extends JPanel {
     }
 
     /**
-     * Small private class for sound button. Calls changeSound() method when
+     * Small private class for music button. Calls toggleMusic() method when
+     * pressed.
+     */
+    private class MusicButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            toggleMusic();
+        }
+    }
+
+    /**
+     * Small private class for sound button. Calls toggleMusic() method when
      * pressed.
      */
     private class SoundButtonListener implements ActionListener {
@@ -236,7 +274,6 @@ public class SettingsScreen extends JPanel {
         public void actionPerformed(ActionEvent e) {
             changeSound();
         }
-
     }
 
     /**
@@ -253,7 +290,7 @@ public class SettingsScreen extends JPanel {
     /**
      * Method that starts the background music playback.
      */
-    private void playSound(Sound sound) {
+    private void startPlayback(Sound sound) {
         sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
         sound.start();
         sound.loop();
@@ -262,7 +299,7 @@ public class SettingsScreen extends JPanel {
     /**
      * Method that stops the background music playback.
      */
-    private void stopSound(Sound sound) {
+    private void stopPlayback(Sound sound) {
         sound.stop();
     }
 }

@@ -24,6 +24,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.gui.Sound.SoundStatus;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameScreen extends JPanel {
@@ -379,14 +380,18 @@ public class GameScreen extends JPanel {
             JButton clickedButton = answerButtons[answerIndex];
 
             if (wasAnswerCorrect) {
-                playCorrectAnswerSound(correctAnswerSound);
+                if (correctAnswerSound.getSoundStatus() == SoundStatus.ON) {
+                    playCorrectAnswerSound(correctAnswerSound);
+                }
                 clickedButton.setBackground(theme.getCorrectAnswerButtonColor());
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
                 this.timerDelay = 1200;
             } else {
-                playWrongAnswerSound(wrongAnswerSound);
+                if (wrongAnswerSound.getSoundStatus() == SoundStatus.ON) {
+                    playWrongAnswerSound(wrongAnswerSound);
+                }
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
                 game.decrementLives();
