@@ -149,7 +149,7 @@ public class GameOverScreen extends JPanel {
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
         this.score = Game.getInstance().getScore();
-        this.scoreInputButton.setBackground(theme.getStartGameButtonColor());
+        this.scoreInputButton.setBackground(theme.getAnswerButtonColor());
         this.exitButton.setBackground(theme.getExitButtonColor());
         messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());

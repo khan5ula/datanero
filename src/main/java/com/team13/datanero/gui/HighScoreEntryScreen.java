@@ -83,7 +83,7 @@ public class HighScoreEntryScreen extends JPanel {
 
     private void setSubmitButton(GridBagConstraints gbc) {
         /* Create submit button */
-        submitButton = new CustomButton("Tallenna", theme.getExitButtonColor(), 24, FontStyle.BOLD);
+        submitButton = new CustomButton("Tallenna", theme.getAnswerButtonColor(), 24, FontStyle.BOLD);
         submitButton.setActionCommand("Tallenna nimimerkki");
         submitButton.setPreferredSize(new Dimension(200, 80));
         submitButton.setMaximumSize(new Dimension(200, 80));

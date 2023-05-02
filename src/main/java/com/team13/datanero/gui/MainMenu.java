@@ -16,7 +16,6 @@ import java.awt.Dimension;
 public class MainMenu extends JPanel {
     private MainFrame mainFrame;
     private Theme theme;
-    private Sound sound;
     private JLabel subtitle;
     private JButton startButton;
     private JButton settingsButton;
@@ -27,9 +26,7 @@ public class MainMenu extends JPanel {
         this.mainFrame = mainFrame;
         setLayout(new GridBagLayout());
         this.theme = Theme.getInstance();
-        this.sound = Sound.getInstance();
         setBackground(theme.getScreenBackGroundColor());
-        startPlayback(sound);
 
         /* Set an empty border with with a padding around the panel */
         Border borderPadding = BorderFactory.createEmptyBorder(110, 100, 100, 60);
@@ -107,9 +104,4 @@ public class MainMenu extends JPanel {
         this.exitButton.setBackground(theme.getExitButtonColor());
     }
 
-    private void startPlayback(Sound sound) {
-        sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
-        sound.start();
-        sound.loop();
-    }
 }

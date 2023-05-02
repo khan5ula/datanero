@@ -89,7 +89,7 @@ public class SettingsScreen extends JPanel {
 
             switch (i) {
                 case 0: // Set music button
-                    this.musicButton = new CustomButton("Päällä", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    this.musicButton = new CustomButton("Pois päältä", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.musicButton.setForeground(Color.BLACK);
                     this.musicButton.setPreferredSize(buttonDimension);
                     this.musicButton.setMaximumSize(buttonDimension);
