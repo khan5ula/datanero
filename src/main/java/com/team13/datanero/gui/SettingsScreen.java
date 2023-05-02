@@ -33,6 +33,7 @@ public class SettingsScreen extends JPanel {
     private ArrayList<JLabel> optionTextList;
     private Theme theme;
     private Sound sound;
+    private Sound clickSound;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -40,6 +41,7 @@ public class SettingsScreen extends JPanel {
         this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
         this.sound = Sound.getInstance();
+        this.clickSound = Sound.getInstance();
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -210,10 +212,12 @@ public class SettingsScreen extends JPanel {
      */
     private void changeSound() {
         if (soundButton.getText().equals("Pois päältä")) {
+            playClickSound(clickSound);
             System.out.println("Status: Player switched game sounds on");
             sound.setSoundStatus(SoundStatus.ON);
             soundButton.setText("Päällä");
         } else {
+            playClickSound(clickSound);
             System.out.println("Status: Player switched game sounds off");
             sound.setSoundStatus(SoundStatus.OFF);
             soundButton.setText("Pois päältä");
@@ -226,12 +230,14 @@ public class SettingsScreen extends JPanel {
     private void changeTheme() {
         /* If player chose dark theme */
         if (themeButton.getText().equals("Vaalea")) {
+            playClickSound(clickSound);
             System.out.println("Status: Player chose dark theme");
             theme.setCurrentTheme(ThemeType.DARK);
             themeButton.setText("Tumma");
 
             /* If player chose light theme */
         } else {
+            playClickSound(clickSound);
             System.out.println("Status: Player chose light theme");
             theme.setCurrentTheme(ThemeType.LIGHT);
             setBackground(theme.getScreenBackGroundColor());
@@ -301,5 +307,15 @@ public class SettingsScreen extends JPanel {
      */
     private void stopPlayback(Sound sound) {
         sound.stop();
+    }
+
+    /**
+     * Method that plays click sound effect.
+     */
+    private void playClickSound(Sound clickSound) {
+        if (clickSound.getSoundStatus() == SoundStatus.ON) {
+            clickSound.setAudioFile("src/main/java/com/team13/datanero/sounds/buttonclick.wav");
+            clickSound.start();
+        }
     }
 }
