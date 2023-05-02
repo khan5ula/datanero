@@ -111,7 +111,7 @@ public class HighScoreEntryScreen extends JPanel {
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
         this.promptLabel.setForeground(theme.getGeneralTextColor());
-        this.submitButton.setBackground(theme.getExitButtonColor());
+        this.submitButton.setBackground(theme.getAnswerButtonColor());
         this.score = Game.getInstance().getScore();
         System.out
                 .println("Status: High score entry screen message: Enter your nickname. Your score is: " + this.score);
