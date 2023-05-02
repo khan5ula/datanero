@@ -49,7 +49,8 @@ public class GameOverScreen extends JPanel {
 
     private void setMascot(GridBagConstraints gbc) {
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon("src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
+        ImageIcon mascotImage = new ImageIcon(
+                "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
         JLabel mascot = new JLabel(mascotImage);
 
         /* Add mascot to the grid */
@@ -98,7 +99,7 @@ public class GameOverScreen extends JPanel {
 
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
         this.exitButton.setActionCommand("Palaa päävalikkoon");
         this.exitButton.setPreferredSize(new Dimension(500, 120));
         this.exitButton.setMaximumSize(new Dimension(500, 120));
@@ -120,7 +121,7 @@ public class GameOverScreen extends JPanel {
 
     private void setScoreInputButton(GridBagConstraints gbc) {
         /* Create score input button */
-        this.scoreInputButton = new CustomButton("Tallenna pisteet", theme.getQuitGameButtonColor(), 32,
+        this.scoreInputButton = new CustomButton("Tallenna pisteet", theme.getExitButtonColor(), 32,
                 FontStyle.BOLD);
         this.scoreInputButton.setActionCommand("Siirry syöttämään pisteet");
         this.scoreInputButton.setPreferredSize(new Dimension(500, 120));

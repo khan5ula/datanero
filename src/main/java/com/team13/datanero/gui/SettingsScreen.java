@@ -169,7 +169,7 @@ public class SettingsScreen extends JPanel {
 
     private void setExitButton(GridBagConstraints gbc, String[] optionNames, Insets padding) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
         this.exitButton.setActionCommand("Palaa päävalikkoon");
         this.exitButton.setPreferredSize(new Dimension(500, 120));
         this.exitButton.setMaximumSize(new Dimension(500, 120));
@@ -251,7 +251,7 @@ public class SettingsScreen extends JPanel {
         }
 
         this.header.setForeground(theme.getGeneralTextColor());
-        this.exitButton.setBackground(theme.getQuitGameButtonColor());
+        this.exitButton.setBackground(theme.getExitButtonColor());
     }
 
     /**

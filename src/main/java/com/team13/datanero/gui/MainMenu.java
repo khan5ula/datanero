@@ -59,7 +59,7 @@ public class MainMenu extends JPanel {
                 FontStyle.BOLD);
         this.highScoresButton.setPreferredSize(new Dimension(500, 120));
 
-        this.exitButton = new CustomButton("Poistu", theme.getQuitGameButtonColor(), 38, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Poistu", theme.getExitButtonColor(), 38, FontStyle.BOLD);
         this.exitButton.setPreferredSize(new Dimension(500, 120));
 
         /* Button action handling */
@@ -104,7 +104,7 @@ public class MainMenu extends JPanel {
         this.startButton.setBackground(theme.getStartGameButtonColor());
         this.settingsButton.setBackground(theme.getSettingsButtonColor());
         this.highScoresButton.setBackground(theme.getHighScoreButtonColor());
-        this.exitButton.setBackground(theme.getQuitGameButtonColor());
+        this.exitButton.setBackground(theme.getExitButtonColor());
     }
 
     private void startPlayback(Sound sound) {

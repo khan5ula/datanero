@@ -83,7 +83,7 @@ public class HighScoreEntryScreen extends JPanel {
 
     private void setSubmitButton(GridBagConstraints gbc) {
         /* Create submit button */
-        submitButton = new CustomButton("Tallenna", theme.getQuitGameButtonColor(), 24, FontStyle.BOLD);
+        submitButton = new CustomButton("Tallenna", theme.getExitButtonColor(), 24, FontStyle.BOLD);
         submitButton.setActionCommand("Tallenna nimimerkki");
         submitButton.setPreferredSize(new Dimension(200, 80));
         submitButton.setMaximumSize(new Dimension(200, 80));
@@ -111,7 +111,7 @@ public class HighScoreEntryScreen extends JPanel {
     public void updateAndDisplayScore() {
         setBackground(theme.getScreenBackGroundColor());
         this.promptLabel.setForeground(theme.getGeneralTextColor());
-        this.submitButton.setBackground(theme.getQuitGameButtonColor());
+        this.submitButton.setBackground(theme.getExitButtonColor());
         this.score = Game.getInstance().getScore();
         System.out
                 .println("Status: High score entry screen message: Enter your nickname. Your score is: " + this.score);

@@ -81,7 +81,7 @@ public class HighScoreScreen extends JPanel {
      */
     private void setExitButton(final GridBagConstraints gbc) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getQuitGameButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
         this.exitButton.setActionCommand("Palaa päävalikkoon");
         exitButton.setPreferredSize(new Dimension(500, 120));
         exitButton.setMaximumSize(new Dimension(500, 120));
