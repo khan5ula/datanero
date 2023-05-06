@@ -6,8 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -42,6 +42,7 @@ public class GameScreen extends JPanel {
     private String htmlFormat;
     private Sound wrongAnswerSound;
     private Sound correctAnswerSound;
+    private boolean hoverEnabled = true;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
@@ -90,11 +91,28 @@ public class GameScreen extends JPanel {
         String[] answers = game.getAnswersForCurrentQuestion();
         for (int i = 0; i < this.answerButtons.length; i++) {
             String buttonText = String.format(this.htmlFormat, answers[i]);
+            final int index = i;
             this.answerButtons[i] = new CustomButton(buttonText, theme.getAnswerButtonColor(), 30, FontStyle.SEMIBOLD);
             this.answerButtons[i].addActionListener(new AnswerButtonListener(i));
             this.answerButtons[i].setPreferredSize(new Dimension(800, 300));
             this.answerButtons[i].setMaximumSize(new Dimension(800, 300));
-            this.answerButtons[i].addMouseListener(new MouseAdapter(i));
+            this.answerButtons[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    if (hoverEnabled) {
+                        answerButtons[index].setBackground(theme.getAnswerButtonHoverColor());
+                        repaint();
+                    }
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if (hoverEnabled) {
+                        answerButtons[index].setBackground(theme.getAnswerButtonColor());
+                        repaint();
+                    }
+                }
+            });
         }
 
         /* Create a list of the answer buttons and shuffle it */
@@ -203,6 +221,19 @@ public class GameScreen extends JPanel {
         exitButton.setActionCommand("Lopeta");
         exitButton.setPreferredSize(new Dimension(150, 100));
         exitButton.setMaximumSize(new Dimension(150, 100));
+        exitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonHoverColor());
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                exitButton.setBackground(theme.getExitButtonColor());
+                repaint();
+            }
+        });
 
         /* Define action for exit button */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
@@ -345,24 +376,6 @@ public class GameScreen extends JPanel {
     }
 
     /**
-     * Method that sets the Mouse Hover Boolean ON or OFF.
-     * <p>
-     * This method should be used with the Mouse Listener Class.
-     * 
-     * @param enabled Boolean that determines the state of the Hover.
-     */
-    private void setHoverEffectEnabled(boolean enabled) {
-        for (JButton button : answerButtons) {
-            for (MouseListener listener : button.getMouseListeners()) {
-                if (listener instanceof MouseAdapter) {
-                    ((MouseAdapter) listener).setHoverEnabled(enabled);
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
      * Private class used by Game Screen Class.
      * Contains the actions for pressing buttons.
      */
@@ -406,7 +419,7 @@ public class GameScreen extends JPanel {
             }
 
             /* Temporarily disable hover effect */
-            setHoverEffectEnabled(false);
+            hoverEnabled = false;
 
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -432,7 +445,7 @@ public class GameScreen extends JPanel {
                         }
 
                         /* Enable hover effect */
-                        setHoverEffectEnabled(true);
+                        hoverEnabled = true;
                     }
                 }
             };
@@ -440,61 +453,6 @@ public class GameScreen extends JPanel {
             timer.setRepeats(false); // Make the timer execute only once
             timer.start();
         }
-    }
-
-    /**
-     * Private class used by Game Screen Class.
-     * Contains methods for mouse actions.
-     */
-    private class MouseAdapter implements MouseListener {
-        private int answerIndex;
-        private boolean hoverEnabled = true;
-
-        public MouseAdapter(int answerIndex) {
-            this.answerIndex = answerIndex;
-        }
-
-        public void setHoverEnabled(boolean enabled) {
-            hoverEnabled = enabled;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mouseClicked'");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mousePressed'");
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            // TODO Auto-generated method stub
-            // throw new UnsupportedOperationException("Unimplemented method
-            // 'mouseReleased'");
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            if (hoverEnabled) {
-                JButton hoverButton = answerButtons[answerIndex];
-                hoverButton.setBackground(theme.getAnswerButtonHoverColor());
-            }
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            if (hoverEnabled) {
-                JButton hoverButton = answerButtons[answerIndex];
-                hoverButton.setBackground(theme.getAnswerButtonColor());
-            }
-        }
-
     }
 
     /**
