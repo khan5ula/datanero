@@ -24,7 +24,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import com.team13.datanero.backend.Game;
-import com.team13.datanero.gui.Sound.SoundStatus;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameScreen extends JPanel {
@@ -40,8 +39,7 @@ public class GameScreen extends JPanel {
     private boolean wasAnswerCorrect;
     private Theme theme;
     private String htmlFormat;
-    private Sound wrongAnswerSound;
-    private Sound correctAnswerSound;
+    private Sound sound;
     private boolean hoverEnabled = true;
 
     public GameScreen(MainFrame mainFrame, Game game) {
@@ -49,8 +47,7 @@ public class GameScreen extends JPanel {
         this.game = game;
         this.mascotLabel = new JLabel();
         this.theme = Theme.getInstance();
-        this.wrongAnswerSound = Sound.getInstance();
-        this.correctAnswerSound = Sound.getInstance();
+        this.sound = Sound.getInstance();
         this.htmlFormat = "<html><body style='width: 500px; padding: 0px 20px;'>%s</body></html>";
         setBackground(theme.getScreenBackGroundColor());
         init();
@@ -393,18 +390,14 @@ public class GameScreen extends JPanel {
             JButton clickedButton = answerButtons[answerIndex];
 
             if (wasAnswerCorrect) {
-                if (correctAnswerSound.getSoundStatus() == SoundStatus.ON) {
-                    playCorrectAnswerSound(correctAnswerSound);
-                }
+                sound.playCorrectAnswerSound();
                 clickedButton.setBackground(theme.getCorrectAnswerButtonColor());
                 game.incrementScore();
                 updatePositiveMascot();
                 updateScore();
                 this.timerDelay = 1200;
             } else {
-                if (wrongAnswerSound.getSoundStatus() == SoundStatus.ON) {
-                    playWrongAnswerSound(wrongAnswerSound);
-                }
+                sound.playWrongAnswerSound();
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
                 game.decrementLives();
@@ -455,19 +448,4 @@ public class GameScreen extends JPanel {
         }
     }
 
-    /**
-     * Method that plays wrong answer sound effect.
-     */
-    private void playWrongAnswerSound(Sound wrongAnswerSound) {
-        wrongAnswerSound.setAudioFile("src/main/java/com/team13/datanero/sounds/wronganswer.wav");
-        wrongAnswerSound.start();
-    }
-
-    /**
-     * Method that plays correct answer sound effect.
-     */
-    private void playCorrectAnswerSound(Sound correctAnswerSound) {
-        correctAnswerSound.setAudioFile("src/main/java/com/team13/datanero/sounds/correctanswer.wav");
-        correctAnswerSound.start();
-    }
 }

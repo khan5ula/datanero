@@ -11,8 +11,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound {
     private static Sound instance;
-    Clip clip;
-    String audioFilePath;
+    private Clip backgroundMusic;
+    private Clip buttonClick;
+    private Clip correctAnswer;
+    private Clip wrongAnswer;
+    // Clip clip;
+    // String audioFilePath;
 
     public enum SoundStatus {
         ON,
@@ -22,6 +26,34 @@ public class Sound {
     private SoundStatus soundStatus;
 
     private Sound() {
+        try {
+            AudioInputStream backgroundMusicInputStream = AudioSystem
+                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav"));
+            backgroundMusic = AudioSystem.getClip();
+            backgroundMusic.open(backgroundMusicInputStream);
+
+            AudioInputStream buttonClickInputStream = AudioSystem
+                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/buttonclick.wav"));
+            buttonClick = AudioSystem.getClip();
+            buttonClick.open(buttonClickInputStream);
+
+            AudioInputStream correctAnswerInputStream = AudioSystem
+                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/correctanswer.wav"));
+            correctAnswer = AudioSystem.getClip();
+            correctAnswer.open(correctAnswerInputStream);
+
+            AudioInputStream wrongAnswerInputStream = AudioSystem
+                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/wronganswer.wav"));
+            wrongAnswer = AudioSystem.getClip();
+            wrongAnswer.open(wrongAnswerInputStream);
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Sound getInstance() {
@@ -36,34 +68,41 @@ public class Sound {
         return this.soundStatus;
     }
 
-    public void setSoundStatus(SoundStatus sound) {
-        this.soundStatus = sound;
+    public void setSoundStatus(SoundStatus soundStatus) {
+        this.soundStatus = soundStatus;
     }
 
-    public void setAudioFile(String audioFilePath) {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audioFilePath));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
+    public void startBackgroundMusic() {
+        if (backgroundMusic != null && !backgroundMusic.isRunning()) {
+            backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
-    public void start() {
-        clip.start();
+    public void stopBackgroundMusic() {
+        if (backgroundMusic != null && backgroundMusic.isRunning()) {
+            backgroundMusic.stop();
+        }
     }
 
-    public void loop() {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    public void playButtonClickSound() {
+        if (buttonClick != null && soundStatus.equals(SoundStatus.ON)) {
+            buttonClick.setFramePosition(0);
+            buttonClick.start();
+        }
     }
 
-    public void stop() {
-        clip.stop();
+    public void playCorrectAnswerSound() {
+        if (correctAnswer != null && soundStatus.equals(SoundStatus.ON)) {
+            correctAnswer.setFramePosition(0);
+            correctAnswer.start();
+        }
+    }
+
+    public void playWrongAnswerSound() {
+        if (wrongAnswer != null && soundStatus.equals(SoundStatus.ON)) {
+            wrongAnswer.setFramePosition(0);
+            wrongAnswer.start();
+        }
     }
 
 }

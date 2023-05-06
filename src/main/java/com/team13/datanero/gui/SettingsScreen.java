@@ -35,7 +35,6 @@ public class SettingsScreen extends JPanel {
     private ArrayList<JLabel> optionTextList;
     private Theme theme;
     private Sound sound;
-    private Sound clickSound;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -43,7 +42,6 @@ public class SettingsScreen extends JPanel {
         this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
         this.sound = Sound.getInstance();
-        this.clickSound = Sound.getInstance();
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -215,11 +213,11 @@ public class SettingsScreen extends JPanel {
     private void toggleMusic() {
         if (musicButton.getText().equals("Pois päältä")) {
             System.out.println("Status: Player toggled background music on");
-            startPlayback(sound);
+            sound.startBackgroundMusic();
             musicButton.setText("Päällä");
         } else {
             System.out.println("Status: Player toggled background music off");
-            stopPlayback(sound);
+            sound.stopBackgroundMusic();
             musicButton.setText("Pois päältä");
         }
     }
@@ -229,12 +227,12 @@ public class SettingsScreen extends JPanel {
      */
     private void changeSound() {
         if (soundButton.getText().equals("Pois päältä")) {
-            playClickSound(clickSound);
+            sound.playButtonClickSound();
             System.out.println("Status: Player switched game sounds on");
             sound.setSoundStatus(SoundStatus.ON);
             soundButton.setText("Päällä");
         } else {
-            playClickSound(clickSound);
+            sound.playButtonClickSound();
             System.out.println("Status: Player switched game sounds off");
             sound.setSoundStatus(SoundStatus.OFF);
             soundButton.setText("Pois päältä");
@@ -247,14 +245,14 @@ public class SettingsScreen extends JPanel {
     private void changeTheme() {
         /* If player chose dark theme */
         if (themeButton.getText().equals("Vaalea")) {
-            playClickSound(clickSound);
+            sound.playButtonClickSound();
             System.out.println("Status: Player chose dark theme");
             theme.setCurrentTheme(ThemeType.DARK);
             themeButton.setText("Tumma");
 
             /* If player chose light theme */
         } else {
-            playClickSound(clickSound);
+            sound.playButtonClickSound();
             System.out.println("Status: Player chose light theme");
             theme.setCurrentTheme(ThemeType.LIGHT);
             setBackground(theme.getScreenBackGroundColor());
@@ -310,29 +308,4 @@ public class SettingsScreen extends JPanel {
         }
     }
 
-    /**
-     * Method that starts the background music playback.
-     */
-    private void startPlayback(Sound sound) {
-        sound.setAudioFile("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav");
-        sound.start();
-        sound.loop();
-    }
-
-    /**
-     * Method that stops the background music playback.
-     */
-    private void stopPlayback(Sound sound) {
-        sound.stop();
-    }
-
-    /**
-     * Method that plays click sound effect.
-     */
-    private void playClickSound(Sound clickSound) {
-        if (clickSound.getSoundStatus() == SoundStatus.ON) {
-            clickSound.setAudioFile("src/main/java/com/team13/datanero/sounds/buttonclick.wav");
-            clickSound.start();
-        }
-    }
 }
