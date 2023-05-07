@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -341,26 +342,46 @@ public class GameScreen extends JPanel {
      * Method that updates the game mascot based on the success of the player.
      */
     private void updateNegativeMascot() {
-        String imagePath;
+        String imagePathWithSpeechBubble = "";
+        String imagePath = "";
+        int delay = 0; // 1000 milliseconds = 1 second
+
         switch (game.getLives()) {
-            case 3:
-                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-                break;
             case 2:
+                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
+                delay = 2000; // short text, short delay
                 break;
             case 1:
+                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
+                delay = 3000;
                 break;
             case 0:
+                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
+                delay = 3000;
                 break;
             default:
+                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
+                delay = 1000;
         }
 
-        ImageIcon newMascotIcon = new ImageIcon(imagePath);
+        /* Change the speech bubble mascot to a standard one after a delay */
+        AtomicReference<String> imagePathRef = new AtomicReference<>(imagePath);
+        ImageIcon newMascotIcon = new ImageIcon(imagePathWithSpeechBubble);
         this.mascotLabel.setIcon(newMascotIcon);
+
+        Timer timer = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImageIcon originalMascotIcon = new ImageIcon(imagePathRef.get());
+                mascotLabel.setIcon(originalMascotIcon);
+            }
+        });
+        timer.setRepeats(false); // Only fire the timer once
+        timer.start();
     }
 
     /**
@@ -368,8 +389,21 @@ public class GameScreen extends JPanel {
      */
     private void updatePositiveMascot() {
         String imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-        ImageIcon newMascotIcon = new ImageIcon(imagePath);
+        String imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-oikein.png";
+        ImageIcon newMascotIcon = new ImageIcon(imagePathWithSpeechBubble);
         this.mascotLabel.setIcon(newMascotIcon);
+
+        /* Change the speech bubble mascot to a standard one after a delay */
+        AtomicReference<String> imagePathRef = new AtomicReference<>(imagePath);
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImageIcon originalMascotIcon = new ImageIcon(imagePathRef.get());
+                mascotLabel.setIcon(originalMascotIcon);
+            }
+        });
+        timer.setRepeats(false); // Only fire the timer once
+        timer.start();
     }
 
     /**
