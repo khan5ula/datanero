@@ -9,6 +9,8 @@ import com.team13.datanero.backend.Game;
 import com.team13.datanero.backend.HighScore;
 
 import java.awt.CardLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -17,12 +19,13 @@ public class MainFrame extends JFrame {
     private MainMenu mainMenu;
     private HighScoreScreen highScoreScreen;
     private HighScoreEntryScreen highScoreEntryScreen;
+    static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
     public MainFrame(Game game) {
         setTitle("DataNero");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(false);
+        setUndecorated(true);
         this.game = Game.getInstance();
 
         /* Use CardLayout to switch between screens */
@@ -144,7 +147,10 @@ public class MainFrame extends JFrame {
                 QuestionParser questionParser = new QuestionParser();
                 questionParser.execute();
                 Game game = Game.getInstance();
-                new MainFrame(game);
+                MainFrame mainFrame = new MainFrame(game);
+
+                /* Set full screen */
+                device.setFullScreenWindow(mainFrame);
 
             } catch (Exception e) {
                 System.out.println(
