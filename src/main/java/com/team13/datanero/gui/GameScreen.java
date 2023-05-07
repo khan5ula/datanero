@@ -350,22 +350,22 @@ public class GameScreen extends JPanel {
             case 2:
                 imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
-                delay = 2000; // short text, short delay
+                delay = 1500; // short text, short delay
                 break;
             case 1:
                 imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
-                delay = 3000;
+                delay = 2200;
                 break;
             case 0:
                 imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
-                delay = 3000;
+                delay = 2200;
                 break;
             default:
                 imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
                 imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-                delay = 1000;
+                delay = 2200;
         }
 
         /* Change the speech bubble mascot to a standard one after a delay */
@@ -395,7 +395,7 @@ public class GameScreen extends JPanel {
 
         /* Change the speech bubble mascot to a standard one after a delay */
         AtomicReference<String> imagePathRef = new AtomicReference<>(imagePath);
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(1100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ImageIcon originalMascotIcon = new ImageIcon(imagePathRef.get());
@@ -438,7 +438,16 @@ public class GameScreen extends JPanel {
                 updateNegativeMascot();
                 updateHearts(game.getLives());
                 updateScore();
-                this.timerDelay = 2000; // longer delay for wrong answer
+                
+                /* Set delay depending on the situation.
+                 * If player has lives left, create moderate delay.
+                 * If player lost the game, give longer delay.
+                 */
+                if (game.getLives() > 0) {
+                    this.timerDelay = 2200;
+                } else {
+                    this.timerDelay = 3000;
+                }
             }
 
             for (JButton button : answerButtons) {
