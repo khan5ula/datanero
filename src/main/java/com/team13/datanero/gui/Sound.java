@@ -15,8 +15,6 @@ public class Sound {
     private Clip buttonClick;
     private Clip correctAnswer;
     private Clip wrongAnswer;
-    // Clip clip;
-    // String audioFilePath;
 
     public enum SoundStatus {
         ON,
@@ -64,26 +62,45 @@ public class Sound {
         return instance;
     }
 
+    /**
+     * Getter for sound status.
+     * 
+     * @return Class variable soundStatus
+     */
     public SoundStatus getSoundStatus() {
         return this.soundStatus;
     }
 
+    /**
+     * Method that can be used to change the sound status.
+     * 
+     * @param soundStatus ON or OFF
+     */
     public void setSoundStatus(SoundStatus soundStatus) {
         this.soundStatus = soundStatus;
     }
 
+    /**
+     * Method that starts to loop background music.
+     */
     public void startBackgroundMusic() {
         if (backgroundMusic != null && !backgroundMusic.isRunning()) {
             backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
+    /**
+     * Method that stops background music.
+     */
     public void stopBackgroundMusic() {
         if (backgroundMusic != null && backgroundMusic.isRunning()) {
             backgroundMusic.stop();
         }
     }
 
+    /**
+     * Method that plays a button click sound effect.
+     */
     public void playButtonClickSound() {
         if (buttonClick != null && soundStatus.equals(SoundStatus.ON)) {
             buttonClick.setFramePosition(0);
@@ -91,6 +108,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Method that plays a correct answer sound effect.
+     */
     public void playCorrectAnswerSound() {
         if (correctAnswer != null && soundStatus.equals(SoundStatus.ON)) {
             correctAnswer.setFramePosition(0);
@@ -98,6 +118,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Method that plays a wrong answer sound effect.
+     */
     public void playWrongAnswerSound() {
         if (wrongAnswer != null && soundStatus.equals(SoundStatus.ON)) {
             wrongAnswer.setFramePosition(0);
