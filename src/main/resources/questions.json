@@ -1,0 +1,202 @@
+{
+  "questions": [
+    {
+      "question": "Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?",
+      "correctAnswer": "Absoluuttinen normaalimuoto (ANF)",
+      "wrongAnswers": [
+        "Toinen normaalimuoto (2NF)",
+        "Kolmas normaalimuoto (3NF)",
+        "Boyce-Codd normaalimuoto (BCNF)"
+      ]
+    },
+    {
+      "question": "Millä nimellä kutsutaan prosessia, jossa taulu hajautetaan pienemmiksi tauluiksi datan redundanssin vähentämiseksi?",
+      "correctAnswer": "Normalisointi",
+      "wrongAnswers": [
+        "Indeksointi",
+        "Osittaminen",
+        "Partitiointi"
+      ]
+    },
+    {
+      "question": "Millä komennolla luodaan uusi SQL-taulu?",
+      "correctAnswer": "CREATE TABLE",
+      "wrongAnswers": [
+        "CREATE DATABASE",
+        "ALTER TABLE",
+        "INSERT INTO"
+      ]
+    },
+    {
+      "question": "Millä seuraavista komennoista valitaan kaikki sarakkeet taulusta \"employees\"?",
+      "correctAnswer": "SELECT * FROM employees",
+      "wrongAnswers": [
+        "SELECT ALL from employees",
+        "SELECT employees",
+        "SELECT FROM employees"
+      ]
+    },
+    {
+      "question": "Millä seuraavista komennoista voidaan muokata olemassaolevaa SQL-taulua?",
+      "correctAnswer": "ALTER TABLE",
+      "wrongAnswers": [
+        "UPDATE",
+        "CHANGE TABLE",
+        "MODIFY TABLE"
+      ]
+    },
+    {
+      "question": "Mitä SQL-funktiota käytetään palauttamaan rivien lukumäärä taulusta?",
+      "correctAnswer": "COUNT()",
+      "wrongAnswers": [
+        "MAX()",
+        "MIN()",
+        "AVG()"
+      ]
+    },
+    {
+      "question": "Millä seuraavista SQL-komennoista lajitellaan arvot nousevaan tai laskevaan järjestykseen?",
+      "correctAnswer": "ORDER BY",
+      "wrongAnswers": [
+        "GROUP BY",
+        "WHERE",
+        "HAVING"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista ei ole SQL-kielen aggregaattifunktio?",
+      "correctAnswer": "RANK()",
+      "wrongAnswers": [
+        "SUM()",
+        "AVG()",
+        "MAX()"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
+      "correctAnswer": "Liitos (JOIN)",
+      "wrongAnswers": [
+        "Yhdistäminen (MERGE)",
+        "Linkitys (LINK)",
+        "Solmu (NODE)"
+      ]
+    },
+    {
+      "question": "Mikä on koosteattribuutti?",
+      "correctAnswer": "Attribuutti, joka muodostuu useammasta aliattribuutista.",
+      "wrongAnswers": [
+        "Attribuutti, joka esiintyy vain yhdessä relaatiossa.",
+        "Attribuutti, joka esiintyy useammassa relaatiossa.",
+        "Attribuutti, joka on riippuvainen toisesta atribuutista."
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on yksi transaktioiden ACID-ominaisuuksista?",
+      "correctAnswer": "Eristettävyys (Isolation)",
+      "wrongAnswers": [
+        "Integroitavuus (Integration)",
+        "Inkrementaalisuus (Incrementality)",
+        "Sisäsyntyisyys (Intrinsicy)"
+      ]
+    },
+    {
+      "question": "Mikä erottaa SQL- ja NoSQL -tietokantatyypit toisistaan?",
+      "correctAnswer": "SQL käyttää relaatiomalleja, NoSQL ei",
+      "wrongAnswers": [
+        "SQL on ohjelmointikieli, NoSQL ei",
+        "SQL on hidas, NoSQL on nopea",
+        "SQL on tietokanta, NoSQL on tiedostojärjestelmä"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on tietokantojen perusyksikkö, joka voi sisältää yhden tai useamman tietueen?",
+      "correctAnswer": "Taulu",
+      "wrongAnswers": [
+        "Sarake",
+        "Rivi",
+        "Solmu"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on indeksin pääasiallinen tarkoitus tietokantojen kontekstissa?",
+      "correctAnswer": "Parantaa tietojen hakunopeutta",
+      "wrongAnswers": [
+        "Vähentää tietokannan kokoa",
+        "Lisätä tietojen tallennuskapasiteettia",
+        "Estää tietokannan pääsyn valtuuttamattomilta käyttäjiltä"
+      ]
+    },
+    {
+      "question": "Mitä seuraavista SQL-komennoista käytetään tietueen lisäämiseen tauluun?",
+      "correctAnswer": "INSERT INTO",
+      "wrongAnswers": [
+        "UPDATE",
+        "DELETE",
+        "SELECT"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on SQL-lauseen osa, joka määrittelee ehdot tietojen valitsemiseksi?",
+      "correctAnswer": "WHERE",
+      "wrongAnswers": [
+        "SELECT",
+        "FROM",
+        "ORDER BY"
+      ]
+    },
+    {
+      "question": "Mitä tarkoittaa tietokantojen kontekstissa termi 'transaktio'?",
+      "correctAnswer": "Sarja tietokantaoperaatioita, jotka suoritetaan yhtenä kokonaisuutena",
+      "wrongAnswers": [
+        "Tietokannan sisältämä tietue",
+        "Tietokannan sisältämä taulu",
+        "Tietokannan sisältämä solmu"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on yksi tietokantojen ACID-ominaisuuksista?",
+      "correctAnswer": "Kestävyys (Durability)",
+      "wrongAnswers": [
+        "Laajennettavuus (Extensibility)",
+        "Eheys (Integrity)",
+        "Joustavuus (Flexibility)"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on yleisimpiä ongelmia, joita normalisointi pyrkii ratkaisemaan?",
+      "correctAnswer": "Päivitysanomalia",
+      "wrongAnswers": [
+        "Tietokannan rikkominen",
+        "Tietokannan ylikuormitus",
+        "Tietokannan väärinkäyttö"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on ensimmäisen normaalimuodon (1NF) pääasiallinen vaatimus?",
+      "correctAnswer": "Taulun jokaisella sarakkeella on yksinkertainen arvo",
+      "wrongAnswers": [
+        "Taulussa ei ole päällekkäisiä tietueita",
+        "Taulun jokaisella rivillä on yksilöllinen avain",
+        "Taulun kaikki arvot ovat numeerisia"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on normalisoinnin pääasiallinen tavoite?",
+      "correctAnswer": "Vähentää tietokannan redundanssia",
+      "wrongAnswers": [
+        "Parantaa tietokannan suorituskykyä",
+        "Lisätä tietokannan turvallisuutta",
+        "Lisätä tietokannan tallennuskapasiteettia"
+      ]
+    },
+    {
+      "question": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
+      "correctAnswer": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",
+      "wrongAnswers": [
+        "Toinen näistä ei ole tietokanta, vaan taulukointimenetelmä",
+        "Toinen näistä on relaatiotietokanta",
+        "Toiseen voi tallentaa vain numeerista tietoa"
+      ]
+    }
+  ]
+}
