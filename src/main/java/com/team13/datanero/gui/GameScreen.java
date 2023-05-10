@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
@@ -146,7 +147,9 @@ public class GameScreen extends JPanel {
         livesPanel.add(livesLabel, livesPanelConstraints);
 
         /* Create labels for hearts */
-        ImageIcon heartIcon = new ImageIcon("src/main/java/com/team13/datanero/images/heart.png");
+        /* Create labels for hearts */
+        URL heartIconURL = getClass().getResource("/images/heart.png");
+        ImageIcon heartIcon = new ImageIcon(heartIconURL);
         this.heartLabel1 = new JLabel(heartIcon);
         this.heartLabel2 = new JLabel(heartIcon);
         this.heartLabel3 = new JLabel(heartIcon);
@@ -257,8 +260,9 @@ public class GameScreen extends JPanel {
      */
     private void setMascot(GridBagConstraints gbc) {
         /* Load the mascot image */
-        ImageIcon mascotIcon = new ImageIcon(
-                "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png");
+        URL mascotIconURL = getClass()
+                .getResource("/images/dalle-versions/new-generation/dalle-generated-teacher-3.png");
+        ImageIcon mascotIcon = new ImageIcon(mascotIconURL);
 
         /* Create JLabel to hold the image, and set the icon */
         this.mascotLabel.setIcon(mascotIcon);
@@ -303,7 +307,8 @@ public class GameScreen extends JPanel {
      * lives.
      */
     private void updateHearts(int lives) {
-        ImageIcon heartlessIcon = new ImageIcon("src/main/java/com/team13/datanero/images/heartless.png");
+        URL heartlessIconURL = getClass().getResource("/images/heartless.png");
+        ImageIcon heartlessIcon = new ImageIcon(heartlessIconURL);
         switch (lives) {
             case 2:
                 this.heartLabel3.setIcon(heartlessIcon);
@@ -348,39 +353,43 @@ public class GameScreen extends JPanel {
 
         switch (game.getLives()) {
             case 2:
-                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
-                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
+                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
+                imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
                 delay = 1500; // short text, short delay
                 break;
             case 1:
-                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
-                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
+                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
+                imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
                 delay = 2200;
                 break;
             case 0:
-                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
-                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
+                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
+                imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
                 delay = 2200;
                 break;
             default:
-                imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-                imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
+                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
+                imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
                 delay = 2200;
         }
 
-        /* Change the speech bubble mascot to a standard one after a delay */
-        AtomicReference<String> imagePathRef = new AtomicReference<>(imagePath);
-        ImageIcon newMascotIcon = new ImageIcon(imagePathWithSpeechBubble);
-        this.mascotLabel.setIcon(newMascotIcon);
+        URL imagePathWithSpeechBubbleURL = getClass().getResource(imagePathWithSpeechBubble);
+        URL imagePathURL = getClass().getResource(imagePath);
+
+        ImageIcon imageIconWithSpeechBubble = new ImageIcon(imagePathWithSpeechBubbleURL);
+        ImageIcon imageIcon = new ImageIcon(imagePathURL);
+
+        // Use imageIconWithSpeechBubble and imageIcon as needed, for example, to set
+        // the icon for a JLabel
+        mascotLabel.setIcon(imageIconWithSpeechBubble);
 
         Timer timer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon originalMascotIcon = new ImageIcon(imagePathRef.get());
-                mascotLabel.setIcon(originalMascotIcon);
+                mascotLabel.setIcon(imageIcon);
             }
         });
-        timer.setRepeats(false); // Only fire the timer once
+        timer.setRepeats(false);
         timer.start();
     }
 
@@ -388,9 +397,12 @@ public class GameScreen extends JPanel {
      * Method that changes the mascot to happy one.
      */
     private void updatePositiveMascot() {
-        String imagePath = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-        String imagePathWithSpeechBubble = "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/with_textes/mascot-oikein.png";
-        ImageIcon newMascotIcon = new ImageIcon(imagePathWithSpeechBubble);
+        String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
+        String imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-oikein.png";
+
+        URL imagePathWithSpeechBubbleURL = getClass().getResource(imagePathWithSpeechBubble);
+
+        ImageIcon newMascotIcon = new ImageIcon(imagePathWithSpeechBubbleURL);
         this.mascotLabel.setIcon(newMascotIcon);
 
         /* Change the speech bubble mascot to a standard one after a delay */
@@ -398,7 +410,7 @@ public class GameScreen extends JPanel {
         Timer timer = new Timer(1100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon originalMascotIcon = new ImageIcon(imagePathRef.get());
+                ImageIcon originalMascotIcon = new ImageIcon(getClass().getResource(imagePathRef.get()));
                 mascotLabel.setIcon(originalMascotIcon);
             }
         });
@@ -438,8 +450,9 @@ public class GameScreen extends JPanel {
                 updateNegativeMascot();
                 updateHearts(game.getLives());
                 updateScore();
-                
-                /* Set delay depending on the situation.
+
+                /*
+                 * Set delay depending on the situation.
                  * If player has lives left, create moderate delay.
                  * If player lost the game, give longer delay.
                  */

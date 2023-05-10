@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Theme {
     private static Theme instance;
@@ -211,42 +212,36 @@ public class Theme {
 
         switch (style) {
             case BOLD:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Bold.ttf";
+                filepath = "/fonts/FiraCode-Bold.ttf";
                 break;
             case LIGHT:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Light.ttf";
+                filepath = "/fonts/FiraCode-Light.ttf";
                 break;
             case MEDIUM:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Medium.ttf";
+                filepath = "/fonts/FiraCode-Medium.ttf";
                 break;
             case REGULAR:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Retina.ttf";
+                filepath = "/fonts/FiraCode-Regular.ttf";
                 break;
             case RETINA:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Retina.ttf";
+                filepath = "/fonts/FiraCode-Retina.ttf";
                 break;
             case SEMIBOLD:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-SemiBold.ttf";
+                filepath = "/fonts/FiraCode-SemiBold.ttf";
                 break;
             default:
-                filepath = "src/main/java/com/team13/datanero/fonts/FiraCode-Retina.ttf";
+                filepath = "/fonts/FiraCode-Retina.ttf";
         }
 
-        File fontFile = new File(filepath);
-        Font font = null;
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-        } catch (FontFormatException e) {
-            System.out.println("Error: Problem with custom font format: " + e.getMessage());
+            InputStream is = getClass().getResourceAsStream(filepath);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(fontSize);
+            is.close();
+            return font;
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Error: IOException occurred with custom font: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Error: Failed to load custom font: " + filepath);
+            return new Font("Arial", Font.PLAIN, (int) fontSize);
         }
-
-        if (font != null) {
-            font = font.deriveFont(fontSize);
-        }
-        return font;
     }
 }

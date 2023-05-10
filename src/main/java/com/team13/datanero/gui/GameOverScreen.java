@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -51,8 +52,9 @@ public class GameOverScreen extends JPanel {
 
     private void setMascot(GridBagConstraints gbc) {
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon(
-                "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
+        String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-5.png";
+        URL imagePathURL = getClass().getResource(imagePath);
+        ImageIcon mascotImage = new ImageIcon(imagePathURL);
         JLabel mascot = new JLabel(mascotImage);
 
         /* Add mascot to the grid */

@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class QuestionParser {
@@ -16,18 +18,21 @@ public class QuestionParser {
     }
 
     /**
-     * Method that executes all class methods in order to fetch questions from a JSON file.
+     * Method that executes all class methods in order to fetch questions from a
+     * JSON file.
      */
     public void execute() {
         System.out.println("Status: Initializing question parser");
-        String questionsAsString = readFile("src/main/java/com/team13/datanero/questions/questions.json");
+        String questionsAsString = readFile("questions.json");
         JSONObject questionsAsJSON = stringToJsonObject(questionsAsString);
         ArrayList<Question> listOfQuestions = parseQuestions(questionsAsJSON);
         addQuestions(listOfQuestions);
     }
 
     /**
-     * Method that parses the JSONObject of questions into an ArrayList of Question objects.
+     * Method that parses the JSONObject of questions into an ArrayList of Question
+     * objects.
+     * 
      * @param jsonObject JSONObject that contains the questions.
      * @return ArrayList of Question objects.
      */
@@ -55,6 +60,7 @@ public class QuestionParser {
 
     /**
      * Small method that adds the questions to the class variable QuestionBank.
+     * 
      * @param questions ArrayList of the questions parsed from the JSON.
      */
     private void addQuestions(ArrayList<Question> questions) {
@@ -66,19 +72,22 @@ public class QuestionParser {
 
     /**
      * Reads the content from a given filename into a String.
+     * 
      * @param filename String filename (and filepath).
      * @return String containing all content from the requested File.
      */
     private String readFile(String filename) {
         System.out.println("Status: Reading the questions file");
         StringBuilder content = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
                 content.append(line);
             }
         } catch (IOException e) {
-            System.out.println("Error: File could not bea read: " + e.getMessage());
+            System.out.println("Error: File could not be read: " + e.getMessage());
             e.printStackTrace();
         }
         return content.toString();
@@ -86,6 +95,7 @@ public class QuestionParser {
 
     /**
      * Small method that converts a String to JSONObject.
+     * 
      * @param jsonString, the String to be converted.
      * @return The JSONObject containing the content from the parameter String.
      */

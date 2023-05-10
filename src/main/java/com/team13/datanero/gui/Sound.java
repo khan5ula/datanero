@@ -2,6 +2,7 @@ package com.team13.datanero.gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -25,23 +26,23 @@ public class Sound {
 
     private Sound() {
         try {
-            AudioInputStream backgroundMusicInputStream = AudioSystem
-                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/backgroundmusicdemo.wav"));
+            URL backgroundMusicURL = getClass().getResource("/sounds/backgroundmusicdemo.wav");
+            AudioInputStream backgroundMusicInputStream = AudioSystem.getAudioInputStream(backgroundMusicURL);
             backgroundMusic = AudioSystem.getClip();
             backgroundMusic.open(backgroundMusicInputStream);
 
-            AudioInputStream buttonClickInputStream = AudioSystem
-                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/buttonclick.wav"));
+            URL buttonClickURL = getClass().getResource("/sounds/buttonclick.wav");
+            AudioInputStream buttonClickInputStream = AudioSystem.getAudioInputStream(buttonClickURL);
             buttonClick = AudioSystem.getClip();
             buttonClick.open(buttonClickInputStream);
 
-            AudioInputStream correctAnswerInputStream = AudioSystem
-                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/correctanswer.wav"));
+            URL correctAnswerURL = getClass().getResource("/sounds/correctanswer.wav");
+            AudioInputStream correctAnswerInputStream = AudioSystem.getAudioInputStream(correctAnswerURL);
             correctAnswer = AudioSystem.getClip();
             correctAnswer.open(correctAnswerInputStream);
 
-            AudioInputStream wrongAnswerInputStream = AudioSystem
-                    .getAudioInputStream(new File("src/main/java/com/team13/datanero/sounds/wronganswer.wav"));
+            URL wrongAnswerURL = getClass().getResource("/sounds/wronganswer.wav");
+            AudioInputStream wrongAnswerInputStream = AudioSystem.getAudioInputStream(wrongAnswerURL);
             wrongAnswer = AudioSystem.getClip();
             wrongAnswer.open(wrongAnswerInputStream);
 

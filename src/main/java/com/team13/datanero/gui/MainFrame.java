@@ -11,6 +11,7 @@ import com.team13.datanero.backend.HighScore;
 import java.awt.CardLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.io.InputStream;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -135,10 +136,10 @@ public class MainFrame extends JFrame {
         try {
             /* Initialize database */
             DataBase dataBase = DataBase.getInstance();
-
+            
             /* Set database connection */
             try {
-                dataBase.open("src/main/java/com/team13/datanero/data/scores.db");
+                dataBase.open("scores.db");
 
                 HighScore highScore = HighScore.getInstance();
                 highScore.getScoresFromDatabase();
@@ -154,7 +155,7 @@ public class MainFrame extends JFrame {
 
             } catch (Exception e) {
                 System.out.println(
-                        "Error occurred while the server tried to open a database connection: " + e.getMessage());
+                        "Error occurred with a file: " + e.getMessage());
             } finally {
                 dataBase.closeDB();
             }

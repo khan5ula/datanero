@@ -35,7 +35,7 @@ public class MainMenu extends JPanel {
         setBorder(borderPadding);
 
         /* Logo */
-        ImageIcon logoImage = new ImageIcon("src/main/java/com/team13/datanero/images/datanerologo.png");
+        ImageIcon logoImage = new ImageIcon(getClass().getResource("/images/datanerologo.png"));
         JLabel logo = new JLabel(logoImage);
 
         /* Sub-title */
@@ -43,8 +43,8 @@ public class MainMenu extends JPanel {
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
 
         /* Teacher mascot */
-        ImageIcon mascotImage = new ImageIcon(
-                "src/main/java/com/team13/datanero/images/dalle-versions/new-generation/dalle-generated-teacher-5.png");
+        String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-5.png";
+        ImageIcon mascotImage = new ImageIcon(getClass().getResource(imagePath));
         JLabel mascot = new JLabel(mascotImage);
 
         /* Create buttons */
