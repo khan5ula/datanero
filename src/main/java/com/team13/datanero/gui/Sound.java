@@ -59,6 +59,7 @@ public class Sound {
         if (instance == null) {
             instance = new Sound();
             instance.setSoundStatus(SoundStatus.ON);
+            instance.startBackgroundMusic();
         }
         return instance;
     }
