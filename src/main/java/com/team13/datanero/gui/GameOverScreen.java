@@ -39,7 +39,7 @@ public class GameOverScreen extends JPanel {
         setBackground(theme.getScreenBackGroundColor());
 
         /* Add padding to the screen */
-        Border borderPadding = BorderFactory.createEmptyBorder(150, 100, 0, 250);
+        Border borderPadding = BorderFactory.createEmptyBorder(200, 100, 0, 250);
         setBorder(borderPadding);
 
         /* Create and add rest of the elements */
@@ -63,9 +63,8 @@ public class GameOverScreen extends JPanel {
         gbc.gridwidth = 3;
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.0;
+        gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(80, 10, 30, 10);
         add(mascot, gbc);
     }
 
@@ -98,6 +97,7 @@ public class GameOverScreen extends JPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0.0;
         gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(20, 0, 0, 0);
         add(scoreStatusLabel, gbc);
     }
 
