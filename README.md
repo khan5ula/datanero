@@ -10,9 +10,7 @@ Peli on ennen kaikkea hyvä ohjelmoinnin oppimisen keino kehittäjilleen, mutta 
 
 ![Kuva pelinäkymästä](src/main/resources/images/screenshot-of-gamescreen-11-5-23.png)
 
-Peli on standalone -sovellus, joka ei tarvitse internet -yhteyttä toimiakseen. Helpoin tapa ajaa peli on käynnistää allaoleva JAR-tiedosto.
-
-[**Lataa JAR-tiedosto tästä**](https://github.com/khan5ula/datanero/blob/main/target/datanero-1.0-SNAPSHOT-jar-with-dependencies.jar)
+Peli on standalone -sovellus, joka ei tarvitse internet -yhteyttä toimiakseen. Helpoin tapa ajaa peli on käynnistää target -hakemistossa sijaitseva JAR-tiedosto.
 
 JAR-tiedosto voidaan ajaa allaolevalla komennolla:
 >`java -jar TIEDOSTONIMI.jar`
