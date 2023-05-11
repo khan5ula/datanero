@@ -71,7 +71,7 @@ public class GameScreen extends JPanel {
         /* Create text area for the question */
         questionTextArea = new JTextPane();
         questionTextArea.setText(game.getCurrentQuestion());
-        questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 48));
+        questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 56));
         questionTextArea.setForeground(theme.getGeneralTextColor());
         questionTextArea.setOpaque(false);
         questionTextArea.setEditable(false);
@@ -378,9 +378,6 @@ public class GameScreen extends JPanel {
 
         ImageIcon imageIconWithSpeechBubble = new ImageIcon(imagePathWithSpeechBubbleURL);
         ImageIcon imageIcon = new ImageIcon(imagePathURL);
-
-        // Use imageIconWithSpeechBubble and imageIcon as needed, for example, to set
-        // the icon for a JLabel
         mascotLabel.setIcon(imageIconWithSpeechBubble);
 
         Timer timer = new Timer(delay, new ActionListener() {

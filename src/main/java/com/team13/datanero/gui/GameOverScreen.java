@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -13,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 
 import com.team13.datanero.backend.Game;
@@ -28,6 +31,7 @@ public class GameOverScreen extends JPanel {
     private ButtonActions buttonActions;
     private JButton scoreInputButton;
     private JButton exitButton;
+    private JLabel mascot;
 
     public GameOverScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
@@ -50,12 +54,17 @@ public class GameOverScreen extends JPanel {
         setScoreInputButton(gbc);
     }
 
+    /**
+     * Method that sets the mascot image.
+     * 
+     * @param gbc GridBagConstraints used on this screen.
+     */
     private void setMascot(GridBagConstraints gbc) {
         /* Teacher mascot */
-        String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-5.png";
-        URL imagePathURL = getClass().getResource(imagePath);
-        ImageIcon mascotImage = new ImageIcon(imagePathURL);
-        JLabel mascot = new JLabel(mascotImage);
+        String speechBubblePath = "/images/dalle-versions/new-generation/with_textes/mascot-game-over.png";
+        URL speechBubbleUrl = getClass().getResource(speechBubblePath);
+        ImageIcon speechBubbleImage = new ImageIcon(speechBubbleUrl);
+        mascot = new JLabel(speechBubbleImage);
 
         /* Add mascot to the grid */
         gbc.gridx = 0;
@@ -187,6 +196,20 @@ public class GameOverScreen extends JPanel {
             this.scoreStatusLabel.setText("Höh! Pisteesi eivät riitä parhaat Pisteet -tilastoon!");
             this.scoreStatusLabel.setForeground(theme.getGeneralTextColor());
         }
+
+        /* Replace the speech bubble mascot with a plain one after a delay */
+        String plainImagePath = "/images/dalle-versions/new-generation/plain/dalle-generated-teacher-5.png";
+        URL plainImageUrl = getClass().getResource(plainImagePath);
+        ImageIcon plainImage = new ImageIcon(plainImageUrl);
+
+        Timer timer = new Timer(3500, new ActionListener() { // set the desired delay here
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mascot.setIcon(plainImage);
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
 
         System.out
                 .println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
