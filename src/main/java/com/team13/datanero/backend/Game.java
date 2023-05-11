@@ -14,7 +14,7 @@ public class Game {
         this.questionBank.shuffle();
         this.questionsAvailable = this.questionBank.getCount();
         this.currentQuestion = this.questionBank.getNextQuestion();
-        System.out.println("Player starts with " + player.getLives() + " lives and a score of: " + player.getScore());
+        System.out.println("Status: Player starts with " + player.getLives() + " lives and a score of: " + player.getScore());
     }
 
     public static Game getInstance() {
