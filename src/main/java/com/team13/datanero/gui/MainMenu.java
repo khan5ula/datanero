@@ -1,19 +1,23 @@
 package com.team13.datanero.gui;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 
 import com.team13.datanero.gui.Theme.FontStyle;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.Dimension;
 
 public class MainMenu extends JPanel {
     private MainFrame mainFrame;
@@ -42,10 +46,24 @@ public class MainMenu extends JPanel {
         this.subtitle = new JLabel("Tietojenkäsittelyn tietovisa");
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
 
-        /* Teacher mascot */
-        String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-5.png";
+        /* Teacher mascot with a welcome message */
+        String imagePath = "/images/dalle-versions/new-generation/with_textes/mascot-welcome.png";
         ImageIcon mascotImage = new ImageIcon(getClass().getResource(imagePath));
         JLabel mascot = new JLabel(mascotImage);
+
+        /* Replace the speech bubble mascot with a plain one after a delay */
+        String plainImagePath = "/images/dalle-versions/new-generation/plain/dalle-generated-teacher-5.png";
+        URL plainImageUrl = getClass().getResource(plainImagePath);
+        ImageIcon plainImage = new ImageIcon(plainImageUrl);
+
+        Timer timer = new Timer(3500, new ActionListener() { // set the desired delay here
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mascot.setIcon(plainImage);
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
 
         /* Create buttons */
         this.startButton = new CustomButton("Aloita peli", theme.getStartGameButtonColor(), 38, FontStyle.BOLD);
