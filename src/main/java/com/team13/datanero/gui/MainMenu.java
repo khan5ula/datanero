@@ -180,5 +180,4 @@ public class MainMenu extends JPanel {
         this.highScoresButton.setBackground(theme.getHighScoreButtonColor());
         this.exitButton.setBackground(theme.getExitButtonColor());
     }
-
 }

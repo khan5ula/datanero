@@ -10,7 +10,7 @@ Peli on ennen kaikkea hyvä ohjelmoinnin oppimisen keino kehittäjilleen, mutta 
 
 ![Kuva pelinäkymästä](src/main/resources/images/screenshot-of-gamescreen-11-5-23.png)
 
-Peli on standalone -sovellus, joka ei tarvitse internet -yhteyttä toimiakseen. Helpoin tapa ajaa peli on käynnistää target -hakemistossa sijaitseva JAR-tiedosto.
+Peli on standalone -sovellus, joka ei tarvitse internet -yhteyttä toimiakseen. Helpoin tapa ajaa peli on käynnistää oheinen JAR-tiedosto.
 
 JAR-tiedosto voidaan ajaa allaolevalla komennolla:
 >`java -jar TIEDOSTONIMI.jar`
