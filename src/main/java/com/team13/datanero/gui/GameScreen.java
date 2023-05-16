@@ -82,16 +82,19 @@ public class GameScreen extends JPanel {
             }
         };
 
-        this.textAnimator = new TextAnimator(game.getCurrentQuestion(), 10, textOutput);
-        new Thread(textAnimator).start();
+        /* Only run the text animation after player has hit "Start game" */
+        if (this.game.getFirstTimeInitialised()) {
+            this.textAnimator = new TextAnimator(game.getCurrentQuestion(), 10, textOutput);
+            new Thread(textAnimator).start();
 
-        questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 56));
-        questionTextArea.setForeground(theme.getGeneralTextColor());
-        questionTextArea.setOpaque(false);
-        questionTextArea.setEditable(false);
-        questionTextArea.setFocusable(false);
-        questionTextArea.setPreferredSize(new Dimension(1200, 150));
-        questionTextArea.setMaximumSize(new Dimension(1200, 150));
+            questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 56));
+            questionTextArea.setForeground(theme.getGeneralTextColor());
+            questionTextArea.setOpaque(false);
+            questionTextArea.setEditable(false);
+            questionTextArea.setFocusable(false);
+            questionTextArea.setPreferredSize(new Dimension(1200, 150));
+            questionTextArea.setMaximumSize(new Dimension(1200, 150));
+        }
 
         /* Center the question text */
         StyledDocument doc = questionTextArea.getStyledDocument();

@@ -6,6 +6,7 @@ public class Game {
     private QuestionBank questionBank;
     private int questionsAvailable;
     private Question currentQuestion;
+    private boolean firstTimeInitialized;
 
     private Game() {
         System.out.println("Status: Creating a new game");
@@ -14,6 +15,7 @@ public class Game {
         this.questionBank.shuffle();
         this.questionsAvailable = this.questionBank.getCount();
         this.currentQuestion = this.questionBank.getNextQuestion();
+        this.firstTimeInitialized = false;
         System.out.println("Status: Player starts with " + player.getLives() + " lives and a score of: " + player.getScore());
     }
 
@@ -80,5 +82,13 @@ public class Game {
 
     public void decrementLives() {
         this.player.decrementLives();
+    }
+
+    public void setFirstTimeInitialized() {
+        this.firstTimeInitialized = true;
+    }
+
+    public boolean getFirstTimeInitialised() {
+        return this.firstTimeInitialized;
     }
 }

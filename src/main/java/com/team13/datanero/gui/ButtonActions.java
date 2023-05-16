@@ -22,6 +22,7 @@ public class ButtonActions implements ActionListener {
             case "StartGame":
                 sound.playButtonClickSound();
                 Game.resetInstance();
+                Game.getInstance().setFirstTimeInitialized();
                 mainFrame.setGame(Game.getInstance());
                 this.mainFrame.switchTo("gameScreen");
                 break;
