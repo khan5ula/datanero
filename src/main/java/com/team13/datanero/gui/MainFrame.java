@@ -8,11 +8,9 @@ import com.team13.datanero.backend.DataBase;
 import com.team13.datanero.backend.Game;
 import com.team13.datanero.backend.HighScore;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.io.InputStream;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -22,7 +20,6 @@ public class MainFrame extends JFrame {
     private HighScoreScreen highScoreScreen;
     private HighScoreEntryScreen highScoreEntryScreen;
     static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-    private MovingBackgroundPanel movingBackgroundPanel;
 
     public MainFrame(Game game) {
         setTitle("DataNero");
@@ -30,8 +27,6 @@ public class MainFrame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
         this.game = Game.getInstance();
-        movingBackgroundPanel = new MovingBackgroundPanel("/images/datanerologo.png", 1, Theme.getInstance().getScreenBackGroundColor());
-        add(movingBackgroundPanel, BorderLayout.CENTER);
 
         /* Use CardLayout to switch between screens */
         this.cards = new JPanel(new CardLayout());
@@ -151,8 +146,7 @@ public class MainFrame extends JFrame {
                 /* Start the game */
                 QuestionParser questionParser = new QuestionParser();
                 questionParser.execute();
-                Game game = Game.getInstance();
-                MainFrame mainFrame = new MainFrame(game);
+                MainFrame mainFrame = new MainFrame(Game.getInstance());
 
                 /* Set full screen */
                 device.setFullScreenWindow(mainFrame);

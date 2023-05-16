@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.text.SimpleAttributeSet;
@@ -43,6 +44,7 @@ public class GameScreen extends JPanel {
     private String htmlFormat;
     private Sound sound;
     private boolean hoverEnabled = true;
+    private TextAnimator textAnimator;
 
     public GameScreen(MainFrame mainFrame, Game game) {
         this.mainFrame = mainFrame;
@@ -70,7 +72,16 @@ public class GameScreen extends JPanel {
 
         /* Create text area for the question */
         questionTextArea = new JTextPane();
-        questionTextArea.setText(game.getCurrentQuestion());
+        TextOutput textOutput = new TextOutput() {
+            @Override
+            public void writeText(String textOut) {
+                SwingUtilities.invokeLater(() -> questionTextArea.setText(textOut));
+            }
+        };
+
+        this.textAnimator = new TextAnimator(game.getCurrentQuestion(), 10, textOutput);
+        new Thread(textAnimator).start();
+
         questionTextArea.setFont(theme.getCustomFont(FontStyle.MEDIUM, 56));
         questionTextArea.setForeground(theme.getGeneralTextColor());
         questionTextArea.setOpaque(false);
@@ -146,7 +157,6 @@ public class GameScreen extends JPanel {
         livesPanelConstraints.insets = new Insets(10, 0, 10, 10);
         livesPanel.add(livesLabel, livesPanelConstraints);
 
-        /* Create labels for hearts */
         /* Create labels for hearts */
         URL heartIconURL = getClass().getResource("/images/heart.png");
         ImageIcon heartIcon = new ImageIcon(heartIconURL);
@@ -285,7 +295,17 @@ public class GameScreen extends JPanel {
     private void updateGameDisplay() {
         System.out.println("Status: Updating game display");
         String[] answers = game.getAnswersForCurrentQuestion();
-        questionTextArea.setText(game.getCurrentQuestion());
+
+        TextOutput textOutput = new TextOutput() {
+            @Override
+            public void writeText(String textOut) {
+                SwingUtilities.invokeLater(() -> questionTextArea.setText(textOut));
+            }
+        };
+
+        this.textAnimator = new TextAnimator(game.getCurrentQuestion(), 10, textOutput);
+        new Thread(textAnimator).start();
+
         for (int i = 0; i < this.answerButtons.length; i++) {
             String buttonText = String.format(this.htmlFormat, answers[i]);
             this.answerButtons[i].setText(buttonText);

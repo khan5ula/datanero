@@ -21,8 +21,9 @@ public class ButtonActions implements ActionListener {
         switch (command) {
             case "Aloita peli":
                 sound.playButtonClickSound();
+                Game.resetInstance();
+                mainFrame.setGame(Game.getInstance());
                 this.mainFrame.switchTo("gameScreen");
-                Game.getInstance();
                 break;
             case "Asetukset":
                 sound.playButtonClickSound();
