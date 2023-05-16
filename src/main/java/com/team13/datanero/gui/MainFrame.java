@@ -11,7 +11,6 @@ import com.team13.datanero.backend.HighScore;
 import java.awt.CardLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.io.InputStream;
 
 public class MainFrame extends JFrame {
     private JPanel cards;
@@ -136,7 +135,7 @@ public class MainFrame extends JFrame {
         try {
             /* Initialize database */
             DataBase dataBase = DataBase.getInstance();
-            
+
             /* Set database connection */
             try {
                 dataBase.open("scores.db");

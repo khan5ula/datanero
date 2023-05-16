@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.team13.datanero.backend.LanguageHandler;
+import com.team13.datanero.gui.Sound.MusicStatus;
 import com.team13.datanero.gui.Sound.SoundStatus;
 import com.team13.datanero.gui.Theme.FontStyle;
 import com.team13.datanero.gui.Theme.ThemeType;
@@ -35,6 +37,7 @@ public class SettingsScreen extends JPanel {
     private ArrayList<JLabel> optionTextList;
     private Theme theme;
     private Sound sound;
+    private LanguageHandler languageHandler;
 
     public SettingsScreen(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -42,6 +45,7 @@ public class SettingsScreen extends JPanel {
         this.optionTextList = new ArrayList<JLabel>();
         this.theme = Theme.getInstance();
         this.sound = Sound.getInstance();
+        this.languageHandler = LanguageHandler.getInstance();
         setBackground(theme.getScreenBackGroundColor());
         init();
     }
@@ -61,7 +65,12 @@ public class SettingsScreen extends JPanel {
         setHeader(gbc);
 
         /* Create options */
-        String[] optionNames = { "Musiikki", "Peliäänet", "Kieli", "Vaikeustaso", "Teema" };
+        String option1 = languageHandler.getString("musicOption");
+        String option2 = languageHandler.getString("gameSoundsOption");
+        String option3 = languageHandler.getString("languageOption");
+        String option4 = languageHandler.getString("difficultyOption");
+        String option5 = languageHandler.getString("themeOption");
+        String[] optionNames = { option1, option2, option3, option4, option5 };
         GridBagConstraints optionGbc = new GridBagConstraints();
         optionGbc.gridx = 0;
         optionGbc.gridy = 1;
@@ -91,7 +100,8 @@ public class SettingsScreen extends JPanel {
 
             switch (i) {
                 case 0: // Set music button
-                    this.musicButton = new CustomButton("Päällä", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    String musicText = languageHandler.getString("backgroundMusicOn");
+                    this.musicButton = new CustomButton(musicText, Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.musicButton.setForeground(Color.BLACK);
                     this.musicButton.setPreferredSize(buttonDimension);
                     this.musicButton.setMaximumSize(buttonDimension);
@@ -111,11 +121,12 @@ public class SettingsScreen extends JPanel {
                     this.optionButtons.add(this.soundButton);
                     break;
                 case 2: // Set language button
-                    this.languageButton = new CustomButton("Ei saatavilla", Color.WHITE, 24, FontStyle.SEMIBOLD);
+                    this.languageButton = new CustomButton("Suomi", Color.WHITE, 24, FontStyle.SEMIBOLD);
                     this.languageButton.setForeground(Color.BLACK);
                     this.languageButton.setPreferredSize(buttonDimension);
                     this.languageButton.setMaximumSize(buttonDimension);
                     this.languageButton.setHorizontalAlignment(SwingConstants.RIGHT);
+                    this.languageButton.addActionListener(new LanguageButtonListener());
                     add(this.languageButton, optionButtonGbc);
                     this.optionButtons.add(this.languageButton);
                     break;
@@ -171,8 +182,9 @@ public class SettingsScreen extends JPanel {
 
     private void setExitButton(GridBagConstraints gbc, String[] optionNames, Insets padding) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
-        this.exitButton.setActionCommand("Palaa päävalikkoon");
+        this.exitButton = new CustomButton(languageHandler.getString("returnToMainMenuButtonText"),
+                theme.getExitButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton.setActionCommand("ReturnToMainMenu");
         this.exitButton.setPreferredSize(new Dimension(500, 120));
         this.exitButton.setMaximumSize(new Dimension(500, 120));
 
@@ -211,14 +223,16 @@ public class SettingsScreen extends JPanel {
      * Method that toggles background music playback On and Off.
      */
     private void toggleMusic() {
-        if (musicButton.getText().equals("Pois päältä")) {
+        if (musicButton.getText().equals("Pois päältä") || musicButton.getText().equals("OFF")) {
             System.out.println("Status: Player toggled background music on");
             sound.startBackgroundMusic();
-            musicButton.setText("Päällä");
+            sound.setMusicStatus(MusicStatus.ON);
+            musicButton.setText(languageHandler.getString("backgroundMusicOn"));
         } else {
             System.out.println("Status: Player toggled background music off");
             sound.stopBackgroundMusic();
-            musicButton.setText("Pois päältä");
+            sound.setMusicStatus(MusicStatus.OFF);
+            musicButton.setText(languageHandler.getString("backgroundMusicOff"));
         }
     }
 
@@ -226,17 +240,32 @@ public class SettingsScreen extends JPanel {
      * Method that switches game sounds On and Off.
      */
     private void changeSound() {
-        if (soundButton.getText().equals("Pois päältä")) {
+        if (soundButton.getText().equals("Pois päältä") || soundButton.getText().equals("OFF")) {
             sound.playButtonClickSound();
             System.out.println("Status: Player switched game sounds on");
             sound.setSoundStatus(SoundStatus.ON);
-            soundButton.setText("Päällä");
+            soundButton.setText(languageHandler.getString("gameSoundsOn"));
         } else {
             sound.playButtonClickSound();
             System.out.println("Status: Player switched game sounds off");
             sound.setSoundStatus(SoundStatus.OFF);
-            soundButton.setText("Pois päältä");
+            soundButton.setText(languageHandler.getString("gameSoundsOff"));
         }
+    }
+
+    private void changeLanguage() {
+        if (languageButton.getText().equals("Suomi")) {
+            sound.playButtonClickSound();
+            System.out.println("Status: Player changed language to English");
+            languageHandler.setLanguage("en");
+            languageButton.setText("English");
+        } else {
+            sound.playButtonClickSound();
+            System.out.println("Status: Player changed language to Finnish");
+            languageHandler.setLanguage("fi");
+            languageButton.setText("Suomi");
+        }
+        updateTexts();
     }
 
     /**
@@ -244,11 +273,11 @@ public class SettingsScreen extends JPanel {
      */
     private void changeTheme() {
         /* If player chose dark theme */
-        if (themeButton.getText().equals("Vaalea")) {
+        if (themeButton.getText().equals("Vaalea") || themeButton.getText().equals("Light")) {
             sound.playButtonClickSound();
             System.out.println("Status: Player chose dark theme");
             theme.setCurrentTheme(ThemeType.DARK);
-            themeButton.setText("Tumma");
+            themeButton.setText(languageHandler.getString("darkThemeOn"));
 
             /* If player chose light theme */
         } else {
@@ -256,7 +285,7 @@ public class SettingsScreen extends JPanel {
             System.out.println("Status: Player chose light theme");
             theme.setCurrentTheme(ThemeType.LIGHT);
             setBackground(theme.getScreenBackGroundColor());
-            themeButton.setText("Vaalea");
+            themeButton.setText(languageHandler.getString("lightThemeOn"));
         }
 
         /* General theme adjustments */
@@ -297,6 +326,15 @@ public class SettingsScreen extends JPanel {
         }
     }
 
+    private class LanguageButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            changeLanguage();
+        }
+
+    }
+
     /**
      * Small private class for theme button. Calls changeTheme() method when
      * pressed.
@@ -306,6 +344,42 @@ public class SettingsScreen extends JPanel {
         public void actionPerformed(ActionEvent e) {
             changeTheme();
         }
+    }
+
+    private void updateTexts() {
+        this.header.setText(languageHandler.getString("settingsTitle"));
+        this.exitButton.setText(languageHandler.getString("returnToMainMenuButtonText"));
+
+        this.optionTextList.get(0).setText(languageHandler.getString("musicOption"));
+        this.optionTextList.get(1).setText(languageHandler.getString("gameSoundsOption"));
+        this.optionTextList.get(2).setText(languageHandler.getString("languageOption"));
+        this.optionTextList.get(3).setText(languageHandler.getString("difficultyOption"));
+        this.optionTextList.get(4).setText(languageHandler.getString("themeOption"));
+
+        if (sound.getMusicStatus().equals(MusicStatus.ON)) {
+            this.musicButton.setText(languageHandler.getString("backgroundMusicOn"));
+        } else {
+            this.musicButton.setText(languageHandler.getString("backgroundMusicOff"));
+        }
+
+        if (sound.getSoundStatus().equals(SoundStatus.ON)) {
+            this.soundButton.setText(languageHandler.getString("gameSoundsOn"));
+        } else {
+            this.soundButton.setText(languageHandler.getString("gameSoundsOff"));
+        }
+
+        this.difficultyButton.setText(languageHandler.getString("difficultyStatus"));
+
+        if (theme.getCurrentTheme().equals(ThemeType.LIGHT)) {
+            this.themeButton.setText(languageHandler.getString("lightThemeOn"));
+        } else {
+            this.themeButton.setText(languageHandler.getString("darkThemeOn"));
+        }
+
+        mainFrame.getMainMenu().updateTexts();
+        mainFrame.getHighScoreScreen().updateTexts();
+        mainFrame.getHighScoreEntryScreen().updateTexts();
+        mainFrame.getGameOverScreen().updateTexts();
     }
 
 }

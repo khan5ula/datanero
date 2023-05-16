@@ -26,6 +26,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import com.team13.datanero.backend.Game;
+import com.team13.datanero.backend.LanguageHandler;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameScreen extends JPanel {
@@ -39,6 +40,7 @@ public class GameScreen extends JPanel {
     private JLabel mascotLabel;
     private ArrayList<JButton> buttons;
     private boolean wasAnswerCorrect;
+    private LanguageHandler languageHandler;
     private Theme theme;
     private String htmlFormat;
     private Sound sound;
@@ -48,6 +50,7 @@ public class GameScreen extends JPanel {
         this.mainFrame = mainFrame;
         this.game = game;
         this.mascotLabel = new JLabel();
+        this.languageHandler = LanguageHandler.getInstance();
         this.theme = Theme.getInstance();
         this.sound = Sound.getInstance();
         this.htmlFormat = "<html><body style='width: 500px; padding: 0px 20px;'>%s</body></html>";
@@ -125,11 +128,11 @@ public class GameScreen extends JPanel {
         Collections.shuffle(this.buttons);
 
         /* Create labels for score and lives */
-        scoreLabel = new JLabel("Pisteet: " + game.getScore());
-        livesLabel = new JLabel("Elämät:");
+        scoreLabel = new JLabel(languageHandler.getString("scoreText") + " " + game.getScore());
+        livesLabel = new JLabel(languageHandler.getString("livesText"));
 
         /* Create labels for score and lives */
-        scoreLabel = new JLabel("Pisteet: " + game.getScore());
+        scoreLabel = new JLabel(languageHandler.getString("scoreText") + " " + game.getScore());
         scoreLabel.setFont(theme.getCustomFont(FontStyle.RETINA, 32));
 
         /* Create panel for lives and hearts */
@@ -137,7 +140,7 @@ public class GameScreen extends JPanel {
         GridBagConstraints livesPanelConstraints = new GridBagConstraints();
 
         /* Create and add lives label to lives panel */
-        livesLabel = new JLabel("Elämät:");
+        livesLabel = new JLabel(languageHandler.getString("livesText"));
         livesLabel.setFont(theme.getCustomFont(FontStyle.RETINA, 32));
         livesLabel.setForeground(theme.getGeneralTextColor());
         livesPanelConstraints.gridx = 0;
@@ -218,8 +221,9 @@ public class GameScreen extends JPanel {
      */
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        JButton exitButton = new CustomButton("Lopeta", theme.getExitButtonColor(), 32, FontStyle.BOLD);
-        exitButton.setActionCommand("Lopeta");
+        JButton exitButton = new CustomButton(languageHandler.getString("quitGameButtonText"),
+                theme.getExitButtonColor(), 32, FontStyle.BOLD);
+        exitButton.setActionCommand("ReturnToMainMenu");
         exitButton.setPreferredSize(new Dimension(150, 100));
         exitButton.setMaximumSize(new Dimension(150, 100));
         exitButton.addMouseListener(new MouseAdapter() {
@@ -299,7 +303,8 @@ public class GameScreen extends JPanel {
      * Method that updates the score display current score.
      */
     private void updateScore() {
-        scoreLabel.setText("Pisteet: " + game.getScore());
+        scoreLabel.setText(languageHandler.getString("scoreText") + " " + game.getScore());
+        livesLabel.setText(languageHandler.getString("livesText"));
     }
 
     /**
@@ -474,8 +479,8 @@ public class GameScreen extends JPanel {
                         if (game.getLives() == 0) {
                             System.out.println("Status: Player has 0 lives left. Game over.");
                             updateNegativeMascot();
-                            livesLabel.setText("Elämät:");
-                            scoreLabel.setText("Pisteet: " + game.getScore());
+                            livesLabel.setText(languageHandler.getString("livesText"));
+                            scoreLabel.setText(languageHandler.getString("scoreText") + " " + game.getScore());
                         }
 
                         /* Show the GameOverDialog with the score */

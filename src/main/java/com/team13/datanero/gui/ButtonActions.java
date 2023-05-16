@@ -19,39 +19,38 @@ public class ButtonActions implements ActionListener {
         String command = e.getActionCommand();
 
         switch (command) {
-            case "Aloita peli":
+            case "StartGame":
                 sound.playButtonClickSound();
                 this.mainFrame.switchTo("gameScreen");
                 Game.getInstance();
                 break;
-            case "Asetukset":
+            case "Settings":
                 sound.playButtonClickSound();
                 this.mainFrame.switchTo("settingsScreen");
                 break;
-            case "Parhaat tulokset":
+            case "HighScores":
                 sound.playButtonClickSound();
                 this.mainFrame.getHighScoreScreen().setTheme();
                 this.mainFrame.getHighScoreScreen().sethighScoreResults();
                 this.mainFrame.switchTo("highScoreScreen");
                 break;
-            case "Poistu":
+            case "Exit":
                 sound.playButtonClickSound();
                 System.exit(0);
                 break;
-            case "Siirry syöttämään pisteet":
+            case "SaveScore":
                 sound.playButtonClickSound();
                 this.mainFrame.getHighScoreEntryScreen().updateAndDisplayScore();
                 this.mainFrame.switchTo("highScoreEntryScreen");
                 break;
-            case "Tallenna nimimerkki":
+            case "SaveNickname":
                 sound.playButtonClickSound();
                 this.mainFrame.getHighScoreEntryScreen().submitScore();
                 this.mainFrame.getHighScoreScreen().setTheme();
                 this.mainFrame.getHighScoreScreen().sethighScoreResults();
                 this.mainFrame.switchTo("highScoreScreen");
                 break;
-            case "Lopeta":
-            case "Palaa päävalikkoon":
+            case "ReturnToMainMenu":
                 sound.playButtonClickSound();
                 this.mainFrame.getMainMenu().setTheme();
                 mainFrame.switchTo("mainMenu");

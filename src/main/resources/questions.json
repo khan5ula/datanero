@@ -1,201 +1,311 @@
 {
   "questions": [
     {
-      "question": "Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?",
-      "correctAnswer": "Absoluuttinen normaalimuoto (ANF)",
+      "question_fi": "Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Absoluuttinen normaalimuoto (ANF)",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Toinen normaalimuoto (2NF)",
         "Kolmas normaalimuoto (3NF)",
-        "Boyce-Codd normaalimuoto (BCNF)"
+        "Boyce-Codd normaalimuoto (BCNF)",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Millä nimellä kutsutaan prosessia, jossa taulu hajautetaan pienemmiksi tauluiksi datan redundanssin vähentämiseksi?",
-      "correctAnswer": "Normalisointi",
+      "question_fi": "Millä nimellä kutsutaan prosessia, jossa taulu hajautetaan pienemmiksi tauluiksi datan redundanssin vähentämiseksi?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Normalisointi",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Indeksointi",
         "Osittaminen",
-        "Partitiointi"
+        "Partitiointi",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Millä komennolla luodaan uusi SQL-taulu?",
-      "correctAnswer": "CREATE TABLE",
+      "question_fi": "Millä komennolla luodaan uusi SQL-taulu?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "CREATE TABLE",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "CREATE DATABASE",
         "ALTER TABLE",
-        "INSERT INTO"
+        "INSERT INTO",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Millä seuraavista komennoista valitaan kaikki sarakkeet taulusta \"employees\"?",
-      "correctAnswer": "SELECT * FROM employees",
+      "question_fi": "Millä seuraavista komennoista valitaan kaikki sarakkeet taulusta \"employees\"?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "SELECT * FROM employees",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "SELECT ALL from employees",
         "SELECT employees",
-        "SELECT FROM employees"
+        "SELECT FROM employees",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Millä seuraavista komennoista voidaan muokata olemassaolevaa SQL-taulua?",
-      "correctAnswer": "ALTER TABLE",
+      "question_fi": "Millä seuraavista komennoista voidaan muokata olemassaolevaa SQL-taulua?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "ALTER TABLE",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "UPDATE",
         "CHANGE TABLE",
-        "MODIFY TABLE"
+        "MODIFY TABLE",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mitä SQL-funktiota käytetään palauttamaan rivien lukumäärä taulusta?",
-      "correctAnswer": "COUNT()",
+      "question_fi": "Mitä SQL-funktiota käytetään palauttamaan rivien lukumäärä taulusta?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "COUNT()",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "MAX()",
         "MIN()",
-        "AVG()"
+        "AVG()",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Millä seuraavista SQL-komennoista lajitellaan arvot nousevaan tai laskevaan järjestykseen?",
-      "correctAnswer": "ORDER BY",
+      "question_fi": "Millä seuraavista SQL-komennoista lajitellaan arvot nousevaan tai laskevaan järjestykseen?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "ORDER BY",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "GROUP BY",
         "WHERE",
-        "HAVING"
+        "HAVING",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista ei ole SQL-kielen aggregaattifunktio?",
-      "correctAnswer": "RANK()",
+      "question_fi": "Mikä seuraavista ei ole SQL-kielen aggregaattifunktio?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "RANK()",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "SUM()",
         "AVG()",
-        "MAX()"
+        "MAX()",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
-      "correctAnswer": "Liitos (JOIN)",
+      "question_fi": "Mikä seuraavista on relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Liitos (JOIN)",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Yhdistäminen (MERGE)",
         "Linkitys (LINK)",
-        "Solmu (NODE)"
+        "Solmu (NODE)",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä on koosteattribuutti?",
-      "correctAnswer": "Attribuutti, joka muodostuu useammasta aliattribuutista.",
+      "question_fi": "Mikä on koosteattribuutti?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Attribuutti, joka muodostuu useammasta aliattribuutista.",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Attribuutti, joka esiintyy vain yhdessä relaatiossa.",
         "Attribuutti, joka esiintyy useammassa relaatiossa.",
-        "Attribuutti, joka on riippuvainen toisesta atribuutista."
+        "Attribuutti, joka on riippuvainen toisesta atribuutista.",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on yksi transaktioiden ACID-ominaisuuksista?",
-      "correctAnswer": "Eristettävyys (Isolation)",
+      "question_fi": "Mikä seuraavista on yksi transaktioiden ACID-ominaisuuksista?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Eristettävyys (Isolation)",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Integroitavuus (Integration)",
         "Inkrementaalisuus (Incrementality)",
-        "Sisäsyntyisyys (Intrinsicy)"
+        "Sisäsyntyisyys (Intrinsicy)",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä erottaa SQL- ja NoSQL -tietokantatyypit toisistaan?",
-      "correctAnswer": "SQL käyttää relaatiomalleja, NoSQL ei",
+      "question_fi": "Mikä erottaa SQL- ja NoSQL -tietokantatyypit toisistaan?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "SQL käyttää relaatiomalleja, NoSQL ei",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "SQL on ohjelmointikieli, NoSQL ei",
         "SQL on hidas, NoSQL on nopea",
-        "SQL on tietokanta, NoSQL on tiedostojärjestelmä"
+        "SQL on tietokanta, NoSQL on tiedostojärjestelmä",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on tietokantojen perusyksikkö, joka voi sisältää yhden tai useamman tietueen?",
-      "correctAnswer": "Taulu",
+      "question_fi": "Mikä seuraavista on tietokantojen perusyksikkö, joka voi sisältää yhden tai useamman tietueen?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Taulu",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Sarake",
         "Rivi",
-        "Solmu"
+        "Solmu",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on indeksin pääasiallinen tarkoitus tietokantojen kontekstissa?",
-      "correctAnswer": "Parantaa tietojen hakunopeutta",
+      "question_fi": "Mikä seuraavista on indeksin pääasiallinen tarkoitus tietokantojen kontekstissa?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Parantaa tietojen hakunopeutta",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Vähentää tietokannan kokoa",
         "Lisätä tietojen tallennuskapasiteettia",
-        "Estää tietokannan pääsyn valtuuttamattomilta käyttäjiltä"
+        "Estää tietokannan pääsyn valtuuttamattomilta käyttäjiltä",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mitä seuraavista SQL-komennoista käytetään tietueen lisäämiseen tauluun?",
-      "correctAnswer": "INSERT INTO",
+      "question_fi": "Mitä seuraavista SQL-komennoista käytetään tietueen lisäämiseen tauluun?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "INSERT INTO",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "UPDATE",
         "DELETE",
-        "SELECT"
+        "SELECT",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on SQL-lauseen osa, joka määrittelee ehdot tietojen valitsemiseksi?",
-      "correctAnswer": "WHERE",
+      "question_fi": "Mikä seuraavista on SQL-lauseen osa, joka määrittelee ehdot tietojen valitsemiseksi?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "WHERE",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "SELECT",
         "FROM",
-        "ORDER BY"
+        "ORDER BY",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mitä tarkoittaa tietokantojen kontekstissa termi 'transaktio'?",
-      "correctAnswer": "Sarja tietokantaoperaatioita, jotka suoritetaan yhtenä kokonaisuutena",
+      "question_fi": "Mitä tarkoittaa tietokantojen kontekstissa termi 'transaktio'?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Sarja tietokantaoperaatioita, jotka suoritetaan yhtenä kokonaisuutena",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Tietokannan sisältämä tietue",
         "Tietokannan sisältämä taulu",
-        "Tietokannan sisältämä solmu"
+        "Tietokannan sisältämä solmu",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on yksi tietokantojen ACID-ominaisuuksista?",
-      "correctAnswer": "Kestävyys (Durability)",
+      "question_fi": "Mikä seuraavista on yksi tietokantojen ACID-ominaisuuksista?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Kestävyys (Durability)",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Laajennettavuus (Extensibility)",
         "Eheys (Integrity)",
-        "Joustavuus (Flexibility)"
+        "Joustavuus (Flexibility)",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on yleisimpiä ongelmia, joita normalisointi pyrkii ratkaisemaan?",
-      "correctAnswer": "Päivitysanomalia",
+      "question_fi": "Mikä seuraavista on yleisimpiä ongelmia, joita normalisointi pyrkii ratkaisemaan?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Päivitysanomalia",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Tietokannan rikkominen",
         "Tietokannan ylikuormitus",
-        "Tietokannan väärinkäyttö"
+        "Tietokannan väärinkäyttö",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on ensimmäisen normaalimuodon (1NF) pääasiallinen vaatimus?",
-      "correctAnswer": "Taulun jokaisella sarakkeella on yksinkertainen arvo",
+      "question_fi": "Mikä seuraavista on ensimmäisen normaalimuodon (1NF) pääasiallinen vaatimus?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Taulun jokaisella sarakkeella on yksinkertainen arvo",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Taulussa ei ole päällekkäisiä tietueita",
         "Taulun jokaisella rivillä on yksilöllinen avain",
-        "Taulun kaikki arvot ovat numeerisia"
+        "Taulun kaikki arvot ovat numeerisia",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on normalisoinnin pääasiallinen tavoite?",
-      "correctAnswer": "Vähentää tietokannan redundanssia",
+      "question_fi": "Mikä seuraavista on normalisoinnin pääasiallinen tavoite?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Vähentää tietokannan redundanssia",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Parantaa tietokannan suorituskykyä",
         "Lisätä tietokannan turvallisuutta",
-        "Lisätä tietokannan tallennuskapasiteettia"
+        "Lisätä tietokannan tallennuskapasiteettia",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     },
     {
-      "question": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
-      "correctAnswer": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",
+      "question_fi": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",
+      "correctAnswer_en": "Placeholder for correct answer",
       "wrongAnswers": [
         "Toinen näistä ei ole tietokanta, vaan taulukointimenetelmä",
         "Toinen näistä on relaatiotietokanta",
-        "Toiseen voi tallentaa vain numeerista tietoa"
+        "Toiseen voi tallentaa vain numeerista tietoa",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
       ]
     }
   ]

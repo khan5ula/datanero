@@ -11,13 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 import com.team13.datanero.backend.Game;
 import com.team13.datanero.backend.HighScore;
+import com.team13.datanero.backend.LanguageHandler;
 import com.team13.datanero.backend.Score;
 import com.team13.datanero.gui.Theme.FontStyle;
 
@@ -28,6 +28,7 @@ public class HighScoreEntryScreen extends JPanel {
     private MainFrame mainFrame;
     private int score;
     private Theme theme;
+    private LanguageHandler languageHandler;
 
     public HighScoreEntryScreen(MainFrame mainFrame) {
         setLayout(new GridBagLayout());
@@ -35,6 +36,7 @@ public class HighScoreEntryScreen extends JPanel {
         this.mainFrame = mainFrame;
         this.score = Game.getInstance().getScore();
         this.theme = Theme.getInstance();
+        this.languageHandler = LanguageHandler.getInstance();
         setBackground(theme.getScreenBackGroundColor());
 
         setPromptLabel(gbc);
@@ -44,7 +46,7 @@ public class HighScoreEntryScreen extends JPanel {
 
     private void setPromptLabel(GridBagConstraints gbc) {
         /* Define prompt label */
-        promptLabel = new JLabel("Syötä nimimerkkisi:");
+        promptLabel = new JLabel(languageHandler.getString("highScorePromptLabelText"));
         promptLabel.setFont(theme.getCustomFont(FontStyle.REGULAR, 44));
 
         /* Add prompt label to the grid */
@@ -85,8 +87,9 @@ public class HighScoreEntryScreen extends JPanel {
 
     private void setSubmitButton(GridBagConstraints gbc) {
         /* Create submit button */
-        submitButton = new CustomButton("Tallenna", theme.getAnswerButtonColor(), 24, FontStyle.BOLD);
-        submitButton.setActionCommand("Tallenna nimimerkki");
+        submitButton = new CustomButton(languageHandler.getString("submitButtonText"), theme.getAnswerButtonColor(), 24,
+                FontStyle.BOLD);
+        submitButton.setActionCommand("SaveNickname");
         submitButton.setPreferredSize(new Dimension(200, 80));
         submitButton.setMaximumSize(new Dimension(200, 80));
 
@@ -165,6 +168,11 @@ public class HighScoreEntryScreen extends JPanel {
                 super.insertString(offset, str, attr);
             }
         }
+    }
+
+    public void updateTexts() {
+        this.promptLabel.setText(languageHandler.getString("highScorePromptLabelText"));
+        this.submitButton.setText(languageHandler.getString("submitButtonText"));
     }
 
 }

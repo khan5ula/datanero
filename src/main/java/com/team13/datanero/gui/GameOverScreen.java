@@ -20,6 +20,7 @@ import javax.swing.border.Border;
 
 import com.team13.datanero.backend.Game;
 import com.team13.datanero.backend.HighScore;
+import com.team13.datanero.backend.LanguageHandler;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class GameOverScreen extends JPanel {
@@ -28,6 +29,7 @@ public class GameOverScreen extends JPanel {
     private MainFrame mainFrame;
     private int score;
     private Theme theme;
+    private LanguageHandler languageHandler;
     private ButtonActions buttonActions;
     private JButton scoreInputButton;
     private JButton exitButton;
@@ -39,6 +41,7 @@ public class GameOverScreen extends JPanel {
         this.mainFrame = mainFrame;
         this.score = Game.getInstance().getScore();
         this.theme = Theme.getInstance();
+        this.languageHandler = LanguageHandler.getInstance();
         this.buttonActions = new ButtonActions(this.mainFrame);
         setBackground(theme.getScreenBackGroundColor());
 
@@ -112,8 +115,9 @@ public class GameOverScreen extends JPanel {
 
     private void setExitButton(GridBagConstraints gbc) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
-        this.exitButton.setActionCommand("Palaa päävalikkoon");
+        this.exitButton = new CustomButton(languageHandler.getString("returnToMainMenuButtonText"),
+                theme.getExitButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton.setActionCommand("ReturnToMainMenu");
         this.exitButton.setPreferredSize(new Dimension(500, 120));
         this.exitButton.setMaximumSize(new Dimension(500, 120));
 
@@ -149,9 +153,10 @@ public class GameOverScreen extends JPanel {
 
     private void setScoreInputButton(GridBagConstraints gbc) {
         /* Create score input button */
-        this.scoreInputButton = new CustomButton("Tallenna pisteet", theme.getExitButtonColor(), 32,
+        this.scoreInputButton = new CustomButton(languageHandler.getString("scoreInputText"),
+                theme.getExitButtonColor(), 32,
                 FontStyle.BOLD);
-        this.scoreInputButton.setActionCommand("Siirry syöttämään pisteet");
+        this.scoreInputButton.setActionCommand("SaveScore");
         this.scoreInputButton.setPreferredSize(new Dimension(500, 120));
         this.scoreInputButton.setMaximumSize(new Dimension(500, 120));
 
@@ -179,7 +184,7 @@ public class GameOverScreen extends JPanel {
         this.score = Game.getInstance().getScore();
         this.scoreInputButton.setBackground(theme.getAnswerButtonColor());
         this.exitButton.setBackground(theme.getExitButtonColor());
-        messageLabel.setText("Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+        messageLabel.setText(languageHandler.getString("messageLabelText") + " " + this.score);
         messageLabel.setForeground(theme.getGeneralTextColor());
 
         /*
@@ -189,11 +194,11 @@ public class GameOverScreen extends JPanel {
          */
         if (score > 0 && (HighScore.getInstance().getCount() < 5 || score > HighScore.getInstance().getLowestScore())) {
             this.scoreInputButton.setEnabled(true);
-            this.scoreStatusLabel.setText("Hienoa! Pisteesi riittävät Parhaat Pisteet -tilastoon!");
+            this.scoreStatusLabel.setText(languageHandler.getString("scoreStatusPositive"));
             this.scoreStatusLabel.setForeground(theme.getGeneralTextColor());
         } else {
             this.scoreInputButton.setEnabled(false);
-            this.scoreStatusLabel.setText("Höh! Pisteesi eivät riitä parhaat Pisteet -tilastoon!");
+            this.scoreStatusLabel.setText(languageHandler.getString("scoreStatusNegative"));
             this.scoreStatusLabel.setForeground(theme.getGeneralTextColor());
         }
 
@@ -213,5 +218,16 @@ public class GameOverScreen extends JPanel {
 
         System.out
                 .println("Status: Game over screen message: Voi rähmä, peli päättyi! Pistesaaliisi on: " + this.score);
+    }
+
+    public void updateTexts() {
+        this.exitButton.setText(languageHandler.getString("returnToMainMenuButtonText"));
+        this.scoreInputButton.setText(languageHandler.getString("scoreInputText"));
+        this.messageLabel.setText(languageHandler.getString("messageLabelText") + " " + this.score);
+        if (score > 0 && (HighScore.getInstance().getCount() < 5 || score > HighScore.getInstance().getLowestScore())) {
+            this.scoreStatusLabel.setText(languageHandler.getString("scoreStatusPositive"));
+        } else {
+            this.scoreStatusLabel.setText(languageHandler.getString("scoreStatusNegative"));
+        }
     }
 }

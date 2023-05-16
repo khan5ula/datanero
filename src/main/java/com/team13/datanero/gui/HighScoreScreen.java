@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import com.team13.datanero.backend.HighScore;
+import com.team13.datanero.backend.LanguageHandler;
 import com.team13.datanero.backend.Score;
 import com.team13.datanero.gui.Theme.FontStyle;
 
@@ -27,10 +28,12 @@ public class HighScoreScreen extends JPanel {
     private JButton exitButton;
     private ArrayList<JButton> nicknameButtons;
     private ArrayList<JButton> scoreButtons;
+    private LanguageHandler languageHandler;
 
     public HighScoreScreen(final MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         this.theme = Theme.getInstance();
+        this.languageHandler = LanguageHandler.getInstance();
         this.nicknameButtons = new ArrayList<JButton>();
         this.scoreButtons = new ArrayList<JButton>();
         setBackground(theme.getScreenBackGroundColor());
@@ -83,8 +86,9 @@ public class HighScoreScreen extends JPanel {
      */
     private void setExitButton(final GridBagConstraints gbc) {
         /* Create exit button */
-        this.exitButton = new CustomButton("Palaa päävalikkoon", theme.getExitButtonColor(), 32, FontStyle.BOLD);
-        this.exitButton.setActionCommand("Palaa päävalikkoon");
+        this.exitButton = new CustomButton(languageHandler.getString("returnToMainMenuButtonText"),
+                theme.getExitButtonColor(), 32, FontStyle.BOLD);
+        this.exitButton.setActionCommand("ReturnToMainMenu");
         exitButton.setPreferredSize(new Dimension(500, 120));
         exitButton.setMaximumSize(new Dimension(500, 120));
 
@@ -183,5 +187,10 @@ public class HighScoreScreen extends JPanel {
             this.scoreButtons.get(i).setBackground(theme.getScreenBackGroundColor());
             this.scoreButtons.get(i).setForeground(theme.getGeneralTextColor());
         }
+    }
+
+    public void updateTexts() {
+        this.header.setText(languageHandler.getString("highScoreTitleText"));
+        this.exitButton.setText(languageHandler.getString("returnToMainMenuButtonText"));
     }
 }
