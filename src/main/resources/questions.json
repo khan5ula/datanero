@@ -295,6 +295,34 @@
       ]
     },
     {
+      "question_fi": "Mikä seuraavista on kuolemanlukko (deadlock) tietokantakontekstissa?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Kaksi transaktiota odottavat ikuisesti, että toistensa transaktiolukitus aukeaa",
+      "correctAnswer_en": "Placeholder for correct answer",
+      "wrongAnswers": [
+        "Tietokantataulu lukitsee itsensä tietoturvasyistä",
+        "Tietokanta tuhoutuu niin, että sen tietoja ei voida pelastaa",
+        "Tietokanta on erittäin hidas",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
+      ]
+    },
+    {
+      "question_fi": "Mikä seuraavista tietokantatransaktioiden aikaleimoja koskevista väitteistä ei pidä paikkaansa?",
+      "question_en": "Placeholder for English question",
+      "correctAnswer_fi": "Tietokannan käyttäjän tulee muistaa lisätä aikaleima jokaiseen tekemäänsä transaktioon",
+      "correctAnswer_en": "Placeholder for correct answer",
+      "wrongAnswers": [
+        "Aikaleima voi olla looginen laskuri tai kellonaika",
+        "Jokaisella transaktiolla on sekä luku- että kirjoitusaikaleima",
+        "Transaktio voi yrittää lukea tai kirjoittaa kohdetta, joka on jo ehditty päivittää uudemmassa transaktiossa",
+        "First Placeholder",
+        "Second Placeholder",
+        "Third Placeholder"
+      ]
+    },
+    {
       "question_fi": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
       "question_en": "Placeholder for English question",
       "correctAnswer_fi": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",

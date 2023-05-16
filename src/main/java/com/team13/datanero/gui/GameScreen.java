@@ -528,5 +528,4 @@ public class GameScreen extends JPanel {
             timer.start();
         }
     }
-
 }
