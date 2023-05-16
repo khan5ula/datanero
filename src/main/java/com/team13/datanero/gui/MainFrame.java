@@ -135,7 +135,7 @@ public class MainFrame extends JFrame {
         try {
             /* Initialize database */
             DataBase dataBase = DataBase.getInstance();
-            
+
             /* Set database connection */
             try {
                 dataBase.open("scores.db");
@@ -146,7 +146,8 @@ public class MainFrame extends JFrame {
                 /* Start the game */
                 QuestionParser questionParser = new QuestionParser();
                 questionParser.execute();
-                MainFrame mainFrame = new MainFrame(Game.getInstance());
+                Game game = Game.getInstance();
+                MainFrame mainFrame = new MainFrame(game);
 
                 /* Set full screen */
                 device.setFullScreenWindow(mainFrame);

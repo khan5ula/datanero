@@ -21,7 +21,13 @@ public class Sound {
         OFF
     }
 
+    public enum MusicStatus {
+        ON,
+        OFF
+    }
+
     private SoundStatus soundStatus;
+    private MusicStatus musicStatus;
 
     private Sound() {
         try {
@@ -58,6 +64,7 @@ public class Sound {
         if (instance == null) {
             instance = new Sound();
             instance.setSoundStatus(SoundStatus.ON);
+            instance.setMusicStatus(MusicStatus.ON);
             instance.startBackgroundMusic();
         }
         return instance;
@@ -79,6 +86,14 @@ public class Sound {
      */
     public void setSoundStatus(SoundStatus soundStatus) {
         this.soundStatus = soundStatus;
+    }
+
+    public MusicStatus getMusicStatus() {
+        return this.musicStatus;
+    }
+
+    public void setMusicStatus(MusicStatus musicStatus) {
+        this.musicStatus = musicStatus;
     }
 
     /**

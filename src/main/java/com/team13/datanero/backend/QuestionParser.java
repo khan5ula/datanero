@@ -47,11 +47,16 @@ public class QuestionParser {
             JSONArray wrongAnswers = questionJsonObject.getJSONArray("wrongAnswers");
 
             Question question = new Question();
-            question.setQuestion(questionJsonObject.getString("question"));
-            question.setCorrectAnswer(questionJsonObject.getString("correctAnswer"));
-            question.setFirstWrongAnswer(wrongAnswers.get(0).toString());
-            question.setSecondWrongAnswer(wrongAnswers.get(1).toString());
-            question.setThirdWrongAnswer(wrongAnswers.get(2).toString());
+            question.setQuestionFi(questionJsonObject.getString("question_fi"));
+            question.setQuestionEn(questionJsonObject.getString("question_en"));
+            question.setCorrectAnswerFi(questionJsonObject.getString("correctAnswer_fi"));
+            question.setCorrectAnswerEn(questionJsonObject.getString("correctAnswer_en"));
+            question.setFirstWrongAnswerFi(wrongAnswers.get(0).toString());
+            question.setSecondWrongAnswerFi(wrongAnswers.get(1).toString());
+            question.setThirdWrongAnswerFi(wrongAnswers.get(2).toString());
+            question.setFirstWrongAnswerEn(wrongAnswers.get(3).toString());
+            question.setSecondWrongAnswerEn(wrongAnswers.get(4).toString());
+            question.setThirdWrongAnswerEn(wrongAnswers.get(5).toString());
             questions.add(question);
         }
         return questions;

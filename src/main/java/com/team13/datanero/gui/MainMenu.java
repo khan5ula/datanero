@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
+import com.team13.datanero.backend.LanguageHandler;
 import com.team13.datanero.gui.Theme.FontStyle;
 
 public class MainMenu extends JPanel {
@@ -27,10 +28,12 @@ public class MainMenu extends JPanel {
     private JButton settingsButton;
     private JButton highScoresButton;
     private JButton exitButton;
+    private LanguageHandler languageHandler;
 
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         setLayout(new GridBagLayout());
+        this.languageHandler = LanguageHandler.getInstance();
         this.theme = Theme.getInstance();
         setBackground(theme.getScreenBackGroundColor());
 
@@ -43,7 +46,7 @@ public class MainMenu extends JPanel {
         JLabel logo = new JLabel(logoImage);
 
         /* Sub-title */
-        this.subtitle = new JLabel("Tietojenkäsittelyn tietovisa");
+        this.subtitle = new JLabel(languageHandler.getString("subtitleText"));
         this.subtitle.setFont(theme.getCustomFont(FontStyle.SEMIBOLD, 48));
 
         /* Teacher mascot with a welcome message */
@@ -66,18 +69,26 @@ public class MainMenu extends JPanel {
         timer.start();
 
         /* Create buttons */
-        this.startButton = new CustomButton("Aloita peli", theme.getStartGameButtonColor(), 38, FontStyle.BOLD);
+        this.startButton = new CustomButton(languageHandler.getString("startButtonText"),
+                theme.getStartGameButtonColor(), 38, FontStyle.BOLD);
         this.startButton.setPreferredSize(new Dimension(500, 120));
+        this.startButton.setActionCommand("StartGame");
 
-        this.settingsButton = new CustomButton("Asetukset", theme.getSettingsButtonColor(), 38, FontStyle.BOLD);
+        this.settingsButton = new CustomButton(languageHandler.getString("settingsButtonText"),
+                theme.getSettingsButtonColor(), 38, FontStyle.BOLD);
         this.settingsButton.setPreferredSize(new Dimension(500, 120));
+        this.settingsButton.setActionCommand("Settings");
 
-        this.highScoresButton = new CustomButton("Parhaat tulokset", theme.getHighScoreButtonColor(), 38,
+        this.highScoresButton = new CustomButton(languageHandler.getString("highScoresButtonText"),
+                theme.getHighScoreButtonColor(), 38,
                 FontStyle.BOLD);
         this.highScoresButton.setPreferredSize(new Dimension(500, 120));
+        this.highScoresButton.setActionCommand("HighScores");
 
-        this.exitButton = new CustomButton("Poistu", theme.getExitButtonColor(), 38, FontStyle.BOLD);
+        this.exitButton = new CustomButton(languageHandler.getString("exitButtonText"), theme.getExitButtonColor(), 38,
+                FontStyle.BOLD);
         this.exitButton.setPreferredSize(new Dimension(500, 120));
+        this.exitButton.setActionCommand("Exit");
 
         /* Button action handling */
         ButtonActions buttonActions = new ButtonActions(this.mainFrame);
@@ -180,4 +191,13 @@ public class MainMenu extends JPanel {
         this.highScoresButton.setBackground(theme.getHighScoreButtonColor());
         this.exitButton.setBackground(theme.getExitButtonColor());
     }
+
+    public void updateTexts() {
+        this.subtitle.setText(languageHandler.getString("subtitleText"));
+        this.startButton.setText(languageHandler.getString("startButtonText"));
+        this.settingsButton.setText(languageHandler.getString("settingsButtonText"));
+        this.highScoresButton.setText(languageHandler.getString("highScoresButtonText"));
+        this.exitButton.setText(languageHandler.getString("exitButtonText"));
+    }
+
 }
