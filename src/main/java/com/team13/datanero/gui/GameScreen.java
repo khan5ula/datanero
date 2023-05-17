@@ -348,11 +348,11 @@ public class GameScreen extends JPanel {
 
         AtomicInteger counter = new AtomicInteger();
 
-        int delay = 367; // milliseconds
+        int delay = 250; // milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                if (counter.get() < 6) { // blink 3 times (6 because each blink is 2 actions: heart and heartless)
-                    ImageIcon icon = (counter.get() % 2 == 0) ? heartIcon : heartlessIcon;
+                if (counter.get() < 4) { // each blink is two actions; with and without heart
+                    ImageIcon icon = (counter.get() % 2 == 0) ? heartlessIcon : heartIcon;
                     heartLabels.get(index).setIcon(icon);
                     counter.incrementAndGet();
                 } else {
