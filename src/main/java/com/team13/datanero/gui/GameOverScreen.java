@@ -221,6 +221,19 @@ public class GameOverScreen extends JPanel {
     }
 
     public void updateTexts() {
+        /* Update the mascot's speech bubble depending on the selected language */
+        String speechBubblePath = "";
+
+        if (languageHandler.getCurrentLanguage().equals("en")) {
+            speechBubblePath = "/images/dalle-versions/new-generation/with_textes/en-versions/mascot-game-over-en.png";
+        } else {
+            speechBubblePath = "/images/dalle-versions/new-generation/with_textes/mascot-game-over.png";
+        }
+
+        URL speechBubbleUrl = getClass().getResource(speechBubblePath);
+        ImageIcon speechBubbleImage = new ImageIcon(speechBubbleUrl);
+        mascot.setIcon(speechBubbleImage);
+
         this.exitButton.setText(languageHandler.getString("returnToMainMenuButtonText"));
         this.scoreInputButton.setText(languageHandler.getString("scoreInputText"));
         this.messageLabel.setText(languageHandler.getString("messageLabelText") + " " + this.score);
