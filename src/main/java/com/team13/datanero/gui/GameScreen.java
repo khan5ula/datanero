@@ -335,6 +335,7 @@ public class GameScreen extends JPanel {
      * lives.
      */
     private void updateHearts(int lives) {
+        // TODO: Add an animation when lives are decremented. Perhaps a blinking heart before it disappears?
         URL heartlessIconURL = getClass().getResource("/images/heartless.png");
         ImageIcon heartlessIcon = new ImageIcon(heartlessIconURL);
         switch (lives) {

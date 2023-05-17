@@ -67,7 +67,7 @@ public class HighScore {
     /**
      * Returns a list of high score elements in descending order.
      * 
-     * @return List containing 5 best high score entries.
+     * @retufirn List containing 5 best high score entries.
      */
     public ArrayList<Score> getHighScore() {
         PriorityQueue<Score> tempQueue = new PriorityQueue<>(scores);

@@ -40,6 +40,8 @@ public class HighScoreScreen extends JPanel {
         init();
     }
 
+    // TODO: Add a picture of a trophy
+    
     /**
      * Method that initializes the High Score screen elements.
      */
