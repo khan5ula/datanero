@@ -36,7 +36,7 @@ public class GameScreen extends JPanel {
     private JButton[] answerButtons;
     private JLabel scoreLabel;
     private JLabel livesLabel;
-    private JLabel heartLabel1, heartLabel2, heartLabel3;
+    private ArrayList<JLabel> heartLabels;
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
     private ArrayList<JButton> buttons;
@@ -163,22 +163,16 @@ public class GameScreen extends JPanel {
         livesPanelConstraints.insets = new Insets(10, 0, 10, 10);
         livesPanel.add(livesLabel, livesPanelConstraints);
 
-        /* Create labels for hearts */
+        /* Create labels for hearts and add them to the panel */
+        this.heartLabels = new ArrayList<>();
         URL heartIconURL = getClass().getResource("/images/heart.png");
         ImageIcon heartIcon = new ImageIcon(heartIconURL);
-        this.heartLabel1 = new JLabel(heartIcon);
-        this.heartLabel2 = new JLabel(heartIcon);
-        this.heartLabel3 = new JLabel(heartIcon);
 
-        /* Add heart labels to lives panel */
-        livesPanelConstraints.gridx = 1;
-        livesPanel.add(heartLabel1, livesPanelConstraints);
-
-        livesPanelConstraints.gridx = 2;
-        livesPanel.add(heartLabel2, livesPanelConstraints);
-
-        livesPanelConstraints.gridx = 3;
-        livesPanel.add(heartLabel3, livesPanelConstraints);
+        for (int i = 0; i < 3; i++) {
+            this.heartLabels.add(new JLabel(heartIcon));
+            livesPanelConstraints.gridx = i + 1;
+            livesPanel.add(heartLabels.get(i), livesPanelConstraints);
+        }
 
         /* Add score label to grid */
         gbc.gridx = 10;
@@ -335,21 +329,33 @@ public class GameScreen extends JPanel {
      * lives.
      */
     private void updateHearts(int lives) {
-        // TODO: Add an animation when lives are decremented. Perhaps a blinking heart before it disappears?
+        // TODO: Add an animation when lives are decremented. Perhaps a blinking heart
+        // before it disappears?
         URL heartlessIconURL = getClass().getResource("/images/heartless.png");
         ImageIcon heartlessIcon = new ImageIcon(heartlessIconURL);
         switch (lives) {
             case 2:
-                this.heartLabel3.setIcon(heartlessIcon);
+                this.heartLabels.get(2).setIcon(heartlessIcon);
                 break;
             case 1:
-                this.heartLabel2.setIcon(heartlessIcon);
+                this.heartLabels.get(1).setIcon(heartlessIcon);
                 break;
             case 0:
-                this.heartLabel1.setIcon(heartlessIcon);
+                this.heartLabels.get(0).setIcon(heartlessIcon);
                 break;
         }
     }
+    /*
+    private void blinkHeart(int index) {
+        int delay = 500; // milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                // ...Perform a task...
+            }
+        };
+        new Timer(delay, taskPerformer).start();
+    }
+    */
 
     /**
      * Method that updates the layout of answer buttons.
