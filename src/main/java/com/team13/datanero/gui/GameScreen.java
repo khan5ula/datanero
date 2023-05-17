@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.swing.BorderFactory;
@@ -37,6 +38,7 @@ public class GameScreen extends JPanel {
     private JLabel scoreLabel;
     private JLabel livesLabel;
     private ArrayList<JLabel> heartLabels;
+    private ImageIcon heartIcon;
     private JTextPane questionTextArea;
     private JLabel mascotLabel;
     private ArrayList<JButton> buttons;
@@ -163,13 +165,13 @@ public class GameScreen extends JPanel {
         livesPanelConstraints.insets = new Insets(10, 0, 10, 10);
         livesPanel.add(livesLabel, livesPanelConstraints);
 
-        /* Create labels for hearts and add them to the panel */
+        /* Create labelheartIcons for hearts and add them to the panel */
         this.heartLabels = new ArrayList<>();
         URL heartIconURL = getClass().getResource("/images/heart.png");
-        ImageIcon heartIcon = new ImageIcon(heartIconURL);
+        this.heartIcon = new ImageIcon(heartIconURL);
 
         for (int i = 0; i < 3; i++) {
-            this.heartLabels.add(new JLabel(heartIcon));
+            this.heartLabels.add(new JLabel(this.heartIcon));
             livesPanelConstraints.gridx = i + 1;
             livesPanel.add(heartLabels.get(i), livesPanelConstraints);
         }
@@ -329,33 +331,37 @@ public class GameScreen extends JPanel {
      * lives.
      */
     private void updateHearts(int lives) {
-        // TODO: Add an animation when lives are decremented. Perhaps a blinking heart
-        // before it disappears?
+        blinkHeart(lives);
+    }
+
+    /**
+     * Method that blinks the heart icon three times when decrementing lives.
+     * After the blinking animation is finished, it sets the heart icon by the lives index to heartlessIcon.
+     * @param index The index for hertLabels.get() function, indicating the number of lives.
+     */
+    private void blinkHeart(int index) {
         URL heartlessIconURL = getClass().getResource("/images/heartless.png");
         ImageIcon heartlessIcon = new ImageIcon(heartlessIconURL);
-        switch (lives) {
-            case 2:
-                this.heartLabels.get(2).setIcon(heartlessIcon);
-                break;
-            case 1:
-                this.heartLabels.get(1).setIcon(heartlessIcon);
-                break;
-            case 0:
-                this.heartLabels.get(0).setIcon(heartlessIcon);
-                break;
-        }
-    }
-    /*
-    private void blinkHeart(int index) {
-        int delay = 500; // milliseconds
+
+        AtomicInteger counter = new AtomicInteger();
+
+        int delay = 367; // milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                // ...Perform a task...
+                if (counter.get() < 6) { // blink 3 times (6 because each blink is 2 actions: heart and heartless)
+                    ImageIcon icon = (counter.get() % 2 == 0) ? heartIcon : heartlessIcon;
+                    heartLabels.get(index).setIcon(icon);
+                    counter.incrementAndGet();
+                } else {
+                    // after 3 blinks, set heartless icon
+                    heartLabels.get(index).setIcon(heartlessIcon);
+                    ((Timer) evt.getSource()).stop();
+                }
             }
         };
-        new Timer(delay, taskPerformer).start();
+        Timer timer = new javax.swing.Timer(delay, taskPerformer);
+        timer.start();
     }
-    */
 
     /**
      * Method that updates the layout of answer buttons.
@@ -476,12 +482,11 @@ public class GameScreen extends JPanel {
                 this.timerDelay = 1200;
             } else {
                 sound.playWrongAnswerSound();
+                game.decrementLives();
+                updateHearts(game.getLives());
                 clickedButton.setBackground(theme.getIncorrectAnswerButtonColor());
                 answerButtons[0].setBackground(theme.getCorrectAnswerButtonColor());
-                game.decrementLives();
                 updateNegativeMascot();
-                updateHearts(game.getLives());
-                updateScore();
 
                 /*
                  * Set delay depending on the situation.
