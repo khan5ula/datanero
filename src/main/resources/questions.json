@@ -2,338 +2,338 @@
   "questions": [
     {
       "question_fi": "Mikä seuraavista ei ole normaalimuoto tietokantamallinnuksessa?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is not a normal form in database modelling?",
       "correctAnswer_fi": "Absoluuttinen normaalimuoto (ANF)",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Absolute normal form (ANF)",
       "wrongAnswers": [
         "Toinen normaalimuoto (2NF)",
         "Kolmas normaalimuoto (3NF)",
         "Boyce-Codd normaalimuoto (BCNF)",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Second normal form (2NF)",
+        "Boyce-Codd normal form (BCNF)",
+        "Third normal form (3NF)"
       ]
     },
     {
       "question_fi": "Millä nimellä kutsutaan prosessia, jossa taulu hajautetaan pienemmiksi tauluiksi datan redundanssin vähentämiseksi?",
-      "question_en": "Placeholder for English question",
+      "question_en": "What is the name of the process where a table is distributed into several smaller tables to reduce data redundancy?",
       "correctAnswer_fi": "Normalisointi",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Normalizing",
       "wrongAnswers": [
         "Indeksointi",
         "Osittaminen",
         "Partitiointi",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Indexing",
+        "Partitioning",
+        "Dividing"
       ]
     },
     {
       "question_fi": "Millä komennolla luodaan uusi SQL-taulu?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following commands is used to create a new SQL table?",
       "correctAnswer_fi": "CREATE TABLE",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "CREATE TABLE",
       "wrongAnswers": [
         "CREATE DATABASE",
         "ALTER TABLE",
         "INSERT INTO",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "CREATE DATABASE",
+        "ALTER TABLE",
+        "INSERT INTO"
       ]
     },
     {
       "question_fi": "Millä seuraavista komennoista valitaan kaikki sarakkeet taulusta \"employees\"?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following commands chooses all columns from the table \"employees\"?",
       "correctAnswer_fi": "SELECT * FROM employees",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "SELECT * FROM employees",
       "wrongAnswers": [
         "SELECT ALL from employees",
         "SELECT employees",
         "SELECT FROM employees",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "SELECT ALL from employees",
+        "SELECT employees",
+        "SELECT FROM employees"
       ]
     },
     {
       "question_fi": "Millä seuraavista komennoista voidaan muokata olemassaolevaa SQL-taulua?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following commands allows you to edit an existing SQL table?",
       "correctAnswer_fi": "ALTER TABLE",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "ALTER TABLE",
       "wrongAnswers": [
         "UPDATE",
         "CHANGE TABLE",
         "MODIFY TABLE",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "UPDATE",
+        "CHANGE TABLE",
+        "MODIFY TABLE"
       ]
     },
     {
       "question_fi": "Mitä SQL-funktiota käytetään palauttamaan rivien lukumäärä taulusta?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following SQL functions is used to retrieve the number of rows from a table?",
       "correctAnswer_fi": "COUNT()",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "COUNT()",
       "wrongAnswers": [
         "MAX()",
         "MIN()",
         "AVG()",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "MAX()",
+        "MIN()",
+        "AVG()"
       ]
     },
     {
       "question_fi": "Millä seuraavista SQL-komennoista lajitellaan arvot nousevaan tai laskevaan järjestykseen?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following SQL commands is used to sort values to increasing or decreasing order?",
       "correctAnswer_fi": "ORDER BY",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "ORDER BY",
       "wrongAnswers": [
         "GROUP BY",
         "WHERE",
         "HAVING",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "GROUP BY",
+        "WHERE",
+        "HAVING"
       ]
     },
     {
       "question_fi": "Mikä seuraavista ei ole SQL-kielen aggregaattifunktio?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is not an aggregate function in SQL?",
       "correctAnswer_fi": "RANK()",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "RANK()",
       "wrongAnswers": [
         "SUM()",
         "AVG()",
         "MAX()",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "SUM()",
+        "AVG()",
+        "MAX()"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on relaatiomallinnuksessa käytettävä termi, joka kuvaa taulujen välistä yhteyttä?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following terms is used to describe the connection between tables in relation models?",
       "correctAnswer_fi": "Liitos (JOIN)",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "JOIN",
       "wrongAnswers": [
         "Yhdistäminen (MERGE)",
         "Linkitys (LINK)",
         "Solmu (NODE)",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "MERGE",
+        "LINK",
+        "NODE"
       ]
     },
     {
       "question_fi": "Mikä on koosteattribuutti?",
-      "question_en": "Placeholder for English question",
+      "question_en": "What is a composite attribute?",
       "correctAnswer_fi": "Attribuutti, joka muodostuu useammasta aliattribuutista.",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "An attribute that is composed of several sub-attributes",
       "wrongAnswers": [
         "Attribuutti, joka esiintyy vain yhdessä relaatiossa.",
         "Attribuutti, joka esiintyy useammassa relaatiossa.",
         "Attribuutti, joka on riippuvainen toisesta atribuutista.",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "An attribute that only appears in one relation.",
+        "An attribute that appears in several relations.",
+        "An attribute that is dependant on other attributes."
       ]
     },
     {
       "question_fi": "Mikä seuraavista on yksi transaktioiden ACID-ominaisuuksista?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is one of the ACID properties of transactions?",
       "correctAnswer_fi": "Eristettävyys (Isolation)",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Isolation",
       "wrongAnswers": [
         "Integroitavuus (Integration)",
         "Inkrementaalisuus (Incrementality)",
         "Sisäsyntyisyys (Intrinsicy)",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Integration",
+        "Incrementality",
+        "Intrinsicy"
       ]
     },
     {
       "question_fi": "Mikä erottaa SQL- ja NoSQL -tietokantatyypit toisistaan?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following separates SQL and NoSQL databases from each other?",
       "correctAnswer_fi": "SQL käyttää relaatiomalleja, NoSQL ei",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "SQL uses relation models, NoSQL doesn't",
       "wrongAnswers": [
         "SQL on ohjelmointikieli, NoSQL ei",
         "SQL on hidas, NoSQL on nopea",
         "SQL on tietokanta, NoSQL on tiedostojärjestelmä",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "SQL is a programming language, NoSQL isn't",
+        "SQL is usually slow and NoSQL is faster",
+        "SQL is a database and NoSQL is actually a file system"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on tietokantojen perusyksikkö, joka voi sisältää yhden tai useamman tietueen?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is the basic unit of databases, which can contain one or more records?",
       "correctAnswer_fi": "Taulu",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Table",
       "wrongAnswers": [
         "Sarake",
         "Rivi",
         "Solmu",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Column",
+        "Row",
+        "Node"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on indeksin pääasiallinen tarkoitus tietokantojen kontekstissa?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is the primary purpose of an index in the context of databases?",
       "correctAnswer_fi": "Parantaa tietojen hakunopeutta",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "It improves the speed of queries",
       "wrongAnswers": [
         "Vähentää tietokannan kokoa",
         "Lisätä tietojen tallennuskapasiteettia",
         "Estää tietokannan pääsyn valtuuttamattomilta käyttäjiltä",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "It reduces the size of a database",
+        "It increases the data capacity of a database",
+        "It prevents unauthorized users from accessing a database"
       ]
     },
     {
       "question_fi": "Mitä seuraavista SQL-komennoista käytetään tietueen lisäämiseen tauluun?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following SQL commands is used to enter a record to a database table?",
       "correctAnswer_fi": "INSERT INTO",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "INSERT INTO",
       "wrongAnswers": [
         "UPDATE",
         "DELETE",
         "SELECT",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "UPDATE",
+        "DELETE",
+        "SELECT"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on SQL-lauseen osa, joka määrittelee ehdot tietojen valitsemiseksi?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is the part of a SQL query for defining the conditions for data retrieving?",
       "correctAnswer_fi": "WHERE",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "WHERE",
       "wrongAnswers": [
         "SELECT",
         "FROM",
         "ORDER BY",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "SELECT",
+        "FROM",
+        "ORDER BY"
       ]
     },
     {
       "question_fi": "Mitä tarkoittaa tietokantojen kontekstissa termi 'transaktio'?",
-      "question_en": "Placeholder for English question",
+      "question_en": "What does the term 'transaction' mean in the context of databases?",
       "correctAnswer_fi": "Sarja tietokantaoperaatioita, jotka suoritetaan yhtenä kokonaisuutena",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Series of database operations that are executed in one unity",
       "wrongAnswers": [
         "Tietokannan sisältämä tietue",
         "Tietokannan sisältämä taulu",
         "Tietokannan sisältämä solmu",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Record that can be retrieved from a database",
+        "Database table that contains records",
+        "A node inside a database"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on yksi tietokantojen ACID-ominaisuuksista?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is one of the ACID properties of databases?",
       "correctAnswer_fi": "Kestävyys (Durability)",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Durability",
       "wrongAnswers": [
         "Laajennettavuus (Extensibility)",
         "Eheys (Integrity)",
         "Joustavuus (Flexibility)",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Extensibility",
+        "Integrity",
+        "Flexibility"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on yleisimpiä ongelmia, joita normalisointi pyrkii ratkaisemaan?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is one of the most common problems that normalization aims to solve?",
       "correctAnswer_fi": "Päivitysanomalia",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Anomalies during updates",
       "wrongAnswers": [
         "Tietokannan rikkominen",
         "Tietokannan ylikuormitus",
         "Tietokannan väärinkäyttö",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Breaking the database",
+        "Overloading the database",
+        "Database misuse"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on ensimmäisen normaalimuodon (1NF) pääasiallinen vaatimus?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is the primary requirement of first normal form (1NF)?",
       "correctAnswer_fi": "Taulun jokaisella sarakkeella on yksinkertainen arvo",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Each column of a table has a simple value",
       "wrongAnswers": [
         "Taulussa ei ole päällekkäisiä tietueita",
         "Taulun jokaisella rivillä on yksilöllinen avain",
         "Taulun kaikki arvot ovat numeerisia",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "The table doesn't have overlapping records",
+        "Each row of a table has an unique key",
+        "Each value of a table is numeric"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on normalisoinnin pääasiallinen tavoite?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is the primary goal of normalization?",
       "correctAnswer_fi": "Vähentää tietokannan redundanssia",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "To reduce database redundancy",
       "wrongAnswers": [
         "Parantaa tietokannan suorituskykyä",
         "Lisätä tietokannan turvallisuutta",
         "Lisätä tietokannan tallennuskapasiteettia",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "To improve the performance of a database",
+        "To make the database more secure",
+        "To increase the capacity of a database"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on kuolemanlukko (deadlock) tietokantakontekstissa?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following explains the term \"deadlock\" in the context of databases?",
       "correctAnswer_fi": "Kaksi transaktiota odottavat ikuisesti, että toistensa transaktiolukitus aukeaa",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Two transactions keep waiting for the transaction lock to end on each other",
       "wrongAnswers": [
         "Tietokantataulu lukitsee itsensä tietoturvasyistä",
         "Tietokanta tuhoutuu niin, että sen tietoja ei voida pelastaa",
         "Tietokanta on erittäin hidas",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "The database table locks itself for major security reasons",
+        "The database is destroyed so that the data can't be restored",
+        "The database is extremely slow"
       ]
     },
     {
       "question_fi": "Mikä seuraavista tietokantatransaktioiden aikaleimoja koskevista väitteistä ei pidä paikkaansa?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following claims about database transaction timestamps is not correct?",
       "correctAnswer_fi": "Tietokannan käyttäjän tulee muistaa lisätä aikaleima jokaiseen tekemäänsä transaktioon",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Database user should always remember to add a timestamp to every transaction they make",
       "wrongAnswers": [
         "Aikaleima voi olla looginen laskuri tai kellonaika",
         "Jokaisella transaktiolla on sekä luku- että kirjoitusaikaleima",
         "Transaktio voi yrittää lukea tai kirjoittaa kohdetta, joka on jo ehditty päivittää uudemmassa transaktiossa",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "Timestamp can be either a logical counter or a clock stamp",
+        "Every transaction has time stamps for both Write and Read operations",
+        "Transaction may try to read or write on a target that has already been updated in an earlier transaction"
       ]
     },
     {
       "question_fi": "Mikä seuraavista on ero avain-arvo-pari- ja saraketietokantojen välillä?",
-      "question_en": "Placeholder for English question",
+      "question_en": "Which of the following is a difference between key-value-pair and column database types?",
       "correctAnswer_fi": "Toiseen tallennetaan avain-arvopareja, toiseen rivejä ja sarakkeita",
-      "correctAnswer_en": "Placeholder for correct answer",
+      "correctAnswer_en": "Other stores key-value pairs and the other stores rows and columns",
       "wrongAnswers": [
         "Toinen näistä ei ole tietokanta, vaan taulukointimenetelmä",
         "Toinen näistä on relaatiotietokanta",
         "Toiseen voi tallentaa vain numeerista tietoa",
-        "First Placeholder",
-        "Second Placeholder",
-        "Third Placeholder"
+        "One of them is not a database, it's actually a data analysis principle",
+        "One of them is a relational database",
+        "One of them only stores numeric data"
       ]
     }
   ]
