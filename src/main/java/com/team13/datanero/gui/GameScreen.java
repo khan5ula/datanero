@@ -336,8 +336,11 @@ public class GameScreen extends JPanel {
 
     /**
      * Method that blinks the heart icon three times when decrementing lives.
-     * After the blinking animation is finished, it sets the heart icon by the lives index to heartlessIcon.
-     * @param index The index for hertLabels.get() function, indicating the number of lives.
+     * After the blinking animation is finished, it sets the heart icon by the lives
+     * index to heartlessIcon.
+     * 
+     * @param index The index for hertLabels.get() function, indicating the number
+     *              of lives.
      */
     private void blinkHeart(int index) {
         URL heartlessIconURL = getClass().getResource("/images/heartless.png");
@@ -394,17 +397,29 @@ public class GameScreen extends JPanel {
 
         switch (game.getLives()) {
             case 2:
-                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
+                if (languageHandler.getCurrentLanguage().equals("en")) {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/en-versions/mascot-hups-en.png";
+                } else {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-hups.png";
+                }
                 imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-1.png";
                 delay = 1500; // short text, short delay
                 break;
             case 1:
-                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
+                if (languageHandler.getCurrentLanguage().equals("en")) {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/en-versions/mascot-toinenmoka-en.png";
+                } else {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-toinenmoka.png";
+                }
                 imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-2.png";
                 delay = 2200;
                 break;
             case 0:
-                imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
+                if (languageHandler.getCurrentLanguage().equals("en")) {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/en-versions/mascot-kolmasmoka-en.png";
+                } else {
+                    imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-kolmasmoka.png";
+                }
                 imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-4.png";
                 delay = 2200;
                 break;
@@ -436,7 +451,12 @@ public class GameScreen extends JPanel {
      */
     private void updatePositiveMascot() {
         String imagePath = "/images/dalle-versions/new-generation/dalle-generated-teacher-3.png";
-        String imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-oikein.png";
+        String imagePathWithSpeechBubble = "";
+        if (languageHandler.getCurrentLanguage().equals("en")) {
+            imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/en-versions/mascot-oikein-en.png";
+        } else {
+            imagePathWithSpeechBubble = "/images/dalle-versions/new-generation/with_textes/mascot-oikein.png";
+        }
 
         URL imagePathWithSpeechBubbleURL = getClass().getResource(imagePathWithSpeechBubble);
 
